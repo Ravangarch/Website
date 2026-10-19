@@ -1,4 +1,4 @@
-# FORM — Material archive
+# ATHEM — Material archive
 
 A school-project demo for discovering materials from previous brand collaborations. All records, ownership details, passports, objects and installation images are fictional. No brand affiliation is implied.
 
@@ -23,3 +23,7 @@ npm run dev
 - Responsive layouts and keyboard-accessible controls; Escape closes details.
 
 The models and surface marks are simulated; real photogrammetry scans and project photographs can replace them later. There is no backend or persistent inventory editing.
+
+## Brand identities
+
+The monochrome collaboration tiles reference brand logo images hosted by Wikimedia Commons (Chanel, H&M, Louis Vuitton, and Sotheby’s). Brand names remain visible as text fallbacks if the image host is unavailable. These marks belong to their respective owners and are used for this fictional school project. The current cloud network blocks Wikimedia, so external logo loading must also be checked in a normal browser.
