@@ -40,7 +40,7 @@ Every visit begins at the login page. These are browser-only demonstration roles
 | H&M | hm | hm |
 | Sotheby’s | sothebys | sothebys |
 
-Brand accounts see their own records with year navigation and an Athem × brand identity. Administrators see brand navigation with nested “Show all” and year options. Project tabs include reuse history (original/reuse years and partner), past collaborations, and interactive provisional concepts. The two requested design reference photographs were not included in the conversation; the concepts are illustrative placeholders.
+Brand accounts see their own records with year navigation and an Athem × brand identity. Administrators see brand navigation with nested “Show all” and year options. Project tabs include reuse history (original/reuse years and partner), past collaborations, and interactive provisional concepts. The provisional designs reconstruct the supplied detachable steel frame and folded metal petals as illustrative, rotatable 3D studies. Each brand can explore both designs. The frame also offers a packed transport view. A recreated visual study based on the supplied boards accompanies the models; these are approximations rather than measured engineering models.
 
 On-display materials include fictional December 2026 dismantling, transport and destination-storage schedules.
 
@@ -59,3 +59,5 @@ Imported record metadata is saved to localStorage and attachments to IndexedDB. 
 ### Validation
 
 `npm run test:smoke` starts its own Vite server and uses system Chromium (`CHROMIUM_PATH` may override the executable). It tests all five roles, invalid credentials, scoped collections, nested years, project tabs, timelines, French Excel import, malformed CSV feedback, uploaded STL/GLB viewing, photo/PDF attachments, persistence and mobile overflow.
+
+The **Who are we** tab contains the supplied ATHEM studio, CSR and EcoVadis description. Brand inventory and reuse examples are scoped to the signed-in brand; **Past projects** is a public case-study selection across all four collaborations, with year navigation.
