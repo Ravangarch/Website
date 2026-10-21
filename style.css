@@ -9,3 +9,9 @@
 
 /* Keep collaboration counts at a fixed corner, independent of logo width. */
 #brands .brand small{position:absolute;top:9px;right:10px;margin:0;line-height:1;min-width:12px;text-align:right;font-variant-numeric:tabular-nums}
+
+/* Supplied ATHEM identity with the French group affiliation. */
+.logo.athem-brand{display:block;line-height:0;width:100%;max-width:194px;margin:0 auto;flex-shrink:0;background:#fff}
+.athem-brand img{display:block;width:100%;height:auto;max-height:170px;object-fit:contain}
+@media(max-width:800px) and (min-width:541px){.athem-brand img{max-height:130px}}
+@media(max-width:540px){.logo.athem-brand{width:150px;margin:0}.athem-brand img{max-height:120px}}
