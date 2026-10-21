@@ -49,3 +49,18 @@ export function provisionalModel(kind,{packed=false}={}){
  }
  return group;
 }
+
+export function reuseModel(variant=0){
+ const group=new THREE.Group();
+ const palette=[0xb78b5e,0xd0ad82,0xe3d6bb,0x969b9e];
+ const layouts=[
+  [[1.45,.38,.9,0,-.6,0],[1.05,.4,.75,.05,-.21,0],[.68,.42,.62,-.05,.2,0],[.38,.3,.4,.02,.56,0]],
+  [[.65,.55,.65,-.36,-.55,0],[.65,.55,.65,.36,-.55,0],[1.5,.2,.75,0,-.17,0],[.7,.55,.65,0,.21,0]],
+  [[1.6,.3,.6,0,-.6,0],[.45,.65,.6,-.52,-.12,0],[.45,.65,.6,.52,-.12,0],[1.6,.25,.65,0,.33,0],[.55,.35,.55,0,.63,0]],
+  [[1.2,.4,.9,0,-.6,0],[.9,.4,.75,.16,-.2,0],[.65,.4,.62,-.12,.2,0],[.5,.35,.5,.12,.58,0]]
+ ];
+ layouts[variant%layouts.length].forEach(([w,h,d,x,y,z],i)=>{const mesh=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),new THREE.MeshStandardMaterial({color:palette[(i+variant)%palette.length],roughness:.65,metalness:i===3?.25:0}));mesh.position.set(x,y,z);group.add(mesh);});return group;
+}
+
+export function centerModel(object){object.updateMatrixWorld(true);const center=new THREE.Box3().setFromObject(object).getCenter(new THREE.Vector3());object.position.sub(center);object.updateMatrixWorld(true);return object;}
+export function frameModel(camera,object,aspect=1,controls){object.updateMatrixWorld(true);const sphere=new THREE.Box3().setFromObject(object).getBoundingSphere(new THREE.Sphere());const radius=Math.max(sphere.radius,.1);const vertical=THREE.MathUtils.degToRad(camera.fov)/2;const horizontal=Math.atan(Math.tan(vertical)*aspect);const distance=radius/Math.sin(Math.min(vertical,horizontal))*1.12;camera.aspect=aspect;camera.position.copy(new THREE.Vector3(3,2,4.6).normalize().multiplyScalar(distance));camera.near=Math.max(.001,radius/100);camera.far=Math.max(100,distance*20);camera.lookAt(0,0,0);camera.updateProjectionMatrix();if(controls){controls.target.set(0,0,0);controls.minDistance=radius*.35;controls.maxDistance=distance*4;controls.update();}return distance;}
