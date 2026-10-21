@@ -10,6 +10,8 @@
     "test:smoke": "node smoke.mjs"
   },
   "dependencies": {
+    "exceljs": "^4.4.0",
+    "papaparse": "^5.7.0",
     "three": "^0.185.0"
   },
   "devDependencies": {
