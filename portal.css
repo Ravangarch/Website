@@ -66,3 +66,5 @@ aside .user-avatar{float:none;margin:0}
 aside .user-info{margin:0;padding:6px 0 0;line-height:13px}
 aside .user-info small{margin-top:5px}
 @media(max-width:540px){aside .sidebar-bottom{display:none}}
+
+.detail-actions{display:flex;align-items:center;gap:18px}.detail-top .remove-record{font-size:11px;border:1px solid #b4b4b4;padding:8px 12px;color:#89382e;background:transparent}#removal-notice{position:fixed;bottom:24px;right:24px;max-width:calc(100vw - 32px);z-index:20;background:#111;color:#fff;box-shadow:0 4px 24px #0003;display:flex;align-items:center;gap:20px;padding:16px 20px;font-size:12px}#removal-notice button{border:0;background:none;color:#fff;text-decoration:underline;white-space:nowrap;font-size:11px}#removal-notice button:last-child{text-decoration:none;font-size:20px}@media(max-width:540px){.detail-actions{gap:8px}.detail-top .remove-record{font-size:9px;padding:7px}#removal-notice{bottom:16px;right:16px;gap:12px;font-size:10px;padding:12px}}
