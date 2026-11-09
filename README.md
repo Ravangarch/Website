@@ -35,6 +35,7 @@ Every visit begins at the login page. These are browser-only demonstration roles
 | Role | Login | Password |
 | --- | --- | --- |
 | Administrator | admin | admin |
+| Prospective brand visitor (browse all brands) | visitor | visitor |
 | Chanel | chanel | chanel |
 | Louis Vuitton | louisvuitton | louisvuitton |
 | H&M | hm | hm |
@@ -65,3 +66,5 @@ The **Who are we** tab contains the supplied ATHEM studio, CSR and EcoVadis desc
 ## Expanded material collection
 
 The demo now has 44 seeded materials (11 per brand). Eight additional examples per brand cover thermoformed Kairlin bio-based composite, leather-effect mineral-tinted plaster, plywood, textile netting, projection screens, adjustable metal jacks, LED lighting, and structural truss sections. Each includes a procedural 3D preview, fictional passport, quantity, volume, physical properties and usage description. The category filters and admin entry/import flow recognise the expanded material families. These are illustrative classroom samples, not measured product specifications.
+
+The `visitor` demo account can browse the same brands, years and project tabs as an administrator, but cannot open or submit the Add information form.

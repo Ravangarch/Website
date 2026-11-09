@@ -59,3 +59,10 @@ aside .user-info small{font-size:8px;color:#7c7a7a}
 aside button:focus-visible{outline:1px solid #fff;outline-offset:-1px}
 @media(max-width:800px) and (min-width:541px){aside{width:150px;padding:20px 12px}main{margin-left:150px}}
 @media(max-width:540px){aside{width:100%;padding:12px 16px 0;display:block;position:relative}main{margin-left:0}aside .logo.athem-brand{width:100px;margin:0;max-width:100px}aside .athem-brand img{max-height:76px}aside .co-brand{position:absolute;top:28px;right:22px;left:auto;width:125px;margin:0;min-height:28px}aside .co-brand .brand-identity{min-width:0}#brands{display:flex;flex-direction:row;overflow-x:auto;overflow-y:hidden;max-height:160px;min-height:0;padding:8px 0 10px;gap:14px;margin:0}#brands .brand-group{min-width:112px}#brands .brand{min-width:112px;height:43px;min-height:43px;padding:6px 3px}#brands .year-menu{display:flex;flex-direction:row;flex-wrap:nowrap;width:auto;margin:0;padding:0;gap:7px}#brands .year-option{min-width:75px;padding:9px 7px;font-size:11px;gap:12px}#brands .brand-group .year-menu{margin-top:2px!important;flex-wrap:wrap;max-width:130px}aside .sidebar-bottom{display:none}}
+
+/* Keep the account badge level with the account name. */
+aside .sidebar-bottom{display:grid;grid-template-columns:25px minmax(0,1fr);align-items:start;column-gap:8px;padding-top:18px}
+aside .user-avatar{float:none;margin:0}
+aside .user-info{margin:0;padding:6px 0 0;line-height:13px}
+aside .user-info small{margin-top:5px}
+@media(max-width:540px){aside .sidebar-bottom{display:none}}
