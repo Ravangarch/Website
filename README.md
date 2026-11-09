@@ -61,3 +61,7 @@ Imported record metadata is saved to localStorage and attachments to IndexedDB. 
 `npm run test:smoke` starts its own Vite server and uses system Chromium (`CHROMIUM_PATH` may override the executable). It tests all five roles, invalid credentials, scoped collections, nested years, project tabs, timelines, French Excel import, malformed CSV feedback, uploaded STL/GLB viewing, photo/PDF attachments, persistence and mobile overflow.
 
 The **Who are we** tab contains the supplied ATHEM studio, CSR and EcoVadis description. Brand inventory and reuse examples are scoped to the signed-in brand; **Past projects** is a public case-study selection across all four collaborations, with year navigation.
+
+## Expanded material collection
+
+The demo now has 44 seeded materials (11 per brand). Eight additional examples per brand cover thermoformed Kairlin bio-based composite, leather-effect mineral-tinted plaster, plywood, textile netting, projection screens, adjustable metal jacks, LED lighting, and structural truss sections. Each includes a procedural 3D preview, fictional passport, quantity, volume, physical properties and usage description. The category filters and admin entry/import flow recognise the expanded material families. These are illustrative classroom samples, not measured product specifications.
