@@ -13,3 +13,49 @@
 /* White branding surfaces blend with the supplied logo artwork. */
 aside,.login-art,.about-intro,.co-brand,.logo.athem-brand{background:#fff}.login-art img{mix-blend-mode:normal}.co-brand{justify-content:center}.collaboration-x{display:none}
 #viewer canvas{position:absolute;inset:0;display:block;width:100%;height:100%}
+
+/* Compact black navigation: quiet grey identities, white interaction states. */
+aside{width:164px;padding:24px 14px 18px;background:#000;border-right:0;color:#7c7a7a}
+main{margin-left:164px}
+aside .logo.athem-brand{max-width:124px;background:#000;margin:0 auto}
+aside .athem-brand img{max-height:102px;filter:grayscale(1) invert(1);mix-blend-mode:screen}
+aside .nav-label{font-size:8px;letter-spacing:1.3px;margin:26px 6px 12px;color:#7c7a7a}
+aside .nav-item,aside .nav-item.selected{background:transparent;color:#7c7a7a;padding:10px 6px;border:0;border-radius:0;font-size:10px;gap:8px}
+aside .nav-item:hover,aside .nav-item.selected{color:#fff}
+aside .nav-item small,aside .nav-item.selected small{color:inherit;font-size:8px}
+#brands{max-height:none;min-height:100px;flex:1;gap:5px;padding:0 5px 0 0;margin-top:0;scrollbar-color:#444 #000;scrollbar-width:thin;overflow-y:auto}
+#brands::-webkit-scrollbar-track{background:#000}#brands::-webkit-scrollbar-thumb{background:#444}
+#brands .brand-group{min-width:0}
+#brands .brand,#brands .brand.active,#brands .brand:hover{min-width:0;min-height:58px;height:58px;padding:12px 5px;border:0;border-radius:0;box-shadow:none;background:transparent;color:#7c7a7a;transform:none}
+#brands .brand:hover,#brands .brand.active,#brands .brand:focus-visible{color:#fff}
+#brands .brand-identity{height:30px;width:100%!important;color:inherit!important}
+#brands .brand-wordmark{color:inherit!important;transition:color .2s}
+#brands .wordmark-1{font-size:15px!important;letter-spacing:2px}
+#brands .wordmark-2{font-size:24px!important}
+#brands .wordmark-3{font-size:9px!important;letter-spacing:.4px}
+#brands .wordmark-4{font-size:18px!important}
+#brands .brand-logo{max-width:110px;max-height:28px;filter:brightness(0) invert(1);opacity:.48;transition:opacity .2s}
+#brands .brand:hover .brand-logo,#brands .brand.active .brand-logo,#brands .brand:focus-visible .brand-logo{opacity:1}
+#brands .brand-identity:not(.logo-loaded) .brand-logo{opacity:0}
+#brands .all-brands-label{font-size:10px!important;color:inherit!important}
+#brands .brand small{display:none}
+#brands .year-menu{width:100%;margin:4px 0 10px;padding:0 0 0 10px;border:0;gap:1px}
+#brands .year-option{background:transparent;border:0;color:#7c7a7a;font-size:12px;padding:10px 7px;transition:color .2s}
+#brands .year-option:hover,#brands .year-option.active,#brands .year-option:focus-visible{background:transparent;color:#fff}
+#brands .year-option span{color:inherit;font-size:8px;opacity:.6}
+aside .co-brand{background:transparent;margin-top:7px;min-height:34px;position:static;max-width:none}
+aside .co-brand .brand-identity{height:26px;color:#7c7a7a!important}
+aside .co-brand .brand-wordmark{color:#7c7a7a!important}
+aside .co-brand .brand-logo{max-width:105px;max-height:24px;filter:brightness(0) invert(1);opacity:.48}
+aside .co-brand .brand-identity:not(.logo-loaded) .brand-logo{opacity:0}
+aside .co-brand .wordmark-1{font-size:15px!important}
+aside .co-brand .wordmark-3{font-size:9px!important}
+aside .sidebar-bottom{padding:20px 5px 0;font-size:9px;color:#7c7a7a}
+aside .sidebar-bottom p{display:none}
+aside .sidebar-bottom .live-dot{background:#7c7a7a;width:4px;height:4px}
+aside .user-avatar{height:25px;width:25px;background:#222;color:#bbb;font-size:8px;margin-top:18px}
+aside .user-info{margin-left:33px;padding-top:19px;color:#aaa;font-size:9px}
+aside .user-info small{font-size:8px;color:#7c7a7a}
+aside button:focus-visible{outline:1px solid #fff;outline-offset:-1px}
+@media(max-width:800px) and (min-width:541px){aside{width:150px;padding:20px 12px}main{margin-left:150px}}
+@media(max-width:540px){aside{width:100%;padding:12px 16px 0;display:block;position:relative}main{margin-left:0}aside .logo.athem-brand{width:100px;margin:0;max-width:100px}aside .athem-brand img{max-height:76px}aside .co-brand{position:absolute;top:28px;right:22px;left:auto;width:125px;margin:0;min-height:28px}aside .co-brand .brand-identity{min-width:0}#brands{display:flex;flex-direction:row;overflow-x:auto;overflow-y:hidden;max-height:160px;min-height:0;padding:8px 0 10px;gap:14px;margin:0}#brands .brand-group{min-width:112px}#brands .brand{min-width:112px;height:43px;min-height:43px;padding:6px 3px}#brands .year-menu{display:flex;flex-direction:row;flex-wrap:nowrap;width:auto;margin:0;padding:0;gap:7px}#brands .year-option{min-width:75px;padding:9px 7px;font-size:11px;gap:12px}#brands .brand-group .year-menu{margin-top:2px!important;flex-wrap:wrap;max-width:130px}aside .sidebar-bottom{display:none}}
