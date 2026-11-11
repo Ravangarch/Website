@@ -70,3 +70,5 @@ The demo now has 44 seeded materials (11 per brand). Eight additional examples p
 The `visitor` demo account can browse the same brands, years and project tabs as an administrator, but cannot open or submit the Add information form.
 
 Administrators can remove objects or projects from their detail window. A confirmation is required and an immediate **Undo removal** action is available. Removals are saved locally in this browser and apply to all demo accounts here, including after a reload; they do not delete shared server data or uploaded attachment files. Brand and visitor accounts cannot invoke removal.
+
+**Last Chance!** is a shared demo clearance gallery beside Who are we. Six fictional slightly damaged items include reduced per-unit prices, October 2026 dismantling dates, and planned recycling dates in November/December 2026. Deadlines appear in red beside grid titles and above detail titles. They are illustrative dates, not an automatic recycling or payment system.
