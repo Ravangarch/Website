@@ -118,3 +118,13 @@ Administrators have **Add brand** beside **Add information**. Enter the brand na
 Custom brand metadata/settings and records persist in localStorage; original files persist in IndexedDB. Logo display URLs are hydrated on each visit. These changes are local to this browser/site and are not deployed to other users or devices. Built-in seeded collections are not generated for user-created brands.
 
 Run `npm run test:brand-admin` for creation, duplicate handling, logo persistence/update, brand-specific Excel, multiple scan/photo uploads, per-row/default coordinate validation, custom logins, empty-brand creation and mobile layout.
+
+## Material edits, Notes and profiles
+
+Open a material and choose **Edit information** to change its metadata, project/year, description, quantities and storage coordinates. Administrators can edit all permitted records; primary brand logins can edit their own records. **Notes** appears directly below **Year created**, saves after a short typing pause, and flushes pending edits on close. Metadata changes persist in `athem-material-edits` in this browser.
+
+**Add profile** creates a named login with an editable generated password. **Profiles & access** lists configured logins by brand, allows access/password changes and disabling, and removes delegated profiles. Primary accounts remain available for management and cannot be deleted. The list describes enabled accounts, not live online sessions. Password changes store salted PBKDF2 hashes; existing passwords are not displayed.
+
+Administrators choose brands, tabs, visible metadata fields, and add/edit/profile-management rights. Brand managers can delegate only their own brand and permissions; they can grant editing but cannot grant adding information. Delegated access is intersected with its granting profile, so disabling/removing a parent also invalidates its descendants. Location display requires Quantity and Passport access because unit lists expose these values. Supporting-document access exposes complete uploaded files, while raw spreadsheet fields are displayed only with full metadata access.
+
+Profiles and permissions are browser-local classroom controls, not server-enforced authentication. Public seed assets remain accessible, and edits/profiles do not sync across browsers or devices. Run `npm run test:profiles` for editing, autosave, profile creation, generated/editable passwords, scoped brands/tabs/fields, permission updates and deletion.
