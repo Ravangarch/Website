@@ -94,3 +94,5 @@ aside .co-brand .identity-yvessaintlaurent .brand-wordmark,aside .co-brand .iden
 #brands .brand-logo,aside .co-brand .brand-logo{max-width:none;max-height:none;object-fit:contain}
 .brand-symbol svg{max-width:none;max-height:none;flex-shrink:0}
 #brands .brand .identity-yvessaintlaurent .brand-wordmark,aside .co-brand .identity-yvessaintlaurent .brand-wordmark{font-size:22px!important;letter-spacing:.25px}
+
+.brand-symbol.brand-mask{display:block;flex-shrink:0;width:25px;height:40px;background:currentColor;mask-image:var(--brand-mask);mask-size:contain;mask-repeat:no-repeat;mask-position:center;-webkit-mask-image:var(--brand-mask);-webkit-mask-size:contain;-webkit-mask-repeat:no-repeat;-webkit-mask-position:center}
