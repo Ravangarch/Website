@@ -98,3 +98,5 @@ Regular models have no simulated scratch geometry and all standard seeded condit
 ## Cartier project hierarchy
 
 YSL and its demo account have been removed. Cartier’s archive contains 21 clean procedural components grouped as: **2025 → The Fabulous Journey** (6), **2026 → Bold and Bright** (3), **2024 → Soho** (5), and **Christmas → Christmas** (7). Christmas has no fabricated year. Both brand and admin/visitor navigation can expand a year/season to reveal project names and filter the scans; each scan names its project in the card and detail window. The desktop sidebar is wider and scrolls vertically. Optional project names can also be supplied manually or through Excel/CSV (`Project` / `Projet`).
+
+Thumbnail rendering copies the entire WebGL drawing buffer into each preview canvas, including on high-density displays. Run `npm run test:thumbnails` to verify all 97 seeded archive previews have visible, centred artwork with unclipped margins at 1×, 2× and 3× device pixel ratios. The main smoke suite also runs at 2× pixel density.

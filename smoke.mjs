@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import ExcelJS from 'exceljs';
 const server=await createServer({server:{port:5182,host:'127.0.0.1'}});await server.listen();
 const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',headless:true,args:['--no-sandbox','--enable-unsafe-swiftshader']});
-const page=await browser.newPage({viewport:{width:1440,height:1000}});await page.route('https://commons.wikimedia.org/**',route=>route.abort());const errors=[];page.on('pageerror',e=>errors.push(e.message));
+const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:2});await page.route('https://commons.wikimedia.org/**',route=>route.abort());const errors=[];page.on('pageerror',e=>errors.push(e.message));
 async function login(user){await page.locator('[name=username]').fill(user);await page.locator('[name=password]').fill(user);await page.getByRole('button',{name:'Enter the archive'}).click();await page.waitForSelector('.card');}
 try{
 await page.goto('http://127.0.0.1:5182');assert.equal(await page.locator('#login-screen').isVisible(),true);await page.locator('[name=username]').fill('yvessaintlaurent');await page.locator('[name=password]').fill('yvessaintlaurent');await page.getByRole('button',{name:'Enter the archive'}).click();assert.match(await page.locator('#login-error').textContent(),/incorrect/);await page.locator('[name=username]').fill('chanel');await page.locator('[name=password]').fill('chanel');await page.getByRole('button',{name:'Enter the archive'}).click();assert.match(await page.locator('#login-error').textContent(),/incorrect/);
