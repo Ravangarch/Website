@@ -35,7 +35,6 @@ Every visit begins at the login page. These are browser-only demonstration roles
 | Role | Login | Password |
 | --- | --- | --- |
 | Administrator | admin | admin |
-| Prospective visitor | visitor | visitor |
 | Sotheby’s | sothebys | sothebys |
 | Nike | nike | nike |
 | Pomellato | pomellato | pomellato |
@@ -68,7 +67,7 @@ Imported record metadata is saved to localStorage and attachments to IndexedDB. 
 
 ### Validation
 
-`npm run test:smoke` starts its own Vite server and uses system Chromium (`CHROMIUM_PATH` may override the executable). It tests all 13 brand accounts plus administrator and visitor roles, invalid credentials, scoped collections, nested years, project tabs, timelines, French Excel import, malformed CSV feedback, uploaded STL/GLB viewing, photo/PDF attachments, persistence and mobile overflow.
+`npm run test:smoke` starts its own Vite server and uses system Chromium (`CHROMIUM_PATH` may override the executable). It tests all 13 brand accounts plus administrator access, invalid credentials, scoped collections, nested years, project tabs, timelines, French Excel import, malformed CSV feedback, uploaded STL/GLB viewing, photo/PDF attachments, persistence and mobile overflow.
 
 The **Who are we** tab contains the supplied ATHEM studio, CSR and EcoVadis description. Brand inventory is scoped to the signed-in brand; **Past projects** is a public case-study selection across all 13 collaborations, with year navigation.
 
@@ -76,9 +75,9 @@ The **Who are we** tab contains the supplied ATHEM studio, CSR and EcoVadis desc
 
 The demo now has 97 seeded materials across 13 brands, including 46 specified components across seven tailored collections. Eight additional examples per brand cover thermoformed Kairlin bio-based composite, leather-effect mineral-tinted plaster, plywood, textile netting, projection screens, adjustable metal jacks, LED lighting, and structural truss sections. Each includes a procedural 3D preview, fictional passport, quantity, volume, physical properties and usage description. The category filters and admin entry/import flow recognise the expanded material families. These are illustrative classroom samples, not measured product specifications.
 
-The `visitor` demo account can browse the same brands, years and project tabs as an administrator, but cannot open or submit the Add information form.
+The built-in Visitor login has been removed and cannot be used or recreated.
 
-Administrators can remove objects or projects from their detail window. A confirmation is required and an immediate **Undo removal** action is available. Removals are saved locally in this browser and apply to all demo accounts here, including after a reload; they do not delete shared server data or uploaded attachment files. Brand and visitor accounts cannot invoke removal.
+Administrators can remove objects or projects from their detail window. A confirmation is required and an immediate **Undo removal** action is available. Removals are saved locally in this browser and apply to all demo accounts here, including after a reload; they do not delete shared server data or uploaded attachment files. Brand accounts cannot invoke removal.
 
 **Last Chance!** is a shared demo clearance gallery beside Who are we. Six fictional slightly damaged items include reduced per-unit prices, October 2026 dismantling dates, and planned recycling dates in November/December 2026. Deadlines appear in red beside grid titles and above detail titles. They are illustrative dates, not an automatic recycling or payment system.
 
@@ -97,7 +96,7 @@ Regular models have no simulated scratch geometry and all standard seeded condit
 
 ## Cartier project hierarchy
 
-YSL and its demo account have been removed. Cartier’s archive contains 21 clean procedural components grouped as: **2025 → The Fabulous Journey** (6), **2026 → Bold and Bright** (3), **2024 → Soho** (5), and **Christmas → Christmas** (7). Christmas has no fabricated year. Both brand and admin/visitor navigation can expand a year/season to reveal project names and filter the scans; each scan names its project in the card and detail window. The desktop sidebar is wider and scrolls vertically. Optional project names can also be supplied manually or through Excel/CSV (`Project` / `Projet`).
+YSL and its demo account have been removed. Cartier’s archive contains 21 clean procedural components grouped as: **2025 → The Fabulous Journey** (6), **2026 → Bold and Bright** (3), **2024 → Soho** (5), and **Christmas → Christmas** (7). Christmas has no fabricated year. Both brand and admin navigation can expand a year/season to reveal project names and filter the scans; each scan names its project in the card and detail window. The desktop sidebar is wider and scrolls vertically. Optional project names can also be supplied manually or through Excel/CSV (`Project` / `Projet`).
 
 Thumbnail rendering copies the entire WebGL drawing buffer into each preview canvas, including on high-density displays. Run `npm run test:thumbnails` to verify all 97 seeded archive previews have visible, centred artwork with unclipped margins at 1×, 2× and 3× device pixel ratios. The main smoke suite also runs at 2× pixel density.
 
