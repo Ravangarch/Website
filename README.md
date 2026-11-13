@@ -140,3 +140,7 @@ Validation: `node permissions-check.mjs`, `node permissions-browser-check.mjs`, 
 ### Notes workspaces
 
 Notes are private to the admin workspace or to a single brand workspace. Single-brand profiles share that brand’s notes; admin and multi-brand admin-delegated profiles share admin notes. Admin cannot view brand notes in the portal. Notes in the detail view and material editor use the same workspace, including after reload. Older shared notes have no author/workspace metadata: they are retained in local storage but hidden from all workspaces rather than assigned to an unverified owner. Notes permissions still govern reading and editing. This separation is within the browser-local demo; it does not provide server-side privacy against access to browser storage.
+
+### Brand editing limits
+
+Brand accounts and single-brand delegated profiles can edit only Current place, Unit locations/coordinates, and their own brand Notes. Existing broader field grants no longer allow other material edits. Brand managers can delegate these three fields within their own effective permissions. Admin editing and the separate Notes workspaces remain unchanged.
