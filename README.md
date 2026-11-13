@@ -155,3 +155,11 @@ Run `node vancleef-check.mjs` to verify the 16 records, labels, years, projects,
 H&M now has 34 specified components: seven in **2025**, eighteen in **2024** (eleven in **Sound Wave** plus seven reflective-disc components), and nine in **2023**. The seven reflective-disc components are also listed for Paco Rabanne in **2024**, with the same names and material descriptions and separate stable inventory IDs. No project name is invented for the unnamed groups. The perforated background is explicitly **perforated Lycra fabric**; the glossy red finish is **vitreous enamel on suitable metal panels**.
 
 The generic H&M/Paco archive records are replaced by these components. IDs 1000–1033 and 1100–1106 avoid other collections. Matching procedural previews illustrate the components; they are not measured scans. The archive contains 127 seeded materials. Run `node hm-check.mjs` to check years, Sound Wave, shared components, material labels, geometry, thumbnails, detail views, mobile layout and admin navigation.
+
+### Ralph Lauren, Paco Rabanne and Longchamp — 2025
+
+- **Ralph Lauren → 2025 → Monumental RL 888:** ten leather-effect panel, strap, stitching, rivet and RL logo components.
+- **Paco Rabanne → 2025 → Iconique 1969:** eight decorative disc, perforation, cut-out, connection and surface-finish components. Its seven shared reflective-disc components remain under **2024**, retaining their IDs.
+- **Longchamp → 2025 → Longchamp x ToiletPaper:** twelve façade graphic, cloud, horse, banana, pipe, baguette, tiger, surreal object, signage, surround and backdrop components.
+
+Material descriptions reproduce the supplied specifications, including EPS, GRP, polyurethane foam, vinyl and aluminium composite where specified. Every component has an illustrative procedural preview, not a measured scan. Ralph Lauren IDs 1200–1209 and Longchamp IDs 1300–1311 replace their generic archive examples; the new Paco records append at 1107–1114. The archive has 141 seeded materials. Run `node facade-2025-check.mjs` to verify the new collections, geometry, detail descriptions, navigation, mobile layout and preserved Paco 2024 records.
