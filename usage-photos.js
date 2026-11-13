@@ -16,7 +16,14 @@ const selections={
  'dior-lettering':[0,2,4],
  'dior-projection':[1,3,6]
 };
+export const sothebysUsagePhotos=[
+ ['athem-sothebys-anotherworld_01.png','Sotheby’s corner façade with illuminated window installations'],
+ ['athem-sothebys-anotherworld_02.png','Sotheby’s illuminated windows and street-level façade'],
+ ['athem-sothebys-anotherworld_03.png','Sotheby’s façade and window installations viewed from across the street']
+];
+function originalPhotos(directory,photos,selection){return `<div class="project-photos original-usage-photos" data-info-field="photos">${selection.map(index=>{const [file,caption]=photos[index],url=`${import.meta.env.BASE_URL}project-photos/${directory}/${file}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;}
 export function usagePhotos(record){
- if(record.brand==='Dior'&&selections[record.componentModel])return `<div class="project-photos original-usage-photos" data-info-field="photos">${selections[record.componentModel].map(index=>{const [file,caption]=diorUsagePhotos[index],url=`${import.meta.env.BASE_URL}project-photos/dior/${file}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;
+ if(record.brand==='Dior'&&selections[record.componentModel])return originalPhotos('dior',diorUsagePhotos,selections[record.componentModel]);
+ if(record.brand==='Sotheby’s')return originalPhotos('sothebys',sothebysUsagePhotos,record.componentModel==='led-display'?[1,0,2]:[0,2,1]);
  return `<div class="project-photos" data-info-field="photos">${[0,1,2].map(n=>`<figure><div class="project-image scene-${n}"><canvas data-scene="${n}"></canvas><span>${['EXHIBITION SETTING','DISPLAY DETAIL','INSTALLATION STUDY'][n]}</span></div><figcaption>${esc(record.brand)} — ${['Spatial installation','Material in context','Display composition'][n]}, ${record.year??record.season??'Year not specified'} · simulated image</figcaption></figure>`).join('')}</div>`;
 }
