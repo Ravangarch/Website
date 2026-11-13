@@ -43,8 +43,16 @@ export const leDamierUsagePhotos=[
  ['g-athem_champs_elisees_louis_vuitton_20_02_2024_017.png','Louis Vuitton entrance framed by Le Damier’s curved panel installation']
 ];
 const leDamierSelections={'metal-panels':[0,2,3],'panel-backing':[1,4,3]};
+export const creatingInfinityUsagePhotos=[
+ ['Creating Infinity.png','Louis Vuitton Creating Infinity installation viewed from the street corner at dusk'],
+ ['athem-kusama-vuitton_02.png','Evening corner view of Louis Vuitton’s mirrored-sphere façade'],
+ ['athem-kusama-vuitton_03.png','Close-up of mirrored spheres beside the Louis Vuitton entrance'],
+ ['athem-kusama-vuitton_04.png','Front view of Louis Vuitton’s Creating Infinity façade installation']
+];
+const creatingInfinitySelections={'mirrored-spheres':[0,2,3],'sphere-segments':[1,3,2]};
 function originalPhotos(directory,photos,selection){return `<div class="project-photos original-usage-photos" data-info-field="photos">${selection.map(index=>{const [file,caption]=photos[index],url=`${import.meta.env.BASE_URL}project-photos/${directory}/${encodeURIComponent(file)}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;}
 export function usagePhotos(record){
+ if(record.brand==='Louis Vuitton'&&record.project==='Creating Infinity'&&creatingInfinitySelections[record.componentModel])return originalPhotos('louis-vuitton/creating-infinity',creatingInfinityUsagePhotos,creatingInfinitySelections[record.componentModel]);
  if(record.brand==='Louis Vuitton'&&record.project==='Le Damier'&&leDamierSelections[record.componentModel])return originalPhotos('louis-vuitton/le-damier',leDamierUsagePhotos,leDamierSelections[record.componentModel]);
  if(record.brand==='Dior'&&selections[record.componentModel])return originalPhotos('dior',diorUsagePhotos,selections[record.componentModel]);
  if(record.brand==='Pomellato'&&pomellatoSelections[record.componentModel])return originalPhotos('pomellato',pomellatoUsagePhotos,pomellatoSelections[record.componentModel]);

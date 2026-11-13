@@ -195,3 +195,7 @@ Pomellato’s five material galleries use the four original PNGs supplied in `Po
 ### Original Louis Vuitton Le Damier photographs
 
 The two **Louis Vuitton → 2021 → Le Damier** material galleries use the five original PNGs from `Le Damier.zip`. Original filenames and bytes, including the 3256 × 2171 façade image, are preserved in `public/project-photos/louis-vuitton/le-damier/`. Three photos are selected per component, with all five used across the project. Full-frame images link to originals, including the URL-encoded filename `Le Damier.png`. Photos visibility permissions and mobile layout are preserved. Creating Infinity and Le Soleil keep their existing galleries, and project years are unchanged. Run `node le-damier-photos-check.mjs` to validate these behaviours and original served bytes.
+
+### Original Louis Vuitton Creating Infinity photographs
+
+The two **Louis Vuitton → 2021 → Creating Infinity** material galleries use four original PNGs from `Creating Infinity.zip`. Original filenames and bytes are preserved at `public/project-photos/louis-vuitton/creating-infinity/`. Three images are selected per component, with all four used across the project. The complete photos link to the originals and remain visible in the stacked mobile layout. Photo visibility permissions are preserved; Le Damier’s original galleries and Le Soleil’s existing galleries remain intact. Run `node creating-infinity-photos-check.mjs` and `node le-damier-photos-check.mjs` to verify project isolation, image bytes and links, mobile layout and visibility permissions.
