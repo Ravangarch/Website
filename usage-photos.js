@@ -50,8 +50,16 @@ export const creatingInfinityUsagePhotos=[
  ['athem-kusama-vuitton_04.png','Front view of Louis Vuitton’s Creating Infinity façade installation']
 ];
 const creatingInfinitySelections={'mirrored-spheres':[0,2,3],'sphere-segments':[1,3,2]};
+export const leSoleilUsagePhotos=[
+ ['Le Soleil.png','Close-up of Le Soleil’s central golden sphere and radiating rods'],
+ ['louis-vuitton-5.png','Louis Vuitton Le Soleil façade illuminated at night'],
+ ['soleil-vendome-02-t.png','Daytime street view of Louis Vuitton’s Le Soleil façade installation'],
+ ['soleil-vendome-01-t.png','Angled close-up of Le Soleil’s golden sphere and radiating installation']
+];
+const leSoleilSelections={'central-sphere':[0,3,2],'radiating-rods':[3,0,2],'lighting':[1,0,2]};
 function originalPhotos(directory,photos,selection){return `<div class="project-photos original-usage-photos" data-info-field="photos">${selection.map(index=>{const [file,caption]=photos[index],url=`${import.meta.env.BASE_URL}project-photos/${directory}/${encodeURIComponent(file)}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;}
 export function usagePhotos(record){
+ if(record.brand==='Louis Vuitton'&&record.project==='Le Soleil'&&leSoleilSelections[record.componentModel])return originalPhotos('louis-vuitton/le-soleil',leSoleilUsagePhotos,leSoleilSelections[record.componentModel]);
  if(record.brand==='Louis Vuitton'&&record.project==='Creating Infinity'&&creatingInfinitySelections[record.componentModel])return originalPhotos('louis-vuitton/creating-infinity',creatingInfinityUsagePhotos,creatingInfinitySelections[record.componentModel]);
  if(record.brand==='Louis Vuitton'&&record.project==='Le Damier'&&leDamierSelections[record.componentModel])return originalPhotos('louis-vuitton/le-damier',leDamierUsagePhotos,leDamierSelections[record.componentModel]);
  if(record.brand==='Dior'&&selections[record.componentModel])return originalPhotos('dior',diorUsagePhotos,selections[record.componentModel]);

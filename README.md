@@ -199,3 +199,7 @@ The two **Louis Vuitton → 2021 → Le Damier** material galleries use the five
 ### Original Louis Vuitton Creating Infinity photographs
 
 The two **Louis Vuitton → 2021 → Creating Infinity** material galleries use four original PNGs from `Creating Infinity.zip`. Original filenames and bytes are preserved at `public/project-photos/louis-vuitton/creating-infinity/`. Three images are selected per component, with all four used across the project. The complete photos link to the originals and remain visible in the stacked mobile layout. Photo visibility permissions are preserved; Le Damier’s original galleries and Le Soleil’s existing galleries remain intact. Run `node creating-infinity-photos-check.mjs` and `node le-damier-photos-check.mjs` to verify project isolation, image bytes and links, mobile layout and visibility permissions.
+
+### Original Louis Vuitton Le Soleil photographs
+
+The three **Louis Vuitton → 2022 → Le Soleil** material galleries use all four original PNGs from `Le Soleil.zip`, preserved byte-for-byte with their original names at `public/project-photos/louis-vuitton/le-soleil/`. Each component shows three photographs; the lighting component leads with the illuminated night view. Full-frame images link to the original files and remain visible in the mobile stack. Photos visibility permissions, Le Damier and Creating Infinity galleries are preserved. Run `node le-soleil-photos-check.mjs` and `node creating-infinity-photos-check.mjs` to validate project isolation, original image bytes, links, mobile layout and permissions.
