@@ -143,3 +143,9 @@ Notes are private to the admin workspace or to a single brand workspace. Single-
 ### Brand editing limits
 
 Brand accounts and single-brand delegated profiles can edit only Current place, Unit locations/coordinates, and their own brand Notes. Existing broader field grants no longer allow other material edits. Brand managers can delegate these three fields within their own effective permissions. Admin editing and the separate Notes workspaces remain unchanged.
+
+### Van Cleef & Arpels — 2023
+
+The archive contains 16 specified components for Van Cleef & Arpels, replacing its eight generic samples. Under **2023**, **Winter 2023** contains eight snowdrift, house, ornament, snowflake, sphere and tree components; **Spring 2023** contains eight stem, petal, centre, stamen, bud and leaf components. Each uses the supplied material description and a dedicated procedural 3D preview. These are illustrative classroom models, not measured scans. Record IDs 900–915 keep this collection separate from existing components. The archive now contains 105 seeded materials.
+
+Run `node vancleef-check.mjs` to verify the 16 records, labels, years, projects, geometry, thumbnails, detail controls, admin navigation and mobile layout.

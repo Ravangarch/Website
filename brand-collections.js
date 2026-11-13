@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import {materialModel} from './materials.js';
 import {provisionalModel} from './models.js';
 import {cartierDefinitions,cartierModel} from './cartier-projects.js';
+import {vanCleefDefinitions,vanCleefModel} from './vancleef-projects.js';
 const entry=(name,label,key,type='Metal',properties='Clean finish · no visible defects')=>({name,materialLabel:label,componentModel:key,type,properties});
 export const brandCollections={
  'Sotheby’s':[
@@ -37,10 +38,12 @@ export const brandCollections={
  entry('Illuminated stars','Metal wire frames, glass diffusers','stars','Lighting')]
 };
 brandCollections.Cartier=cartierDefinitions;
-const recordId=(brand,index,i)=>(brand==='Cartier'?800:700+index*10)+i;
+brandCollections['Van Cleef & Arpels']=vanCleefDefinitions;
+const recordId=(brand,index,i)=>(brand==='Van Cleef & Arpels'?900:brand==='Cartier'?800:700+index*10)+i;
 export function createBrandRecords(){return Object.entries(brandCollections).flatMap(([brand,items],index)=>items.map((item,i)=>({...item,id:recordId(brand,index,i),brand,year:item.year===null?null:item.year??2025+i%2,shape:4,quantity:3+i%4,volume:(.02+i*.015).toFixed(3),place:item.place||(i%3===0?'On display':'In storage'),condition:!item.place&&i%3===0?'N/A — currently on display':'Good · no visible defects',passport:`DMP–${item.year===null?'CHRISTMAS':item.year??2025+i%2}–${recordId(brand,index,i)}`,description:`${item.name} from the ${brand} collection.${item.project?` Project: ${item.project}${item.year?` (${item.year})`:''}.`:''} Material selection: ${item.materialLabel}. Clean, undamaged classroom 3D example; inventory quantities, dates and passport are fictional.`})));}
 
 export function componentModel(key){
+ if(key.startsWith('vca-'))return vanCleefModel(key);
  if(key.startsWith('cartier-'))return cartierModel(key);
  if(key==='petal-composition')return provisionalModel(2);
  if(key==='lighting')return materialModel('led');
