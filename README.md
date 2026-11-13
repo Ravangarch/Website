@@ -163,3 +163,7 @@ The generic H&M/Paco archive records are replaced by these components. IDs 1000�
 - **Longchamp → 2025 → Longchamp x ToiletPaper:** twelve façade graphic, cloud, horse, banana, pipe, baguette, tiger, surreal object, signage, surround and backdrop components.
 
 Material descriptions reproduce the supplied specifications, including EPS, GRP, polyurethane foam, vinyl and aluminium composite where specified. Every component has an illustrative procedural preview, not a measured scan. Ralph Lauren IDs 1200–1209 and Longchamp IDs 1300–1311 replace their generic archive examples; the new Paco records append at 1107–1114. The archive has 141 seeded materials. Run `node facade-2025-check.mjs` to verify the new collections, geometry, detail descriptions, navigation, mobile layout and preserved Paco 2024 records.
+
+### Dior — 2026
+
+Dior’s five specified lighting components are grouped under **2026 → Dior-Champs=Elyssess**, preserving the supplied project spelling. They cover window outlines, horizontal architectural lines, circular ornaments, illuminated DIOR lettering and projection/backlighting around the logo, using the supplied material descriptions. Dedicated emissive procedural previews illustrate the components rather than measured scans. Dior IDs 1400–1404 replace its generic archive examples; the archive now contains 138 seeded materials. Run `node dior-check.mjs` to verify descriptions, project/year filters, illuminated geometry, rendered thumbnails, model controls, mobile layout and admin navigation.
