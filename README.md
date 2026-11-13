@@ -183,3 +183,7 @@ Run `node dior-photos-check.mjs` to verify the galleries, served image bytes, or
 ### Original Sotheby’s photographs
 
 The two Sotheby’s material galleries use all three original PNGs from `Sotheby.zip`, with their order varied by component. The reuse-project page also uses the original corner-façade photograph in place of the recreated illustration. Original filenames and bytes are preserved in `public/project-photos/sothebys/`; full-frame images link to originals in the galleries, and all three remain visible in the stacked mobile layout. The reuse-page photograph and material galleries respect the Photos visibility setting. Dior’s original-photo galleries and other-brand fallback are retained. Run `node sothebys-photos-check.mjs` and `node dior-photos-check.mjs` to validate these behaviours.
+
+### Original Nike photographs
+
+Nike’s three archive materials use four original PNGs from `Nike 2.zip`, preserved with their original filenames and unchanged bytes in `public/project-photos/nike/`. Each component shows three photographs in a tailored order, with all four used across the collection. Complete image frames are displayed and link to the full originals; mobile galleries retain all three photos. The Photos visibility permission is preserved. Dior and Sotheby’s original-photo galleries remain intact. Run `node nike-photos-check.mjs`, `node dior-photos-check.mjs` and `node sothebys-photos-check.mjs` to validate image loading, original bytes and links, layout, visibility and the other-brand fallback.

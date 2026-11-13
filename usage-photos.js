@@ -21,9 +21,17 @@ export const sothebysUsagePhotos=[
  ['athem-sothebys-anotherworld_02.png','Sotheby’s illuminated windows and street-level façade'],
  ['athem-sothebys-anotherworld_03.png','Sotheby’s façade and window installations viewed from across the street']
 ];
+export const nikeUsagePhotos=[
+ ['athem-nike-electricprint_01.png','Nike corner façade with red polka-dot spheres and storefront graphics'],
+ ['athem-nike-electricprint_02.png','Close-up of red polka-dot spheres on the Nike façade'],
+ ['athem-nike-electricprint_03.png','Low-angle view of Nike’s red polka-dot façade installation'],
+ ['athem-nike-electricprint_04.png','Side view of red polka-dot spheres across the Nike façade']
+];
+const nikeSelections={'red-spheres':[0,1,3],'sphere-ribs':[3,0,2],'polka-dots':[1,2,3]};
 function originalPhotos(directory,photos,selection){return `<div class="project-photos original-usage-photos" data-info-field="photos">${selection.map(index=>{const [file,caption]=photos[index],url=`${import.meta.env.BASE_URL}project-photos/${directory}/${file}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;}
 export function usagePhotos(record){
  if(record.brand==='Dior'&&selections[record.componentModel])return originalPhotos('dior',diorUsagePhotos,selections[record.componentModel]);
+ if(record.brand==='Nike'&&nikeSelections[record.componentModel])return originalPhotos('nike',nikeUsagePhotos,nikeSelections[record.componentModel]);
  if(record.brand==='Sotheby’s')return originalPhotos('sothebys',sothebysUsagePhotos,record.componentModel==='led-display'?[1,0,2]:[0,2,1]);
  return `<div class="project-photos" data-info-field="photos">${[0,1,2].map(n=>`<figure><div class="project-image scene-${n}"><canvas data-scene="${n}"></canvas><span>${['EXHIBITION SETTING','DISPLAY DETAIL','INSTALLATION STUDY'][n]}</span></div><figcaption>${esc(record.brand)} — ${['Spatial installation','Material in context','Display composition'][n]}, ${record.year??record.season??'Year not specified'} · simulated image</figcaption></figure>`).join('')}</div>`;
 }
