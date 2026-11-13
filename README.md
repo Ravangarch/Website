@@ -136,3 +136,7 @@ Profiles have independent visible and editable field selections. Editing require
 Admin can remove built-in brand logins from either profile screen. Removal persists as a disabled login, revokes dependent profiles, and retains the brand inventory and saved material edits. Admin and the current profile cannot be removed. These remain browser-local demo controls, not server-side security.
 
 Validation: `node permissions-check.mjs`, `node permissions-browser-check.mjs`, `npm run test:profiles`, and `npm run build -- --base=/Website/`.
+
+### Notes workspaces
+
+Notes are private to the admin workspace or to a single brand workspace. Single-brand profiles share that brand’s notes; admin and multi-brand admin-delegated profiles share admin notes. Admin cannot view brand notes in the portal. Notes in the detail view and material editor use the same workspace, including after reload. Older shared notes have no author/workspace metadata: they are retained in local storage but hidden from all workspaces rather than assigned to an unverified owner. Notes permissions still govern reading and editing. This separation is within the browser-local demo; it does not provide server-side privacy against access to browser storage.

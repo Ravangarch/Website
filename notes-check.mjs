@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+const memory=new Map([['athem-material-edits',JSON.stringify({one:{notes:'Old unknown author',name:'Shared name'}})]]);globalThis.localStorage={getItem:k=>memory.get(k)??null,setItem:(k,v)=>memory.set(k,v)};
+const a=await import('./access.js'),m=await import('./material-state.js');a.configureAccess({admin:{},chanel:{brand:'Chanel'},nike:{brand:'Nike'},visitor:{}},['Chanel','Nike']);
+const admin=a.resolveAccount('admin'),chanel=a.resolveAccount('chanel'),nike=a.resolveAccount('nike'),record={id:'one',brand:'Chanel',notes:'Unscoped raw note'};
+for(const user of [admin,chanel,nike])assert.equal(m.withMaterialEdits(record,user).notes,'');
+m.saveMaterialPatch(admin,record,{notes:'Admin only'});m.saveMaterialPatch(chanel,record,{notes:'Chanel only'});
+assert.equal(m.withMaterialEdits(record,admin).notes,'Admin only');assert.equal(m.withMaterialEdits(record,chanel).notes,'Chanel only');assert.equal(m.withMaterialEdits(record,nike).notes,'');assert.equal(m.withMaterialEdits(record).notes,'');assert.equal(m.withMaterialEdits(record,admin).name,'Shared name');
+const grant={password:'test123',tabs:['archive'],fields:['name','notes'],editFields:['notes'],canEdit:true};
+await a.saveProfile(admin,{...grant,name:'Chanel assistant',username:'assistant',brands:['Chanel']});await a.saveProfile(admin,{...grant,name:'Admin team',username:'adminteam',brands:['Chanel','Nike']});
+assert.equal(m.withMaterialEdits(record,a.resolveAccount('assistant')).notes,'Chanel only');assert.equal(m.withMaterialEdits(record,a.resolveAccount('adminteam')).notes,'Admin only');
+m.saveMaterialPatch(chanel,record,{notes:''});assert.equal(m.withMaterialEdits(record,chanel).notes,'');assert.equal(m.withMaterialEdits(record,admin).notes,'Admin only');
+const reloaded=await import('./material-state.js?reload');assert.equal(reloaded.withMaterialEdits(record,admin).notes,'Admin only');assert.equal(reloaded.withMaterialEdits(record,chanel).notes,'');assert.equal(JSON.parse(memory.get('athem-material-edits')).one.notes,'Old unknown author');
+console.log('Passed separate admin/brand Notes, same-brand delegates, admin delegates, empty notes, reload and safe preservation of unscoped legacy notes.');
