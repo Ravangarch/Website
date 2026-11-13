@@ -32,15 +32,8 @@ export const hmDefinitions=[
  part('Mounting connections','steel bolts, brackets and clamps','wave-connections')],'Sound Wave'),
  ...reflectiveDiscDefinitions,
  ...dated(2023,[
- part('Large rectangular panels','aluminium sheets, plywood or recycled paper honeycomb panels','rectangular-panels','Structure'),
- part('Semi-translucent panels','frosted glass or thin natural-fibre paper','translucent-panels','Screens'),
- part('Gold reflective panels','anodised aluminium or brass sheet','gold-panels'),
- part('White matte panels','mineral-painted plywood or enamelled aluminium','white-panels','Wood'),
- part('Printed typography','mineral-pigment ink on paper or direct printing on metal','typography','Mineral coating'),
- part('Large H&M logo','cut aluminium or plywood','hm-logo'),
- part('Layered panel supporting structure','reusable steel or aluminium profiles','layered-framework','Structure'),
- part('Panel mounting system','mechanical clips, bolts and brackets','panel-mounts'),
- part('Integrated lighting','replaceable light fixtures with metal housings and glass diffusers','integrated-lighting','Lighting')])
+ {...part('Reflective sequin façade','Aluminium sheets','sequin-facade'),inventoryId:1034},
+ {...part('Reflective hanging decorative elements','Aluminium sheets','hanging-sequins'),inventoryId:1035}] ,'H&M x RABANNE')
 ];
 export function hmModel(fullKey,brand='H&M'){const key=fullKey.replace('hm-',''),group=new THREE.Group();
  const mat=(color,metalness=0,roughness=.6)=>new THREE.MeshStandardMaterial({color,metalness,roughness,side:THREE.DoubleSide});
@@ -57,7 +50,9 @@ export function hmModel(fullKey,brand='H&M'){const key=fullKey.replace('hm-','')
  const brackets=()=>{for(let i=0;i<4;i++){const x=(i%2-.5)*.9,y=(Math.floor(i/2)-.5)*.7;box(.3,.1,.035,steel,x,y,0);box(.035,.1,.2,steel,x-.13,y,.08);bolt(x+.06,y,.03);}};
  const disc=(x,y,z=0,r=.12)=>{const o=add(new THREE.CylinderGeometry(r,r,.012,32),silver,x,y,z);o.rotation.x=Math.PI/2;o.rotation.y=.1*Math.sin(x*9+y*4);return o;};
  const panels=(m,translucent=false)=>{for(let i=0;i<3;i++){const o=box(.68,1.25,.035,m,(i-1)*.48,(i-1)*.12,(i-1)*.12);o.rotation.y=(i-1)*.08;}if(translucent)frame(1.6,1.5,-.2,dark);};
- if(key==='floral-covering'||key==='floral-graphics'){
+ if(key==='sequin-facade'){for(let row=0;row<8;row++)for(let col=0;col<10;col++){const x=(col-4.5)*.17,y=(row-3.5)*.17;const tile=box(.15,.15,.012,silver,x,y,.06*Math.sin(col*.7));tile.rotation.y=.1*Math.sin(row+col);tile.rotation.z=.08*Math.sin(col);if(row<7)ring(.018,.004,steel,x,y+.085,.02);}}
+ else if(key==='hanging-sequins'){for(let col=0;col<7;col++){const x=(col-3)*.23;rod([x,-.65,0],[x,.8,0],.004);for(let row=0;row<5;row++){const tile=box(.17,.2,.01,silver,x,.62-row*.28,.03*Math.sin(col+row));tile.rotation.y=.3*Math.sin(col+row);ring(.023,.004,steel,x,.74-row*.28,0);}}}
+ else if(key==='floral-covering'||key==='floral-graphics'){
   const c=document.createElement('canvas');c.width=c.height=512;const ctx=c.getContext('2d');ctx.fillStyle='#ede6d4';ctx.fillRect(0,0,512,512);for(let i=0;i<12;i++){const x=60+i%4*130,y=65+Math.floor(i/4)*180;ctx.strokeStyle='#7c7663';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(x,y+80);ctx.quadraticCurveTo(x-20,y+30,x,y);ctx.stroke();for(let j=0;j<6;j++){const a=j*Math.PI/3;ctx.fillStyle=j%2?'#be203a':'#e14a5a';ctx.beginPath();ctx.ellipse(x+Math.cos(a)*23,y+Math.sin(a)*23,26,13,a,0,Math.PI*2);ctx.fill();}ctx.fillStyle='#e7be68';ctx.beginPath();ctx.arc(x,y,9,0,Math.PI*2);ctx.fill();}const tex=new THREE.CanvasTexture(c);const m=new THREE.MeshStandardMaterial({map:tex,roughness:.85,side:THREE.DoubleSide});if(key==='floral-covering')curved(m);else box(1.6,1.6,.02,m);
  }else if(key==='perforated-background'){const shape=new THREE.Shape();shape.moveTo(-.8,-.7);shape.lineTo(.8,-.7);shape.lineTo(.8,.7);shape.lineTo(-.8,.7);shape.closePath();for(let row=0;row<9;row++)for(let col=0;col<11;col++){const hole=new THREE.Path();hole.absarc(-.7+col*.14,-.58+row*.14,.035,0,Math.PI*2,true);shape.holes.push(hole);}const mesh=add(new THREE.ShapeGeometry(shape),mat(0xd4c6b0));mesh.rotation.y=.12;}
  else if(key==='hm-lettering'||key==='hm-logo')lettering('H&M');

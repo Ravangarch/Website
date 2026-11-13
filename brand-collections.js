@@ -6,6 +6,7 @@ import {vanCleefDefinitions,vanCleefModel} from './vancleef-projects.js';
 import {hmDefinitions,reflectiveDiscDefinitions,hmModel} from './hm-projects.js';
 import {ralphLaurenDefinitions,pacoIconiqueDefinitions,longchampDefinitions,facade2025Model} from './facade-projects-2025.js';
 import {diorDefinitions,diorModel} from './dior-projects.js';
+import {poleneDefinitions,poleneModel} from './polene-projects.js';
 const entry=(name,label,key,type='Metal',properties='Clean finish · no visible defects')=>({name,materialLabel:label,componentModel:key,type,properties});
 export const brandCollections={
  'Sotheby’s':[
@@ -29,10 +30,7 @@ export const brandCollections={
  {...entry('Central sphere','Polished brass, aluminium or stainless steel','central-sphere'),year:2022,project:'Le Soleil'},
  {...entry('Radiating rods','Aluminium tubes, steel rods, brass rods','radiating-rods','Structure'),year:2022,project:'Le Soleil'},
  {...entry('Lighting','LED lighting with glass and metal fixtures','lighting','Lighting'),year:2022,project:'Le Soleil'}],
- 'Polène':[
- entry('Folded metal petal composition','Metal petals and thermoformed Kairlin bio-based composite','petal-composition','Bio-based composite'),
- entry('Flower stems','Wood, bamboo or hollow metal tubing','flower-stems','Structure'),
- entry('Flower centres / tassels','Cotton, linen, hemp or natural leather cords','tassels','Natural fibres')],
+ 'Polène':poleneDefinitions,
  Guerlain:[
  entry('Main geometric bee structure','Material specification not supplied','geometric-bee','Structure','Creates the three-dimensional bee silhouette · clean geometric framework'),
  entry("Bee’s illuminated outlines",'LED lighting in glass or metal channels','illuminated-bee','Lighting'),
@@ -47,10 +45,11 @@ brandCollections['Paco Rabanne']=[...reflectiveDiscDefinitions,...pacoIconiqueDe
 brandCollections['Ralph Lauren']=ralphLaurenDefinitions;
 brandCollections.Longchamp=longchampDefinitions;
 brandCollections.Dior=diorDefinitions;
-const recordId=(brand,index,i)=>(brand==='Dior'?1400:brand==='Ralph Lauren'?1200:brand==='Longchamp'?1300:brand==='H&M'?1000:brand==='Paco Rabanne'?1100:brand==='Van Cleef & Arpels'?900:brand==='Cartier'?800:700+index*10)+i;
-export function createBrandRecords(){return Object.entries(brandCollections).flatMap(([brand,items],index)=>items.map((item,i)=>({...item,id:recordId(brand,index,i),brand,year:item.year===null?null:item.year??2025+i%2,shape:4,quantity:3+i%4,volume:(.02+i*.015).toFixed(3),place:item.place||(i%3===0?'On display':'In storage'),condition:!item.place&&i%3===0?'N/A — currently on display':'Good · no visible defects',passport:`DMP–${item.year===null?'CHRISTMAS':item.year??2025+i%2}–${recordId(brand,index,i)}`,description:`${item.name} from the ${brand} collection.${item.project?` Project: ${item.project}${item.year?` (${item.year})`:''}.`:''} Material selection: ${item.materialLabel}. Clean, undamaged classroom 3D example; inventory quantities, dates and passport are fictional.`})));}
+const recordId=(brand,index,i,item)=>item?.inventoryId??((brand==='Polène'?1500:brand==='Dior'?1400:brand==='Ralph Lauren'?1200:brand==='Longchamp'?1300:brand==='H&M'?1000:brand==='Paco Rabanne'?1100:brand==='Van Cleef & Arpels'?900:brand==='Cartier'?800:700+index*10)+i);
+export function createBrandRecords(){return Object.entries(brandCollections).flatMap(([brand,items],index)=>items.map((item,i)=>({...item,id:recordId(brand,index,i,item),brand,year:item.year===null?null:item.year??2025+i%2,shape:4,quantity:3+i%4,volume:(.02+i*.015).toFixed(3),place:item.place||(i%3===0?'On display':'In storage'),condition:!item.place&&i%3===0?'N/A — currently on display':'Good · no visible defects',passport:`DMP–${item.year===null?'CHRISTMAS':item.year??2025+i%2}–${recordId(brand,index,i,item)}`,description:`${item.name} from the ${brand} collection.${item.project?` Project: ${item.project}${item.year?` (${item.year})`:''}.`:''} Material selection: ${item.materialLabel}. Clean, undamaged classroom 3D example; inventory quantities, dates and passport are fictional.`})));}
 
 export function componentModel(key,brand){
+ if(key.startsWith('polene-'))return poleneModel(key);
  if(key.startsWith('dior-'))return diorModel(key);
  if(key.startsWith('f25-'))return facade2025Model(key);
  if(key.startsWith('hm-'))return hmModel(key,brand);

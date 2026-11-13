@@ -167,3 +167,9 @@ Material descriptions reproduce the supplied specifications, including EPS, GRP,
 ### Dior — 2026
 
 Dior’s five specified lighting components are grouped under **2026 → Dior-Champs=Elyssess**, preserving the supplied project spelling. They cover window outlines, horizontal architectural lines, circular ornaments, illuminated DIOR lettering and projection/backlighting around the logo, using the supplied material descriptions. Dedicated emissive procedural previews illustrate the components rather than measured scans. Dior IDs 1400–1404 replace its generic archive examples; the archive now contains 138 seeded materials. Run `node dior-check.mjs` to verify descriptions, project/year filters, illuminated geometry, rendered thumbnails, model controls, mobile layout and admin navigation.
+
+### Polène and H&M x RABANNE adjustments
+
+Polène’s archive is **2025 → Blossoming Lether**, retaining the existing main year and supplied project spelling. Its two components are **Sculptural flower petals — Thermoformed Kairlin (bio-based composite)** and **Leather-effect petal surfaces — Mineral mass tinted plaster coating, imitating leather texture**, with dedicated curved-petal and textured coating previews. These replace the earlier metal-petal/stem/tassel examples.
+
+H&M’s former nine unnamed 2023 examples are replaced by **2023 → H&M x RABANNE**, containing **Reflective sequin façade** and **Reflective hanging decorative elements**, both specified as **Aluminium sheets**. Reflective tile and suspended-element previews illustrate these components. H&M’s 2024/2025 collections and Paco Rabanne’s collections remain unchanged. New H&M IDs 1034–1035 and Polène IDs 1500–1501 avoid inheriting unrelated edits or notes from replaced records. The archive now contains 130 seeded materials. Run `node polene-hm-check.mjs` and `node hm-check.mjs` to validate the revised collections and retained groups.
