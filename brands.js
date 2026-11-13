@@ -1,6 +1,5 @@
 import nike from './assets/nike.svg?raw';
 import dior from './assets/dior.svg?raw';
-import ysl from './assets/ysl.png';
 export const normalizeLogin=value=>String(value).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'');
 const commons=name=>'https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(name);
 export const brandDefinitions=[
@@ -8,7 +7,6 @@ export const brandDefinitions=[
  {name:'Nike',symbol:nike,seed:4},
  {name:'Pomellato',file:'Pomellato logo.svg',seed:5},
  {name:'Louis Vuitton',fallbackLines:['Louis','Vuitton'],file:'Louis Vuitton LV logo.png',seed:2},
- {name:'Yves Saint Laurent',mask:ysl,seed:6},
  {name:'Cartier',file:'Cartier logo.svg',seed:7},
  {name:'Van Cleef & Arpels',fallbackLines:['Van Cleef &','Arpels'],file:'Van Cleef & Arpels logo.svg',seed:8},
  {name:'H&M',file:'H&M-Logo.svg',seed:1},

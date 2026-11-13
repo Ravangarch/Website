@@ -1,6 +1,6 @@
 // Shared limits: Longchamp-width wordmarks and LV-height monograms.
 export const logoLimits={width:108,height:36};
-const profiles={nike:[108,36],dior:[108,36],pomellato:[96,22],louisvuitton:[44,36],yvessaintlaurent:[30,36],cartier:[96,30],vancleefarpels:[104,30],hm:[62,36],ralphlauren:[102,30],pacorabanne:[102,28],longchamp:[108,30],guerlain:[100,26],polene:[85,30],sothebys:[98,28]};
+const profiles={nike:[108,36],dior:[108,36],pomellato:[96,22],louisvuitton:[44,36],cartier:[96,30],vancleefarpels:[104,30],hm:[62,36],ralphlauren:[102,30],pacorabanne:[102,28],longchamp:[108,30],guerlain:[100,26],polene:[85,30],sothebys:[98,28]};
 function fit(identity,width,height){const key=Object.keys(profiles).find(k=>identity.classList.contains(`identity-${k}`));const [maxWidth,maxHeight]=profiles[key]||[logoLimits.width,logoLimits.height];const scale=Math.min(maxWidth/width,maxHeight/height);return {width:width*scale,height:height*scale};}
 function sizeMask(identity,mask,ratio){const size=fit(identity,ratio,1);mask.style.width=`${size.width}px`;mask.style.height=`${size.height}px`;}
 // Read the visible artwork bounds where CORS permits; the source image is unchanged.
