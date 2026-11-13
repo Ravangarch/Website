@@ -57,8 +57,15 @@ export const leSoleilUsagePhotos=[
  ['soleil-vendome-01-t.png','Angled close-up of Le Soleil’s golden sphere and radiating installation']
 ];
 const leSoleilSelections={'central-sphere':[0,3,2],'radiating-rods':[3,0,2],'lighting':[1,0,2]};
+export const fabulousJourneyUsagePhotos=[
+ ['athem-01-cartier-the-fabulous-journey-champs-elysees_02.png','Cartier storefront with The Fabulous Journey balloon and illuminated façade'],
+ ['athem-01-cartier-the-fabulous-journey-champs-elysees_01.png','Close view of Cartier’s balloon, suspended basket and illuminated clouds'],
+ ['Screenshot 2026-11-14 at 00.09.41.png','Close-up of an illuminated cloud in The Fabulous Journey installation']
+];
+const fabulousJourneySelections={'cartier-balloon-shell':[1,0,2],'cartier-balloon-frame':[1,2,0],'cartier-ropes':[1,0,2],'cartier-basket':[1,2,0],'cartier-clouds':[2,1,0],'cartier-lettering':[1,0,2]};
 function originalPhotos(directory,photos,selection){return `<div class="project-photos original-usage-photos" data-info-field="photos">${selection.map(index=>{const [file,caption]=photos[index],url=`${import.meta.env.BASE_URL}project-photos/${directory}/${encodeURIComponent(file)}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;}
 export function usagePhotos(record){
+ if(record.brand==='Cartier'&&record.project==='The Fabulous Journey'&&fabulousJourneySelections[record.componentModel])return originalPhotos('cartier/the-fabulous-journey',fabulousJourneyUsagePhotos,fabulousJourneySelections[record.componentModel]);
  if(record.brand==='Louis Vuitton'&&record.project==='Le Soleil'&&leSoleilSelections[record.componentModel])return originalPhotos('louis-vuitton/le-soleil',leSoleilUsagePhotos,leSoleilSelections[record.componentModel]);
  if(record.brand==='Louis Vuitton'&&record.project==='Creating Infinity'&&creatingInfinitySelections[record.componentModel])return originalPhotos('louis-vuitton/creating-infinity',creatingInfinityUsagePhotos,creatingInfinitySelections[record.componentModel]);
  if(record.brand==='Louis Vuitton'&&record.project==='Le Damier'&&leDamierSelections[record.componentModel])return originalPhotos('louis-vuitton/le-damier',leDamierUsagePhotos,leDamierSelections[record.componentModel]);
