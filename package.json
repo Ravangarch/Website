@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0",
     "test:smoke": "node smoke.mjs",
-    "test:thumbnails": "node thumbnail-check.mjs"
+    "test:thumbnails": "node thumbnail-check.mjs",
+    "test:brand-admin": "node brand-admin-check.mjs"
   },
   "dependencies": {
     "exceljs": "^4.4.0",
