@@ -87,3 +87,10 @@ aside .user-info small{margin-top:5px}
 #brands .identity-cartier .brand-wordmark{font-style:italic;font-size:20px!important}
 #brands .identity-guerlain .brand-wordmark,#brands .identity-pomellato .brand-wordmark,#brands .identity-longchamp .brand-wordmark{font-size:13px!important;letter-spacing:.7px;text-transform:uppercase}
 aside .co-brand .identity-yvessaintlaurent .brand-wordmark,aside .co-brand .identity-vancleefarpels .brand-wordmark,aside .co-brand .identity-louisvuitton .brand-wordmark{font-size:10px!important}.login-panel details ul{max-height:230px;overflow:auto}
+
+/* Equal optical slots; visible SVG paths are fitted without their empty artboards. */
+#brands .brand-identity,aside .co-brand .brand-identity{height:36px!important;display:flex!important;align-items:center;justify-content:center}
+#brands .brand-wordmark,aside .co-brand .brand-wordmark{display:block!important;width:max-content!important;max-width:none;font-size:22px!important;line-height:1.05;white-space:nowrap;flex-shrink:0;transform-origin:center}
+#brands .brand-logo,aside .co-brand .brand-logo{max-width:none;max-height:none;object-fit:contain}
+.brand-symbol svg{max-width:none;max-height:none;flex-shrink:0}
+#brands .brand .identity-yvessaintlaurent .brand-wordmark,aside .co-brand .identity-yvessaintlaurent .brand-wordmark{font-size:22px!important;letter-spacing:.25px}
