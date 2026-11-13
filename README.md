@@ -15,7 +15,7 @@ npm run dev
 
 ## Features
 
-- 124 fictional material records and procedural previews across 14 brands.
+- 92 fictional material records and procedural previews across 14 brands.
 - Brand and material filters, search and sorting.
 - Interactive Three.js viewer: drag to rotate, scroll/pinch to zoom, automatic 360° rotation, surface inspection and reset.
 - Fictional passport, ownership, location, dismantling condition, quantity, volume, properties and year.
@@ -75,7 +75,7 @@ The **Who are we** tab contains the supplied ATHEM studio, CSR and EcoVadis desc
 
 ## Expanded material collection
 
-The demo now has 124 seeded materials across 14 brands (8 or 11 per brand). Eight additional examples per brand cover thermoformed Kairlin bio-based composite, leather-effect mineral-tinted plaster, plywood, textile netting, projection screens, adjustable metal jacks, LED lighting, and structural truss sections. Each includes a procedural 3D preview, fictional passport, quantity, volume, physical properties and usage description. The category filters and admin entry/import flow recognise the expanded material families. These are illustrative classroom samples, not measured product specifications.
+The demo now has 92 seeded materials across 14 brands, including 25 specified components across six tailored collections. Eight additional examples per brand cover thermoformed Kairlin bio-based composite, leather-effect mineral-tinted plaster, plywood, textile netting, projection screens, adjustable metal jacks, LED lighting, and structural truss sections. Each includes a procedural 3D preview, fictional passport, quantity, volume, physical properties and usage description. The category filters and admin entry/import flow recognise the expanded material families. These are illustrative classroom samples, not measured product specifications.
 
 The `visitor` demo account can browse the same brands, years and project tabs as an administrator, but cannot open or submit the Add information form.
 
@@ -90,3 +90,9 @@ Brand identities are defined in `brands.js`, in the requested menu order. Nike a
 YSL now uses a locally bundled transparent monogram (`assets/ysl.png`), prepared by removing the green background from the supplied reference. It is rendered as an alpha mask in the exact navigation colour, with white hover/selection states, and does not depend on the external Wikimedia logo. Its tall silhouette uses the shared 36px LV-height limit.
 
 Logo sizing uses individual profiles bounded by a 108px Longchamp-width cap and 36px LV-height cap. Nike and Dior fill more of the available width; Pomellato has a smaller 96px cap. Visible SVG bounds are normalized, and externally loaded images have empty margins removed for display when CORS permits pixel access. Original source assets are retained unchanged, with natural-dimension sizing as a fallback.
+
+## Brand-specific component collections
+
+`brand-collections.js` replaces the generic archive entries for Sotheby’s (2), Nike (3), Pomellato (5), Louis Vuitton (7), Polène (3), and Guerlain (5), using the supplied component names and material choices. Other brands retain their existing collections. The components have distinct procedural previews: inset timber frames, LED modules, red spheres and rib cages, jewellery rings/chains, metal panels and sphere assemblies, flowers/stems/tassels, and bee/honeycomb/star structures. These are fictional 3D examples rather than measured scans. The main bee frame’s material is explicitly unspecified because only its function was supplied.
+
+Regular models have no simulated scratch geometry and all standard seeded conditions are good/no visible defects (or N/A at dismantling for items still on display). Slight-damage records are confined to Last Chance. The six existing Last Chance items are preserved separately before the brand collection replacement. Admin-imported records and files are retained.
