@@ -15,7 +15,7 @@ npm run dev
 
 ## Features
 
-- Twelve procedural wooden, metal and acrylic objects, across four brands.
+- 124 fictional material records and procedural previews across 14 brands.
 - Brand and material filters, search and sorting.
 - Interactive Three.js viewer: drag to rotate, scroll/pinch to zoom, automatic 360° rotation, surface inspection and reset.
 - Fictional passport, ownership, location, dismantling condition, quantity, volume, properties and year.
@@ -26,7 +26,7 @@ The models and surface marks are simulated; real photogrammetry scans and projec
 
 ## Brand identities
 
-The monochrome collaboration tiles reference brand logo images hosted by Wikimedia Commons (Chanel, H&M, Louis Vuitton, and Sotheby’s). Brand names remain visible as text fallbacks if the image host is unavailable. These marks belong to their respective owners and are used for this fictional school project. The current cloud network blocks Wikimedia, so external logo loading must also be checked in a normal browser.
+The monochrome collaboration menu uses locally bundled Nike and Dior marks and external Wikimedia Commons logo references for the remaining brands. Brand names remain visible as text fallbacks if the image host is unavailable. These marks belong to their respective owners and are used for this fictional school project. The current cloud network blocks Wikimedia, so external logo loading must also be checked in a normal browser.
 
 ## Classroom portal
 
@@ -35,11 +35,21 @@ Every visit begins at the login page. These are browser-only demonstration roles
 | Role | Login | Password |
 | --- | --- | --- |
 | Administrator | admin | admin |
-| Prospective brand visitor (browse all brands) | visitor | visitor |
-| Chanel | chanel | chanel |
-| Louis Vuitton | louisvuitton | louisvuitton |
-| H&M | hm | hm |
+| Prospective visitor | visitor | visitor |
 | Sotheby’s | sothebys | sothebys |
+| Nike | nike | nike |
+| Pomellato | pomellato | pomellato |
+| Louis Vuitton | louisvuitton | louisvuitton |
+| Yves Saint Laurent | yvessaintlaurent | yvessaintlaurent |
+| Cartier | cartier | cartier |
+| Van Cleef & Arpels | vancleefarpels | vancleefarpels |
+| H&M | hm | hm |
+| Ralph Lauren | ralphlauren | ralphlauren |
+| Paco Rabanne | pacorabanne | pacorabanne |
+| Longchamp | longchamp | longchamp |
+| Guerlain | guerlain | guerlain |
+| Polène | polene | polene |
+| Dior | dior | dior |
 
 Brand accounts see their own records with year navigation and an Athem × brand identity. Administrators see brand navigation with nested “Show all” and year options. Project tabs include the supplied Sotheby’s reuse case study, past collaborations, and interactive provisional concepts. The provisional designs reconstruct the supplied detachable steel frame and folded metal petals as illustrative, rotatable 3D studies. Each brand can explore both designs. The frame also offers a packed transport view. A recreated visual study based on the supplied boards accompanies the models; these are approximations rather than measured engineering models.
 
@@ -59,13 +69,13 @@ Imported record metadata is saved to localStorage and attachments to IndexedDB. 
 
 ### Validation
 
-`npm run test:smoke` starts its own Vite server and uses system Chromium (`CHROMIUM_PATH` may override the executable). It tests all five roles, invalid credentials, scoped collections, nested years, project tabs, timelines, French Excel import, malformed CSV feedback, uploaded STL/GLB viewing, photo/PDF attachments, persistence and mobile overflow.
+`npm run test:smoke` starts its own Vite server and uses system Chromium (`CHROMIUM_PATH` may override the executable). It tests all 14 brand accounts plus administrator and visitor roles, invalid credentials, scoped collections, nested years, project tabs, timelines, French Excel import, malformed CSV feedback, uploaded STL/GLB viewing, photo/PDF attachments, persistence and mobile overflow.
 
-The **Who are we** tab contains the supplied ATHEM studio, CSR and EcoVadis description. Brand inventory is scoped to the signed-in brand; **Past projects** is a public case-study selection across all four collaborations, with year navigation.
+The **Who are we** tab contains the supplied ATHEM studio, CSR and EcoVadis description. Brand inventory is scoped to the signed-in brand; **Past projects** is a public case-study selection across all 14 collaborations, with year navigation.
 
 ## Expanded material collection
 
-The demo now has 44 seeded materials (11 per brand). Eight additional examples per brand cover thermoformed Kairlin bio-based composite, leather-effect mineral-tinted plaster, plywood, textile netting, projection screens, adjustable metal jacks, LED lighting, and structural truss sections. Each includes a procedural 3D preview, fictional passport, quantity, volume, physical properties and usage description. The category filters and admin entry/import flow recognise the expanded material families. These are illustrative classroom samples, not measured product specifications.
+The demo now has 124 seeded materials across 14 brands (8 or 11 per brand). Eight additional examples per brand cover thermoformed Kairlin bio-based composite, leather-effect mineral-tinted plaster, plywood, textile netting, projection screens, adjustable metal jacks, LED lighting, and structural truss sections. Each includes a procedural 3D preview, fictional passport, quantity, volume, physical properties and usage description. The category filters and admin entry/import flow recognise the expanded material families. These are illustrative classroom samples, not measured product specifications.
 
 The `visitor` demo account can browse the same brands, years and project tabs as an administrator, but cannot open or submit the Add information form.
 
@@ -74,3 +84,5 @@ Administrators can remove objects or projects from their detail window. A confir
 **Last Chance!** is a shared demo clearance gallery beside Who are we. Six fictional slightly damaged items include reduced per-unit prices, October 2026 dismantling dates, and planned recycling dates in November/December 2026. Deadlines appear in red beside grid titles and above detail titles. They are illustrative dates, not an automatic recycling or payment system.
 
 The reuse tab now presents **Une histoire en plusieurs scènes**, the supplied Sotheby’s case study, with its original French description. The previous fictional reuse records have been removed. The building image is an illustration recreated from the screenshot, clearly captioned as such; no project year or reuse date has been invented. The case study is visible to every account, and administrators retain removal/undo controls. The Last Chance tab and heading use the same red as recycling deadlines (`#bc2525`).
+
+Brand identities are defined in `brands.js`, in the requested menu order. Nike and Dior SVG marks are bundled from Simple Icons v8.15.0 (CC0 collection; trademarks belong to their owners). Other logo references use Wikimedia Commons with text fallbacks when assets cannot load; external logo loading could not be verified on the restricted cloud network. Inline marks follow the exact `#7c7a7a` colour and turn white on hover/selection. Chanel sign-in has been removed; browser-local imported Chanel records are reassigned to Guerlain, while their IDs and attachments are preserved. Existing seeded material IDs are retained for the original brands (Chanel becomes Guerlain); additional seeds and project IDs use disjoint ranges below the imported-record range.
