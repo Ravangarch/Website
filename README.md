@@ -149,3 +149,9 @@ Brand accounts and single-brand delegated profiles can edit only Current place, 
 The archive contains 16 specified components for Van Cleef & Arpels, replacing its eight generic samples. Under **2023**, **Winter 2023** contains eight snowdrift, house, ornament, snowflake, sphere and tree components; **Spring 2023** contains eight stem, petal, centre, stamen, bud and leaf components. Each uses the supplied material description and a dedicated procedural 3D preview. These are illustrative classroom models, not measured scans. Record IDs 900–915 keep this collection separate from existing components. The archive now contains 105 seeded materials.
 
 Run `node vancleef-check.mjs` to verify the 16 records, labels, years, projects, geometry, thumbnails, detail controls, admin navigation and mobile layout.
+
+### H&M and Paco Rabanne façade components
+
+H&M now has 34 specified components: seven in **2025**, eighteen in **2024** (eleven in **Sound Wave** plus seven reflective-disc components), and nine in **2023**. The seven reflective-disc components are also listed for Paco Rabanne in **2024**, with the same names and material descriptions and separate stable inventory IDs. No project name is invented for the unnamed groups. The perforated background is explicitly **perforated Lycra fabric**; the glossy red finish is **vitreous enamel on suitable metal panels**.
+
+The generic H&M/Paco archive records are replaced by these components. IDs 1000–1033 and 1100–1106 avoid other collections. Matching procedural previews illustrate the components; they are not measured scans. The archive contains 127 seeded materials. Run `node hm-check.mjs` to check years, Sound Wave, shared components, material labels, geometry, thumbnails, detail views, mobile layout and admin navigation.
