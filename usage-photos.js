@@ -35,8 +35,17 @@ export const pomellatoUsagePhotos=[
  ['athem-pomellato-21_1600x1080.png','Close-up of the jewellery detail within a Pomellato circular installation']
 ];
 const pomellatoSelections={'outer-rings':[1,0,2],'green-surface':[1,0,3],'jewellery':[3,2,1],'chains':[2,1,0],'backing-panels':[0,1,2]};
-function originalPhotos(directory,photos,selection){return `<div class="project-photos original-usage-photos" data-info-field="photos">${selection.map(index=>{const [file,caption]=photos[index],url=`${import.meta.env.BASE_URL}project-photos/${directory}/${file}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;}
+export const leDamierUsagePhotos=[
+ ['Le Damier.png','Louis Vuitton Le Damier façade viewed from the street corner'],
+ ['g-athem_champs_elisees_louis_vuitton_20_02_2024_001.png','Street-level view of Louis Vuitton’s Le Damier façade'],
+ ['g-athem_champs_elisees_louis_vuitton_20_02_2024_018.png','Close-up of reflective patterned panels in the Le Damier installation'],
+ ['g-athem_champs_elisees_louis_vuitton_20_02_2024.png','Angled close-up of Le Damier’s gold and silver façade panels'],
+ ['g-athem_champs_elisees_louis_vuitton_20_02_2024_017.png','Louis Vuitton entrance framed by Le Damier’s curved panel installation']
+];
+const leDamierSelections={'metal-panels':[0,2,3],'panel-backing':[1,4,3]};
+function originalPhotos(directory,photos,selection){return `<div class="project-photos original-usage-photos" data-info-field="photos">${selection.map(index=>{const [file,caption]=photos[index],url=`${import.meta.env.BASE_URL}project-photos/${directory}/${encodeURIComponent(file)}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;}
 export function usagePhotos(record){
+ if(record.brand==='Louis Vuitton'&&record.project==='Le Damier'&&leDamierSelections[record.componentModel])return originalPhotos('louis-vuitton/le-damier',leDamierUsagePhotos,leDamierSelections[record.componentModel]);
  if(record.brand==='Dior'&&selections[record.componentModel])return originalPhotos('dior',diorUsagePhotos,selections[record.componentModel]);
  if(record.brand==='Pomellato'&&pomellatoSelections[record.componentModel])return originalPhotos('pomellato',pomellatoUsagePhotos,pomellatoSelections[record.componentModel]);
  if(record.brand==='Nike'&&nikeSelections[record.componentModel])return originalPhotos('nike',nikeUsagePhotos,nikeSelections[record.componentModel]);

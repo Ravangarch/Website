@@ -191,3 +191,7 @@ Nike’s three archive materials use four original PNGs from `Nike 2.zip`, prese
 ### Original Pomellato photographs
 
 Pomellato’s five material galleries use the four original PNGs supplied in `Pomelatto.zip`. The files keep their original names and bytes at `public/project-photos/pomellato/`. Three photos are selected per component, with all four used across the collection. Full-frame images link to originals, mobile galleries show all three, and Photos visibility permissions are retained. Run `node pomellato-photos-check.mjs` to validate all five galleries, served bytes, original links, mobile layout and visibility permissions.
+
+### Original Louis Vuitton Le Damier photographs
+
+The two **Louis Vuitton → 2021 → Le Damier** material galleries use the five original PNGs from `Le Damier.zip`. Original filenames and bytes, including the 3256 × 2171 façade image, are preserved in `public/project-photos/louis-vuitton/le-damier/`. Three photos are selected per component, with all five used across the project. Full-frame images link to originals, including the URL-encoded filename `Le Damier.png`. Photos visibility permissions and mobile layout are preserved. Creating Infinity and Le Soleil keep their existing galleries, and project years are unchanged. Run `node le-damier-photos-check.mjs` to validate these behaviours and original served bytes.
