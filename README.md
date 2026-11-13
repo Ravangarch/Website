@@ -131,7 +131,7 @@ Profiles and permissions are browser-local classroom controls, not server-enforc
 
 ### Field editing and built-in login removal
 
-Profiles have independent visible and editable field selections. Editing requires the Edit action, field visibility, and an editable-field grant inherited from the managing profile. Existing profiles retain their previous editable visible fields when no explicit selection was saved. Digital Material Passport can only be edited by admin. Weight (kg per unit) supports non-negative values and has independent visibility/edit permissions; unspecified weights remain blank. Notes autosave follows its own edit grant.
+Profiles have independent visible and editable field selections. Editing requires field visibility and an editable-field grant inherited from the managing profile. Existing profiles retain their previous editable visible fields when no explicit selection was saved. Digital Material Passport can only be edited by admin. Weight (kg per unit) supports non-negative values and has independent visibility/edit permissions; unspecified weights remain blank. Notes autosave follows its own edit grant.
 
 Admin can remove built-in brand logins from either profile screen. Removal persists as a disabled login, revokes dependent profiles, and retains the brand inventory and saved material edits. Admin and the current profile cannot be removed. These remain browser-local demo controls, not server-side security.
 
