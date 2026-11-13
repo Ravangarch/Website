@@ -28,9 +28,17 @@ export const nikeUsagePhotos=[
  ['athem-nike-electricprint_04.png','Side view of red polka-dot spheres across the Nike façade']
 ];
 const nikeSelections={'red-spheres':[0,1,3],'sphere-ribs':[3,0,2],'polka-dots':[1,2,3]};
+export const pomellatoUsagePhotos=[
+ ['athem-pomellato-02_1920x1080.png','Pomellato storefront with three suspended circular installations'],
+ ['athem-pomellato-14_1600x1080.png','Pomellato circular installations and hanging chains above the storefront'],
+ ['athem-pomellato-15_1600x1080.png','Close-up of Pomellato’s suspended circular frame and chain'],
+ ['athem-pomellato-21_1600x1080.png','Close-up of the jewellery detail within a Pomellato circular installation']
+];
+const pomellatoSelections={'outer-rings':[1,0,2],'green-surface':[1,0,3],'jewellery':[3,2,1],'chains':[2,1,0],'backing-panels':[0,1,2]};
 function originalPhotos(directory,photos,selection){return `<div class="project-photos original-usage-photos" data-info-field="photos">${selection.map(index=>{const [file,caption]=photos[index],url=`${import.meta.env.BASE_URL}project-photos/${directory}/${file}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;}
 export function usagePhotos(record){
  if(record.brand==='Dior'&&selections[record.componentModel])return originalPhotos('dior',diorUsagePhotos,selections[record.componentModel]);
+ if(record.brand==='Pomellato'&&pomellatoSelections[record.componentModel])return originalPhotos('pomellato',pomellatoUsagePhotos,pomellatoSelections[record.componentModel]);
  if(record.brand==='Nike'&&nikeSelections[record.componentModel])return originalPhotos('nike',nikeUsagePhotos,nikeSelections[record.componentModel]);
  if(record.brand==='Sotheby’s')return originalPhotos('sothebys',sothebysUsagePhotos,record.componentModel==='led-display'?[1,0,2]:[0,2,1]);
  return `<div class="project-photos" data-info-field="photos">${[0,1,2].map(n=>`<figure><div class="project-image scene-${n}"><canvas data-scene="${n}"></canvas><span>${['EXHIBITION SETTING','DISPLAY DETAIL','INSTALLATION STUDY'][n]}</span></div><figcaption>${esc(record.brand)} — ${['Spatial installation','Material in context','Display composition'][n]}, ${record.year??record.season??'Year not specified'} · simulated image</figcaption></figure>`).join('')}</div>`;

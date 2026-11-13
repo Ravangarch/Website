@@ -187,3 +187,7 @@ The two Sotheby’s material galleries use all three original PNGs from `Sotheby
 ### Original Nike photographs
 
 Nike’s three archive materials use four original PNGs from `Nike 2.zip`, preserved with their original filenames and unchanged bytes in `public/project-photos/nike/`. Each component shows three photographs in a tailored order, with all four used across the collection. Complete image frames are displayed and link to the full originals; mobile galleries retain all three photos. The Photos visibility permission is preserved. Dior and Sotheby’s original-photo galleries remain intact. Run `node nike-photos-check.mjs`, `node dior-photos-check.mjs` and `node sothebys-photos-check.mjs` to validate image loading, original bytes and links, layout, visibility and the other-brand fallback.
+
+### Original Pomellato photographs
+
+Pomellato’s five material galleries use the four original PNGs supplied in `Pomelatto.zip`. The files keep their original names and bytes at `public/project-photos/pomellato/`. Three photos are selected per component, with all four used across the collection. Full-frame images link to originals, mobile galleries show all three, and Photos visibility permissions are retained. Run `node pomellato-photos-check.mjs` to validate all five galleries, served bytes, original links, mobile layout and visibility permissions.
