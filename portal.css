@@ -110,3 +110,9 @@ aside{width:240px;padding:24px 18px 18px}main{margin-left:240px}#brands{overflow
 .unit-location-row .unit-location{width:100%}.unit-google-link{display:inline-block;padding:7px 12px 9px;font-size:10px;color:#555}.unit-list{max-height:300px}@media(max-width:650px){.unit-list{max-height:240px}}
 
 #brand-logo-preview{display:flex;align-items:center;justify-content:center;background:#f1f1f1;min-height:0}#brand-logo-preview:has(img){min-height:90px;padding:12px}#brand-logo-preview img{max-height:90px;max-width:200px;object-fit:contain}#import-photo{display:flex;flex-wrap:wrap;gap:10px}#import-photo img{max-width:140px;max-height:110px;object-fit:contain}#prototype-photo{display:flex;flex-wrap:wrap;gap:15px}#prototype-photo img{max-width:calc(50% - 10px);max-height:300px;object-fit:contain}.account-actions{flex-wrap:wrap;justify-content:flex-end}@media(max-width:540px){header{height:auto;min-height:58px;gap:8px;padding-top:8px;padding-bottom:8px}.account-actions{gap:6px}.account-actions .action-button{padding:7px;font-size:8px}#prototype-photo img{max-width:100%}}
+
+/* Display the complete supplied original photo; the link opens its original file. */
+.original-usage-photo{display:flex;align-items:center;justify-content:center;background:#151515;aspect-ratio:16/10;overflow:hidden;border:1px solid #dedede}
+.original-usage-photo img{display:block;width:100%;height:100%;object-fit:contain}
+.original-usage-photos figure:last-child{display:block}
+@media(max-width:600px){.original-usage-photos{grid-template-columns:1fr}.original-usage-photos figure:last-child{display:block}}
