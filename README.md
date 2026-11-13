@@ -128,3 +128,11 @@ Open a material and choose **Edit information** to change its metadata, project/
 Administrators choose brands, tabs, visible metadata fields, and add/edit/profile-management rights. Brand managers can delegate only their own brand and permissions; they can grant editing but cannot grant adding information. Delegated access is intersected with its granting profile, so disabling/removing a parent also invalidates its descendants. Location display requires Quantity and Passport access because unit lists expose these values. Supporting-document access exposes complete uploaded files, while raw spreadsheet fields are displayed only with full metadata access.
 
 Profiles and permissions are browser-local classroom controls, not server-enforced authentication. Public seed assets remain accessible, and edits/profiles do not sync across browsers or devices. Run `npm run test:profiles` for editing, autosave, profile creation, generated/editable passwords, scoped brands/tabs/fields, permission updates and deletion.
+
+### Field editing and built-in login removal
+
+Profiles have independent visible and editable field selections. Editing requires the Edit action, field visibility, and an editable-field grant inherited from the managing profile. Existing profiles retain their previous editable visible fields when no explicit selection was saved. Digital Material Passport can only be edited by admin. Weight (kg per unit) supports non-negative values and has independent visibility/edit permissions; unspecified weights remain blank. Notes autosave follows its own edit grant.
+
+Admin can remove built-in brand logins from either profile screen. Removal persists as a disabled login, revokes dependent profiles, and retains the brand inventory and saved material edits. Admin and the current profile cannot be removed. These remain browser-local demo controls, not server-side security.
+
+Validation: `node permissions-check.mjs`, `node permissions-browser-check.mjs`, `npm run test:profiles`, and `npm run build -- --base=/Website/`.
