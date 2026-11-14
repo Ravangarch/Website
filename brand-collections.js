@@ -1,3 +1,4 @@
+import {leDamierPanels} from './le-damier-structures.js';
 import {nikeReferenceModel} from './nike-structures.js';
 import * as THREE from 'three';
 import {materialModel} from './materials.js';
@@ -25,7 +26,7 @@ export const brandCollections={
  entry('Suspension oversized chains','Stainless steel or galvanised steel','chains','Structure'),
  entry('Circular backing panels','Thin aluminium sheet, plywood or lightweight timber composite with natural binder','backing-panels','Structure')],
  'Louis Vuitton':[
- {...entry('Gold and silver panels','Aluminium sheets, anodised aluminium, stainless steel','metal-panels'),year:2021,project:'Le Damier'},
+ {...entry('Gold and silver panels','Aluminium sheets, anodised aluminium, stainless steel','metal-panels','Metal','Gold checkerboard panels with repeated oval surface relief · reflective silver panels · shallow curved arrangement'),year:2021,project:'Le Damier'},
  {...entry('Panel backing','Aluminium honeycomb with metal bonding or folded sheet-metal cassettes','panel-backing','Structure'),year:2021,project:'Le Damier'},
  {...entry('Mirrored spheres','Polished stainless steel, mirror-finished aluminium','mirrored-spheres'),year:2021,project:'Creating Infinity'},
  {...entry('Sphere segments','Pressed or spun sheet metal','sphere-segments'),year:2021,project:'Creating Infinity'},
@@ -51,6 +52,7 @@ const recordId=(brand,index,i,item)=>item?.inventoryId??((brand==='Polène'?1500
 export function createBrandRecords(){return Object.entries(brandCollections).flatMap(([brand,items],index)=>items.map((item,i)=>({...item,id:recordId(brand,index,i,item),brand,year:item.year===null?null:item.year??2025,shape:4,quantity:3+i%4,volume:(.02+i*.015).toFixed(3),place:item.place||(i%3===0?'On display':'In storage'),condition:!item.place&&i%3===0?'N/A — currently on display':'Good · no visible defects',passport:`DMP–${item.year===null?'CHRISTMAS':item.year??2025+i%2}–${recordId(brand,index,i,item)}`,description:`${item.name} from the ${brand} collection.${item.project?` Project: ${item.project}${item.year?` (${item.year})`:''}.`:''} Material selection: ${item.materialLabel}. Clean, undamaged classroom 3D example; inventory quantities, dates and passport are fictional.`})));}
 
 export function componentModel(key,brand){
+ if(key==='metal-panels')return leDamierPanels();
  if(key==='red-spheres'||key==='polka-dots')return nikeReferenceModel(key);
  if(key==='geometric-bee'||key==='honeycomb')return guerlainStructureModel(key);
  if(key.startsWith('polene-'))return poleneModel(key);
@@ -84,7 +86,6 @@ export function componentModel(key,brand){
  else if(key==='jewellery'){ring(.5,.045,silver);ring(.23,.025,silver,0,0,.07);for(let i=0;i<9;i++){const a=i*Math.PI*2/9;const crystal=add(new THREE.OctahedronGeometry(i%2?.12:.16),new THREE.MeshStandardMaterial({color:0xe0eced,metalness:.2,roughness:.08,transparent:true,opacity:.75}),.5*Math.cos(a),.5*Math.sin(a),.09);crystal.rotation.z=a;}}
  else if(key==='chains'){for(let i=0;i<6;i++){const link=ring(.23,.035,silver,0,(i-2.5)*.3,0);link.scale.y=1.45;link.rotation.y=i%2?Math.PI/2:0;}}
  else if(key==='backing-panels'){for(let i=0;i<3;i++){const disc=add(new THREE.CylinderGeometry(.7,.7,.035,64),i===1?timber:silver,(i-1)*.16,(i-1)*.06,(i-1)*.15);disc.rotation.x=Math.PI/2;}}
- else if(key==='metal-panels'){for(let row=0;row<2;row++)for(let col=0;col<3;col++){const p=box(.48,.7,.035,(col+row)%2?gold:silver,(col-1)*.53,(row-.5)*.76,0);p.rotation.y=(col-1)*.1;}}
  else if(key==='panel-backing'){for(let row=0;row<4;row++)for(let col=0;col<6;col++)hex((col-2.5)*.26+(row%2)*.13,(row-1.5)*.23,.15,.15,silver);}
  else if(key==='mirrored-spheres'){sphere(.57,material(0xe0e5e9,1,.07),0,.18,0);sphere(.3,material(0xced3d8,1,.06),-.7,-.4,.12);sphere(.23,material(0xe4e7ea,1,.06),.65,-.3,.1);}
  else if(key==='sphere-segments'){for(let i=0;i<3;i++){const segment=add(new THREE.SphereGeometry(.43,40,24,0,Math.PI*2,0,Math.PI*.55),silver,(i-1)*.56,0,0);segment.rotation.x=-.6;segment.rotation.z=(i-1)*.3;}}
