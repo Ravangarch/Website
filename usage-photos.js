@@ -70,8 +70,14 @@ export const boldBrightUsagePhotos=[
  ['athem-cartier-noel2022_04.png','Daytime view of white sphere garlands across the Cartier façade']
 ];
 const boldBrightSelections={'cartier-light-spheres':[3,2,0],'cartier-sphere-supports':[3,2,1],'cartier-light-frames':[2,0,1]};
-function originalPhotos(directory,photos,selection){return `<div class="project-photos original-usage-photos" data-info-field="photos">${selection.map(index=>{const [file,caption]=photos[index],url=`${import.meta.env.BASE_URL}project-photos/${directory}/${encodeURIComponent(file)}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;}
+export const sohoUsagePhotos=[
+ ['athem-cartier-soho_01.png','Front view of Cartier Soho’s red façade, gold lettering and decorative studs'],
+ ['athem-cartier-soho_02.png','Street-side view of Cartier Soho’s red façade installation']
+];
+const sohoSelections={'cartier-red-panels':[0,1],'cartier-red-finish':[1,0],'cartier-gold-lettering':[0,1],'cartier-studs':[0,1],'cartier-ornament':[1,0]};
+function originalPhotos(directory,photos,selection){return `<div class="project-photos original-usage-photos${selection.length===2?' two-photos':''}" data-info-field="photos">${selection.map(index=>{const [file,caption]=photos[index],url=`${import.meta.env.BASE_URL}project-photos/${directory}/${encodeURIComponent(file)}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;}
 export function usagePhotos(record){
+ if(record.brand==='Cartier'&&record.project==='Soho'&&sohoSelections[record.componentModel])return originalPhotos('cartier/soho',sohoUsagePhotos,sohoSelections[record.componentModel]);
  if(record.brand==='Cartier'&&record.project==='Bold and Bright'&&boldBrightSelections[record.componentModel])return originalPhotos('cartier/bold-and-bright',boldBrightUsagePhotos,boldBrightSelections[record.componentModel]);
  if(record.brand==='Cartier'&&record.project==='The Fabulous Journey'&&fabulousJourneySelections[record.componentModel])return originalPhotos('cartier/the-fabulous-journey',fabulousJourneyUsagePhotos,fabulousJourneySelections[record.componentModel]);
  if(record.brand==='Louis Vuitton'&&record.project==='Le Soleil'&&leSoleilSelections[record.componentModel])return originalPhotos('louis-vuitton/le-soleil',leSoleilUsagePhotos,leSoleilSelections[record.componentModel]);

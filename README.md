@@ -211,3 +211,7 @@ The six **Cartier → 2025 → The Fabulous Journey** material galleries use the
 ### Original Cartier Bold and Bright photographs
 
 The three **Cartier → 2026 → Bold and Bright** material galleries use four original PNGs from `Bold & Bright.zip`, kept byte-for-byte with original names in `public/project-photos/cartier/bold-and-bright/`. Each component shows three photos in a tailored order, using all four across the project. Full frames link to originals, all three images remain visible on mobile, and Photos permissions are respected. The existing project year is unchanged. The Fabulous Journey retains its original galleries; Soho and Christmas retain their existing galleries. Run `node bold-bright-photos-check.mjs` and `node fabulous-journey-photos-check.mjs` to verify these behaviours and original image bytes.
+
+### Original Cartier Soho photographs
+
+The five **Cartier → 2024 → Soho** material galleries use both original PNGs from `Soho.zip`, preserved byte-for-byte with their original filenames in `public/project-photos/cartier/soho/`. Each gallery displays the two unique photos without duplicating a third image. A two-column desktop layout stacks on mobile, full frames link to originals, and Photos visibility permissions remain active. The Fabulous Journey, Bold and Bright and Christmas retain their existing galleries. Run `node soho-photos-check.mjs` and `node bold-bright-photos-check.mjs` to validate these behaviours and served image bytes.
