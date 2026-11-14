@@ -82,8 +82,16 @@ export const cartierChristmasUsagePhotos=[
  ['pano.png','Evening corner view of Cartier’s illuminated Christmas storefront']
 ];
 const cartierChristmasSelections={'cartier-panther':[2,0,3],'cartier-panther-frame':[0,2,1],'cartier-panther-finish':[2,0,3],'cartier-outline':[3,1,2],'cartier-garlands':[2,0,3],'cartier-gifts':[2,0,1],'cartier-ribbons':[2,0,3]};
+export const vanCleefWinterUsagePhotos=[
+ ['athem-vancleef-winter2023_01.png','Van Cleef & Arpels Winter 2023 storefront with snowdrift displays and decorative trees'],
+ ['athem-vancleef-winter2023_02.png','Close view of a Winter 2023 window with miniature houses and snowdrift forms'],
+ ['athem-vancleef-winter2023_03.png','Detail of miniature house roofs and a small red sphere in the Winter 2023 display'],
+ ['athem-vancleef-winter2023_04.png','Evening view of Van Cleef & Arpels Winter 2023 windows and hanging circular lights']
+];
+const vanCleefWinterSelections={'vca-snowdrifts':[1,0,3],'vca-snow-finish':[1,2,0],'vca-houses':[2,1,0],'vca-roofs':[2,1,0],'vca-ornaments':[3,1,0],'vca-snowflakes':[1,3,0],'vca-spheres':[2,1,0],'vca-trees':[0,3,1]};
 function originalPhotos(directory,photos,selection){return `<div class="project-photos original-usage-photos${selection.length===2?' two-photos':''}" data-info-field="photos">${selection.map(index=>{const [file,caption]=photos[index],url=`${import.meta.env.BASE_URL}project-photos/${directory}/${encodeURIComponent(file)}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;}
 export function usagePhotos(record){
+ if(record.brand==='Van Cleef & Arpels'&&record.project==='Winter 2023'&&vanCleefWinterSelections[record.componentModel])return originalPhotos('van-cleef-arpels/winter-2023',vanCleefWinterUsagePhotos,vanCleefWinterSelections[record.componentModel]);
  if(record.brand==='Cartier'&&record.project==='Christmas'&&cartierChristmasSelections[record.componentModel])return originalPhotos('cartier/christmas',cartierChristmasUsagePhotos,cartierChristmasSelections[record.componentModel]);
  if(record.brand==='Cartier'&&record.project==='Soho'&&sohoSelections[record.componentModel])return originalPhotos('cartier/soho',sohoUsagePhotos,sohoSelections[record.componentModel]);
  if(record.brand==='Cartier'&&record.project==='Bold and Bright'&&boldBrightSelections[record.componentModel])return originalPhotos('cartier/bold-and-bright',boldBrightUsagePhotos,boldBrightSelections[record.componentModel]);

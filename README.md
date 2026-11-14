@@ -219,3 +219,7 @@ The five **Cartier → 2024 → Soho** material galleries use both original PNGs
 ### Original Cartier Christmas photographs
 
 The seven **Cartier → Christmas** material galleries use the four original PNGs from `Christmas.zip`, preserved byte-for-byte with original filenames in `public/project-photos/cartier/christmas/`. Three photos are selected per component, with all four used across the project. Complete frames link to the original files, mobile galleries retain all three photos, and Photos visibility permissions are respected. The seasonal Christmas grouping remains without an invented year. The Fabulous Journey, Bold and Bright and Soho retain their existing original-photo galleries. Run `node cartier-christmas-photos-check.mjs` and `node soho-photos-check.mjs` to verify the seven galleries, original image bytes, links, layout, permissions and project isolation.
+
+### Original Van Cleef & Arpels Winter 2023 photographs
+
+The eight **Van Cleef & Arpels → 2023 → Winter 2023** material galleries use four original PNGs from `Winter 2023.zip`, kept byte-for-byte with their original names in `public/project-photos/van-cleef-arpels/winter-2023/`. Three photos are selected per component, with all four used across the collection. Full frames link to originals, mobile galleries retain all three images, and Photos permissions are respected. Spring 2023 keeps its existing galleries. Run `node vancleef-winter-photos-check.mjs` to validate the eight galleries, served image bytes, links, mobile layout, permissions, admin navigation and project isolation.
