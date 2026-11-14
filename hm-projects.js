@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {soundWaveKeys,soundWaveModel} from './sound-wave-models.js';
 const part=(name,materialLabel,key,type='Metal')=>({name,materialLabel,componentModel:`hm-${key}`,type,properties:'Clean illustrative component · no visible defects'});
 const dated=(year,items,project)=>items.map(item=>({...item,year,...project?{project}:{}}));
 export const reflectiveDiscDefinitions=dated(2024,[
@@ -46,6 +47,7 @@ export const hmDefinitions=[
  {...part('Integrated lighting','replaceable light fixtures with metal housings and glass diffusers','integrated-lighting','Lighting'),inventoryId:1033}])
 ];
 export function hmModel(fullKey,brand='H&M'){const key=fullKey.replace('hm-',''),group=new THREE.Group();
+ if(soundWaveKeys.includes(key))return soundWaveModel(key);
  const mat=(color,metalness=0,roughness=.6)=>new THREE.MeshStandardMaterial({color,metalness,roughness,side:THREE.DoubleSide});
  const steel=mat(0xa8afb4,.8,.3),silver=mat(0xdce0e4,1,.08),red=mat(0xc51e31,.65,.2),gloss=mat(0xb70d24,.7,.08),white=mat(0xf2eee6),gold=mat(0xc9a75b,.9,.15),dark=mat(0x333a3d,.65,.4),wood=mat(0xc1a17b);
  const light=new THREE.MeshStandardMaterial({color:0xffedc9,emissive:0xffcf80,emissiveIntensity:1,roughness:.25});
@@ -67,19 +69,13 @@ export function hmModel(fullKey,brand='H&M'){const key=fullKey.replace('hm-','')
  }else if(key==='perforated-background'){const shape=new THREE.Shape();shape.moveTo(-.8,-.7);shape.lineTo(.8,-.7);shape.lineTo(.8,.7);shape.lineTo(-.8,.7);shape.closePath();for(let row=0;row<9;row++)for(let col=0;col<11;col++){const hole=new THREE.Path();hole.absarc(-.7+col*.14,-.58+row*.14,.035,0,Math.PI*2,true);shape.holes.push(hole);}const mesh=add(new THREE.ShapeGeometry(shape),mat(0xd4c6b0));mesh.rotation.y=.12;}
  else if(key==='hm-lettering'||key==='hm-logo')lettering('H&M');
  else if(key==='brand-lettering')lettering(brand==='Paco Rabanne'?'paco rabanne':'H&M',0xbba161);
- else if(key==='decorative-lettering')lettering('H&M',0xc8b990);
+ else if(key==='decorative-lettering')lettering('H2',0x121212);
  else if(key==='typography')lettering('H&M  COLLECTION',0x262626);
  else if(key.endsWith('framework')){frame();frame(1.5,1.5,-.3);for(const x of [-.75,.75])for(const y of [-.75,.75])rod([x,y,0],[x,y,-.3],.025);if(key==='layered-framework')for(let i=0;i<3;i++){const x=(i-1)*.5;box(.035,1.5,.035,steel,x,0,i*.12);}else{rod([-.75,-.75,0],[.75,.75,0],.015);rod([-.75,.75,-.3],[.75,-.75,-.3],.015);}}
  else if(key==='floral-attachments'||key==='wave-connections'||key==='panel-mounts')brackets();
  else if(key==='disc-fixings'){brackets();for(const x of [-.7,.7])rod([x,-.8,0],[-x,.8,0],.008,dark);}
  else if(key==='perimeter'){frame(1.5,1.5,0,dark);frame(1.42,1.42,.035,light);}
  else if(key==='integrated-lighting'){for(let i=0;i<3;i++){box(1.5,.11,.12,steel,0,(i-1)*.4,0);box(1.4,.075,.015,light,0,(i-1)*.4,.07);}}
- else if(key==='wave-shell'||key==='wave-panels'||key==='wave-finish')curved(key==='wave-finish'?gloss:red,0,key==='wave-panels');
- else if(key==='wave-ribs'){for(let i=0;i<5;i++){const x=(i-2)*.3,pts=[];for(let j=0;j<30;j++){const y=-.8+j*1.6/29;pts.push(new THREE.Vector3(x,y,.18*Math.cos(y*2.3)));}add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),40,.025,8,false),steel);}}
- else if(key==='window-frames'){frame(1.1,1.5);frame(.93,1.32,.04);box(.04,1.4,.04,steel,0,0,0);}
- else if(key==='backdrop'){box(1.7,1.4,.04,wood);box(1.6,1.3,.018,white,0,0,.03);}
- else if(key==='sculptures'){for(let i=0;i<3;i++){const o=add(new THREE.SphereGeometry(.32+i*.07,32,24),silver,(i-1)*.63,(i%2)*.2,0);o.scale.z=.45;}}
- else if(key==='sculpture-supports'){for(let i=0;i<3;i++){const x=(i-1)*.6;box(.28,.035,.25,steel,x,-.6,0);rod([x,-.58,0],[x,.55,0],.02);box(.2,.08,.06,dark,x,.55,0);}}
  else if(key==='discs'){for(let i=0;i<9;i++)disc((i%3-1)*.4,(Math.floor(i/3)-1)*.4,(i%2)*.04,.16);}
  else if(key==='disc-connections'){for(let i=0;i<4;i++){const x=(i-1.5)*.35;rod([x,-.7,0],[x,.7,0],.006);for(const y of [-.45,0,.45])ring(.065,.007,steel,x,y,.01);}}
  else if(key==='disc-surface'){for(let row=0;row<9;row++)for(let col=0;col<11;col++){const x=(col-5)*.145,y=(row-4)*.145,z=.12*Math.sin(col*.7);disc(x,y,z,.07);if(row<8)ring(.025,.005,steel,x,y+.075,z);}}
