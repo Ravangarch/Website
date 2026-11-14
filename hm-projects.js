@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {layered2023Keys,layered2023Model} from './hm-layered-2023-models.js';
 const part=(name,materialLabel,key,type='Metal')=>({name,materialLabel,componentModel:`hm-${key}`,type,properties:'Clean illustrative component · no visible defects'});
 const dated=(year,items,project)=>items.map(item=>({...item,year,...project?{project}:{}}));
 export const reflectiveDiscDefinitions=dated(2024,[
@@ -46,6 +47,7 @@ export const hmDefinitions=[
  {...part('Integrated lighting','replaceable light fixtures with metal housings and glass diffusers','integrated-lighting','Lighting'),inventoryId:1033}])
 ];
 export function hmModel(fullKey,brand='H&M'){const key=fullKey.replace('hm-',''),group=new THREE.Group();
+ if(layered2023Keys.includes(key))return layered2023Model(key);
  const mat=(color,metalness=0,roughness=.6)=>new THREE.MeshStandardMaterial({color,metalness,roughness,side:THREE.DoubleSide});
  const steel=mat(0xa8afb4,.8,.3),silver=mat(0xdce0e4,1,.08),red=mat(0xc51e31,.65,.2),gloss=mat(0xb70d24,.7,.08),white=mat(0xf2eee6),gold=mat(0xc9a75b,.9,.15),dark=mat(0x333a3d,.65,.4),wood=mat(0xc1a17b);
  const light=new THREE.MeshStandardMaterial({color:0xffedc9,emissive:0xffcf80,emissiveIntensity:1,roughness:.25});
