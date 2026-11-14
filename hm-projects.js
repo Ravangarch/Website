@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {floral2025Keys,floral2025Model} from './hm-floral-2025-models.js';
 const part=(name,materialLabel,key,type='Metal')=>({name,materialLabel,componentModel:`hm-${key}`,type,properties:'Clean illustrative component · no visible defects'});
 const dated=(year,items,project)=>items.map(item=>({...item,year,...project?{project}:{}}));
 export const reflectiveDiscDefinitions=dated(2024,[
@@ -46,6 +47,7 @@ export const hmDefinitions=[
  {...part('Integrated lighting','replaceable light fixtures with metal housings and glass diffusers','integrated-lighting','Lighting'),inventoryId:1033}])
 ];
 export function hmModel(fullKey,brand='H&M'){const key=fullKey.replace('hm-',''),group=new THREE.Group();
+ if(floral2025Keys.includes(key))return floral2025Model(key);
  const mat=(color,metalness=0,roughness=.6)=>new THREE.MeshStandardMaterial({color,metalness,roughness,side:THREE.DoubleSide});
  const steel=mat(0xa8afb4,.8,.3),silver=mat(0xdce0e4,1,.08),red=mat(0xc51e31,.65,.2),gloss=mat(0xb70d24,.7,.08),white=mat(0xf2eee6),gold=mat(0xc9a75b,.9,.15),dark=mat(0x333a3d,.65,.4),wood=mat(0xc1a17b);
  const light=new THREE.MeshStandardMaterial({color:0xffedc9,emissive:0xffcf80,emissiveIntensity:1,roughness:.25});
@@ -62,17 +64,13 @@ export function hmModel(fullKey,brand='H&M'){const key=fullKey.replace('hm-','')
  const panels=(m,translucent=false)=>{for(let i=0;i<3;i++){const o=box(.68,1.25,.035,m,(i-1)*.48,(i-1)*.12,(i-1)*.12);o.rotation.y=(i-1)*.08;}if(translucent)frame(1.6,1.5,-.2,dark);};
  if(key==='sequin-facade'){for(let row=0;row<8;row++)for(let col=0;col<10;col++){const x=(col-4.5)*.17,y=(row-3.5)*.17;const tile=box(.15,.15,.012,silver,x,y,.06*Math.sin(col*.7));tile.rotation.y=.1*Math.sin(row+col);tile.rotation.z=.08*Math.sin(col);if(row<7)ring(.018,.004,steel,x,y+.085,.02);}}
  else if(key==='hanging-sequins'){for(let col=0;col<7;col++){const x=(col-3)*.23;rod([x,-.65,0],[x,.8,0],.004);for(let row=0;row<5;row++){const tile=box(.17,.2,.01,silver,x,.62-row*.28,.03*Math.sin(col+row));tile.rotation.y=.3*Math.sin(col+row);ring(.023,.004,steel,x,.74-row*.28,0);}}}
- else if(key==='floral-covering'||key==='floral-graphics'){
-  const c=document.createElement('canvas');c.width=c.height=512;const ctx=c.getContext('2d');ctx.fillStyle='#ede6d4';ctx.fillRect(0,0,512,512);for(let i=0;i<12;i++){const x=60+i%4*130,y=65+Math.floor(i/4)*180;ctx.strokeStyle='#7c7663';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(x,y+80);ctx.quadraticCurveTo(x-20,y+30,x,y);ctx.stroke();for(let j=0;j<6;j++){const a=j*Math.PI/3;ctx.fillStyle=j%2?'#be203a':'#e14a5a';ctx.beginPath();ctx.ellipse(x+Math.cos(a)*23,y+Math.sin(a)*23,26,13,a,0,Math.PI*2);ctx.fill();}ctx.fillStyle='#e7be68';ctx.beginPath();ctx.arc(x,y,9,0,Math.PI*2);ctx.fill();}const tex=new THREE.CanvasTexture(c);const m=new THREE.MeshStandardMaterial({map:tex,roughness:.85,side:THREE.DoubleSide});if(key==='floral-covering')curved(m);else box(1.6,1.6,.02,m);
- }else if(key==='perforated-background'){const shape=new THREE.Shape();shape.moveTo(-.8,-.7);shape.lineTo(.8,-.7);shape.lineTo(.8,.7);shape.lineTo(-.8,.7);shape.closePath();for(let row=0;row<9;row++)for(let col=0;col<11;col++){const hole=new THREE.Path();hole.absarc(-.7+col*.14,-.58+row*.14,.035,0,Math.PI*2,true);shape.holes.push(hole);}const mesh=add(new THREE.ShapeGeometry(shape),mat(0xd4c6b0));mesh.rotation.y=.12;}
- else if(key==='hm-lettering'||key==='hm-logo')lettering('H&M');
+ else if(key==='hm-logo')lettering('H&M');
  else if(key==='brand-lettering')lettering(brand==='Paco Rabanne'?'paco rabanne':'H&M',0xbba161);
  else if(key==='decorative-lettering')lettering('H&M',0xc8b990);
  else if(key==='typography')lettering('H&M  COLLECTION',0x262626);
  else if(key.endsWith('framework')){frame();frame(1.5,1.5,-.3);for(const x of [-.75,.75])for(const y of [-.75,.75])rod([x,y,0],[x,y,-.3],.025);if(key==='layered-framework')for(let i=0;i<3;i++){const x=(i-1)*.5;box(.035,1.5,.035,steel,x,0,i*.12);}else{rod([-.75,-.75,0],[.75,.75,0],.015);rod([-.75,.75,-.3],[.75,-.75,-.3],.015);}}
  else if(key==='floral-attachments'||key==='wave-connections'||key==='panel-mounts')brackets();
  else if(key==='disc-fixings'){brackets();for(const x of [-.7,.7])rod([x,-.8,0],[-x,.8,0],.008,dark);}
- else if(key==='perimeter'){frame(1.5,1.5,0,dark);frame(1.42,1.42,.035,light);}
  else if(key==='integrated-lighting'){for(let i=0;i<3;i++){box(1.5,.11,.12,steel,0,(i-1)*.4,0);box(1.4,.075,.015,light,0,(i-1)*.4,.07);}}
  else if(key==='wave-shell'||key==='wave-panels'||key==='wave-finish')curved(key==='wave-finish'?gloss:red,0,key==='wave-panels');
  else if(key==='wave-ribs'){for(let i=0;i<5;i++){const x=(i-2)*.3,pts=[];for(let j=0;j<30;j++){const y=-.8+j*1.6/29;pts.push(new THREE.Vector3(x,y,.18*Math.cos(y*2.3)));}add(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),40,.025,8,false),steel);}}
