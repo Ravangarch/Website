@@ -41,7 +41,7 @@ export const brandCollections={
 brandCollections.Cartier=cartierDefinitions;
 brandCollections['Van Cleef & Arpels']=vanCleefDefinitions;
 brandCollections['H&M']=hmDefinitions;
-brandCollections['Paco Rabanne']=[...reflectiveDiscDefinitions,...pacoIconiqueDefinitions];
+brandCollections['Paco Rabanne']=[...reflectiveDiscDefinitions,...pacoIconiqueDefinitions,...hmDefinitions.filter(item=>item.project==='H&M x RABANNE'&&item.year===2023).map((item,i)=>({...item,inventoryId:1115+i}))];
 brandCollections['Ralph Lauren']=ralphLaurenDefinitions;
 brandCollections.Longchamp=longchampDefinitions;
 brandCollections.Dior=diorDefinitions;

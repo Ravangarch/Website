@@ -103,8 +103,15 @@ export const soundWaveUsagePhotos=[
  ['athem-hm-lafayette-redwave_04.png','H&M display window with reflective circular sculptures against the red façade']
 ];
 const soundWaveSelections={'hm-wave-shell':[0,1,2],'hm-wave-ribs':[0,1,2],'hm-wave-panels':[1,2,0],'hm-wave-finish':[2,1,0],'hm-window-frames':[2,3,1],'hm-backdrop':[2,3,1],'hm-sculptures':[3,2,1],'hm-sculpture-supports':[3,1,0],'hm-decorative-lettering':[0,1,2],'hm-wave-framework':[0,1,3],'hm-wave-connections':[1,2,0]};
+export const hmRabanneUsagePhotos=[
+ ['athem-hm-rabanne_01.png','Daytime view of the reflective H&M x Rabanne sequin façade'],
+ ['athem-hm-rabanne_02.png','Close-up of reflective sequins and H&M x Rabanne lettering'],
+ ['athem-hm-rabanne_03.png','Evening view of the H&M x Rabanne reflective façade']
+];
+const hmRabanneSelections={'hm-sequin-facade':[0,2,1],'hm-hanging-sequins':[1,0,2]};
 function originalPhotos(directory,photos,selection){return `<div class="project-photos original-usage-photos${selection.length===2?' two-photos':''}" data-info-field="photos">${selection.map(index=>{const [file,caption]=photos[index],url=`${import.meta.env.BASE_URL}project-photos/${directory}/${encodeURIComponent(file)}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;}
 export function usagePhotos(record){
+ if(['H&M','Paco Rabanne'].includes(record.brand)&&record.project==='H&M x RABANNE'&&hmRabanneSelections[record.componentModel])return originalPhotos('hm-rabanne',hmRabanneUsagePhotos,hmRabanneSelections[record.componentModel]);
  if(record.brand==='H&M'&&record.project==='Sound Wave'&&soundWaveSelections[record.componentModel])return originalPhotos('hm/sound-wave',soundWaveUsagePhotos,soundWaveSelections[record.componentModel]);
  if(record.brand==='Van Cleef & Arpels'&&record.project==='Spring 2023'&&vanCleefSpringSelections[record.componentModel])return originalPhotos('van-cleef-arpels/spring-2023',vanCleefSpringUsagePhotos,vanCleefSpringSelections[record.componentModel]);
  if(record.brand==='Van Cleef & Arpels'&&record.project==='Winter 2023'&&vanCleefWinterSelections[record.componentModel])return originalPhotos('van-cleef-arpels/winter-2023',vanCleefWinterUsagePhotos,vanCleefWinterSelections[record.componentModel]);
