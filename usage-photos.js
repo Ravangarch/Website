@@ -122,8 +122,15 @@ export const hm2025UsagePhotos=[
  ['h-m-haussmann-juin18-15.png','Evening view of H&M’s floral façade and illuminated perimeter']
 ];
 const hm2025Selections={'hm-floral-covering':[0,1,2],'hm-floral-graphics':[1,0,2],'hm-perforated-background':[1,0,2],'hm-hm-lettering':[1,0,2],'hm-floral-framework':[0,2,1],'hm-floral-attachments':[0,1,2],'hm-perimeter':[2,0,1]};
+export const ralphLaurenUsagePhotos=[
+ ['Ralpj.png','Evening street view of Ralph Lauren’s Monumental RL 888 façade'],
+ ['athem-ralphlauren_02.png','Close view of Ralph Lauren’s oversized strap, RL lettering and raised façade panels'],
+ ['athem-ralphlauren_03.png','Daytime street view of Ralph Lauren’s Monumental RL 888 installation']
+];
+const ralphLaurenSelections={'f25-leather-panels':[1,2,0],'f25-raised-panels':[1,2,0],'f25-stitching':[1,0,2],'f25-vertical-strap':[1,2,0],'f25-horizontal-straps':[1,2,0],'f25-strap-holes':[1,2,0],'f25-rivets':[1,2,0],'f25-logo-backing':[1,0,2],'f25-rl-lettering':[1,0,2],'f25-panel-edges':[1,2,0]};
 function originalPhotos(directory,photos,selection){return `<div class="project-photos original-usage-photos${selection.length===2?' two-photos':''}" data-info-field="photos">${selection.map(index=>{const [file,caption]=photos[index],url=`${import.meta.env.BASE_URL}project-photos/${directory}/${encodeURIComponent(file)}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;}
 export function usagePhotos(record){
+ if(record.brand==='Ralph Lauren'&&record.project==='Monumental RL 888'&&ralphLaurenSelections[record.componentModel])return originalPhotos('ralph-lauren/monumental-rl-888',ralphLaurenUsagePhotos,ralphLaurenSelections[record.componentModel]);
  if(record.brand==='H&M'&&record.year===2025&&hm2025Selections[record.componentModel])return originalPhotos('hm/2025-floral',hm2025UsagePhotos,hm2025Selections[record.componentModel]);
  if(record.brand==='H&M'&&record.year===2023&&hm2023PanelSelections[record.componentModel])return originalPhotos('hm/2023-panels',hm2023PanelUsagePhotos,hm2023PanelSelections[record.componentModel]);
  if(['H&M','Paco Rabanne'].includes(record.brand)&&record.project==='H&M x RABANNE'&&hmRabanneSelections[record.componentModel])return originalPhotos('hm-rabanne',hmRabanneUsagePhotos,hmRabanneSelections[record.componentModel]);
