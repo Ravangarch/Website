@@ -75,8 +75,16 @@ export const sohoUsagePhotos=[
  ['athem-cartier-soho_02.png','Street-side view of Cartier Soho’s red façade installation']
 ];
 const sohoSelections={'cartier-red-panels':[0,1],'cartier-red-finish':[1,0],'cartier-gold-lettering':[0,1],'cartier-studs':[0,1],'cartier-ornament':[1,0]};
+export const cartierChristmasUsagePhotos=[
+ ['cover2.png','Front view of Cartier’s Christmas panther, garlands and entrance display'],
+ ['txt-1.png','Wide street view of Cartier’s Christmas installation at dusk'],
+ ['txt-2.png','Close-up of Cartier’s Christmas panther, garlands and hanging gift decorations'],
+ ['pano.png','Evening corner view of Cartier’s illuminated Christmas storefront']
+];
+const cartierChristmasSelections={'cartier-panther':[2,0,3],'cartier-panther-frame':[0,2,1],'cartier-panther-finish':[2,0,3],'cartier-outline':[3,1,2],'cartier-garlands':[2,0,3],'cartier-gifts':[2,0,1],'cartier-ribbons':[2,0,3]};
 function originalPhotos(directory,photos,selection){return `<div class="project-photos original-usage-photos${selection.length===2?' two-photos':''}" data-info-field="photos">${selection.map(index=>{const [file,caption]=photos[index],url=`${import.meta.env.BASE_URL}project-photos/${directory}/${encodeURIComponent(file)}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;}
 export function usagePhotos(record){
+ if(record.brand==='Cartier'&&record.project==='Christmas'&&cartierChristmasSelections[record.componentModel])return originalPhotos('cartier/christmas',cartierChristmasUsagePhotos,cartierChristmasSelections[record.componentModel]);
  if(record.brand==='Cartier'&&record.project==='Soho'&&sohoSelections[record.componentModel])return originalPhotos('cartier/soho',sohoUsagePhotos,sohoSelections[record.componentModel]);
  if(record.brand==='Cartier'&&record.project==='Bold and Bright'&&boldBrightSelections[record.componentModel])return originalPhotos('cartier/bold-and-bright',boldBrightUsagePhotos,boldBrightSelections[record.componentModel]);
  if(record.brand==='Cartier'&&record.project==='The Fabulous Journey'&&fabulousJourneySelections[record.componentModel])return originalPhotos('cartier/the-fabulous-journey',fabulousJourneyUsagePhotos,fabulousJourneySelections[record.componentModel]);
