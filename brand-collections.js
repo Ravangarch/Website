@@ -7,6 +7,7 @@ import {hmDefinitions,reflectiveDiscDefinitions,hmModel} from './hm-projects.js'
 import {ralphLaurenDefinitions,pacoIconiqueDefinitions,longchampDefinitions,facade2025Model} from './facade-projects-2025.js';
 import {diorDefinitions,diorModel} from './dior-projects.js';
 import {poleneDefinitions,poleneModel} from './polene-projects.js';
+import {guerlainStructureModel} from './guerlain-structures.js';
 const entry=(name,label,key,type='Metal',properties='Clean finish · no visible defects')=>({name,materialLabel:label,componentModel:key,type,properties});
 export const brandCollections={
  'Sotheby’s':[
@@ -32,9 +33,9 @@ export const brandCollections={
  {...entry('Lighting','LED lighting with glass and metal fixtures','lighting','Lighting'),year:2022,project:'Le Soleil'}],
  'Polène':poleneDefinitions,
  Guerlain:[
- entry('Main geometric bee structure','Material specification not supplied','geometric-bee','Structure','Creates the three-dimensional bee silhouette · clean geometric framework'),
+ entry('Main geometric bee structure','Metal rod framework (visual reference)','geometric-bee','Structure','Dark rounded metal ribs · tapered segmented body · separate teardrop wing frames · attachment tabs'),
  entry("Bee’s illuminated outlines",'LED lighting in glass or metal channels','illuminated-bee','Lighting'),
- entry('Honeycomb structures','Brass, aluminium or steel rods','honeycomb','Structure'),
+ entry('Honeycomb structures','Timber / plywood frames (visual reference)','honeycomb','Structure','Connected hexagonal openings · flat rectangular-section wooden rails · mitred corners'),
  entry('Decorative flowers and foliage','Pressed metal, paper, dried natural foliage','foliage','Natural fibres'),
  entry('Illuminated stars','Metal wire frames, glass diffusers','stars','Lighting')]
 };
@@ -49,6 +50,7 @@ const recordId=(brand,index,i,item)=>item?.inventoryId??((brand==='Polène'?1500
 export function createBrandRecords(){return Object.entries(brandCollections).flatMap(([brand,items],index)=>items.map((item,i)=>({...item,id:recordId(brand,index,i,item),brand,year:item.year===null?null:item.year??2025,shape:4,quantity:3+i%4,volume:(.02+i*.015).toFixed(3),place:item.place||(i%3===0?'On display':'In storage'),condition:!item.place&&i%3===0?'N/A — currently on display':'Good · no visible defects',passport:`DMP–${item.year===null?'CHRISTMAS':item.year??2025+i%2}–${recordId(brand,index,i,item)}`,description:`${item.name} from the ${brand} collection.${item.project?` Project: ${item.project}${item.year?` (${item.year})`:''}.`:''} Material selection: ${item.materialLabel}. Clean, undamaged classroom 3D example; inventory quantities, dates and passport are fictional.`})));}
 
 export function componentModel(key,brand){
+ if(key==='geometric-bee'||key==='honeycomb')return guerlainStructureModel(key);
  if(key.startsWith('polene-'))return poleneModel(key);
  if(key.startsWith('dior-'))return diorModel(key);
  if(key.startsWith('f25-'))return facade2025Model(key);
@@ -89,10 +91,10 @@ export function componentModel(key,brand){
  else if(key==='radiating-rods'){sphere(.2,gold);for(let i=0;i<44;i++){const y=1-2*(i+.5)/44,a=i*2.399963,r=Math.sqrt(1-y*y),v=new THREE.Vector3(Math.cos(a)*r,y,Math.sin(a)*r);rod(v.clone().multiplyScalar(.2).toArray(),v.multiplyScalar(.95).toArray(),.018,i%3?gold:silver);}}
  else if(key==='flower-stems'){for(let i=0;i<3;i++)rod([-.3+i*.3,-.95,0],[-.2+i*.32,.95,(i-1)*.12],.035,[timber,bamboo,silver][i]);}
  else if(key==='tassels'){ring(.18,.025,timber,0,.65,0);const colours=[0xe2d0ad,0xc4a173,0xb6a286,0x8b6543];for(let i=0;i<15;i++){const x=(i-7)*.035;const path=new THREE.CatmullRomCurve3([new THREE.Vector3(x,.54,0),new THREE.Vector3(x*.6,.05,.09*Math.sin(i)),new THREE.Vector3(x*1.8,-.7-.08*Math.sin(i),.05*Math.cos(i))]);add(new THREE.TubeGeometry(path,24,.012,7,false),material(colours[i%4]));}}
- else if(key==='geometric-bee'||key==='illuminated-bee'){
+ else if(key==='illuminated-bee'){
   const glow=key==='illuminated-bee';const wire=glow?light:gold;for(const [y,r,sy] of [[-.32,.36,1.4],[.23,.27,1],[.62,.2,1]]){const geo=new THREE.IcosahedronGeometry(r,0);const edges=new THREE.LineSegments(new THREE.EdgesGeometry(geo),new THREE.LineBasicMaterial({color:glow?0xffdc75:0xb89c61}));edges.position.y=y;edges.scale.y=sy;group.add(edges);}
   for(const sign of [-1,1]){ellipse(sign*.48,.15,.28,.57,-sign*.65,wire);for(let i=0;i<3;i++)rod([sign*.15,.1-i*.18,0],[sign*(.55+i*.05),-.25-i*.25,0],.014,wire);rod([sign*.08,.78,0],[sign*.25,1,0],.012,wire);}
- }else if(key==='honeycomb'){for(const [x,y]of [[0,0],[.48,0],[-.48,0],[.24,.42],[-.24,.42],[.24,-.42],[-.24,-.42]])hex(x,y,.28,.14,gold);}
+ }
  else if(key==='foliage'){for(let i=0;i<3;i++){const x=(i-1)*.55;rod([x,-.85,0],[x,.45+i*.1,0],.018,timber);for(let j=0;j<5;j++){const a=j*Math.PI*2/5;const leaf=add(new THREE.SphereGeometry(.22,16,12),[gold,ivory,material(0x9e936b)][i],x+Math.cos(a)*.22,.48+i*.1+Math.sin(a)*.22,0);leaf.scale.set(.6,1,.08);leaf.rotation.z=a-.7;}for(const sign of [-1,1]){const leaf=add(new THREE.SphereGeometry(.18,16,12),material(0xa39369),x+sign*.12,-.1,.01);leaf.scale.set(.4,1,.07);leaf.rotation.z=-sign*.7;}}}
  else if(key==='stars'){for(let i=0;i<3;i++){const r=i===1?.48:.32,cx=(i-1)*.6,cy=i===1?.15:-.1;const points=[];for(let j=0;j<=10;j++){const a=j*Math.PI/5+Math.PI/2,rad=j%2?r*.43:r;points.push([cx+Math.cos(a)*rad,cy+Math.sin(a)*rad,0]);}for(let j=0;j<10;j++)rod(points[j],points[j+1],.016,silver);const shape=new THREE.Shape(points.slice(0,10).map(p=>new THREE.Vector2(p[0],p[1])));add(new THREE.ShapeGeometry(shape),new THREE.MeshStandardMaterial({color:0xfff4c9,emissive:0xffd77b,emissiveIntensity:.7,transparent:true,opacity:.75,side:THREE.DoubleSide}));}}
  return group;
