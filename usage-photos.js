@@ -135,8 +135,16 @@ export const pacoIconiqueUsagePhotos=[
  ['athem-paco-rabanne2023_04.png','Low-angle view of interlocking perforated circular elements above the Paco Rabanne entrance']
 ];
 const pacoIconiqueSelections={'f25-large-discs':[0,2,3],'f25-gold-discs':[2,1,0],'f25-silver-discs':[1,3,0],'f25-dark-discs':[2,0,1],'f25-disc-perforations':[1,3,2],'f25-disc-cutouts':[3,1,0],'f25-interlocking':[3,2,0],'f25-reflective-finishes':[2,1,0]};
+export const guerlainUsagePhotos=[
+ ['athem-guerlain-dec2022_01.png','Guerlain storefront with illuminated bee outlines and stars'],
+ ['athem-guerlain-dec2022_02.png','Close-up of floral decoration and golden curved elements at the Guerlain façade'],
+ ['athem-guerlain-dec2022_03.png','Street-side view of Guerlain’s honeycomb frames and floral decorations'],
+ ['athem-guerlain-dec2022_04.png','Daytime front view of Guerlain’s bee, honeycomb and floral façade installation']
+];
+const guerlainSelections={'geometric-bee':[3,0,2],'illuminated-bee':[0,3,2],'honeycomb':[2,3,0],'foliage':[1,2,3],'stars':[0,3,2]};
 function originalPhotos(directory,photos,selection){return `<div class="project-photos original-usage-photos${selection.length===2?' two-photos':''}" data-info-field="photos">${selection.map(index=>{const [file,caption]=photos[index],url=`${import.meta.env.BASE_URL}project-photos/${directory}/${encodeURIComponent(file)}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;}
 export function usagePhotos(record){
+ if(record.brand==='Guerlain'&&guerlainSelections[record.componentModel])return originalPhotos('guerlain',guerlainUsagePhotos,guerlainSelections[record.componentModel]);
  if(record.brand==='Paco Rabanne'&&record.project==='Iconique 1969'&&pacoIconiqueSelections[record.componentModel])return originalPhotos('paco-rabanne/iconique-1969',pacoIconiqueUsagePhotos,pacoIconiqueSelections[record.componentModel]);
  if(record.brand==='Ralph Lauren'&&record.project==='Monumental RL 888'&&ralphLaurenSelections[record.componentModel])return originalPhotos('ralph-lauren/monumental-rl-888',ralphLaurenUsagePhotos,ralphLaurenSelections[record.componentModel]);
  if(record.brand==='H&M'&&record.year===2025&&hm2025Selections[record.componentModel])return originalPhotos('hm/2025-floral',hm2025UsagePhotos,hm2025Selections[record.componentModel]);
