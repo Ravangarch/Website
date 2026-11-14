@@ -1,3 +1,4 @@
+import {nikeReferenceModel} from './nike-structures.js';
 import * as THREE from 'three';
 import {materialModel} from './materials.js';
 import {provisionalModel} from './models.js';
@@ -14,9 +15,9 @@ export const brandCollections={
  entry('Openings and inset frames','Timber and cut sheet panels','inset-frame','Wood','Clean timber frame · cut sheet panels · inset opening'),
  entry('LED display modules','LED display modules','led-display','Lighting','Clean modular display · illuminated LED surface')],
  Nike:[
- entry('Large red spheres','Papier-mâché, moulded cellulose fibre, cork composite','red-spheres','Bio-based composite','Clean moulded spherical surfaces · red finish'),
+ entry('Large red spheres','Papier-mâché, moulded cellulose fibre, cork composite','red-spheres','Bio-based composite','Rounded, slightly oval forms · vivid red finish · irregular black spots of varied sizes'),
  entry('Internal sphere structure','Bamboo ribs, thin timber battens, aluminium hoops','sphere-ribs','Structure','Clean internal rib structure · lightweight circular hoops'),
- entry('Black polka dots','Mineral-pigment paint, casein paint','polka-dots','Mineral coating','Clean painted dots · matte black finish')],
+ entry('Black polka dots','Mineral-pigment paint, casein paint','polka-dots','Mineral coating','Dense irregular black spots · varied rounded and elongated shapes · vivid red background')],
  Pomellato:[
  entry('Circular outer frames','Aluminium or stainless steel','outer-rings'),
  entry('Green decorative surface','Natural stone veneer (malachite), mineral pigments on wood','green-surface','Mineral coating'),
@@ -50,6 +51,7 @@ const recordId=(brand,index,i,item)=>item?.inventoryId??((brand==='Polène'?1500
 export function createBrandRecords(){return Object.entries(brandCollections).flatMap(([brand,items],index)=>items.map((item,i)=>({...item,id:recordId(brand,index,i,item),brand,year:item.year===null?null:item.year??2025,shape:4,quantity:3+i%4,volume:(.02+i*.015).toFixed(3),place:item.place||(i%3===0?'On display':'In storage'),condition:!item.place&&i%3===0?'N/A — currently on display':'Good · no visible defects',passport:`DMP–${item.year===null?'CHRISTMAS':item.year??2025+i%2}–${recordId(brand,index,i,item)}`,description:`${item.name} from the ${brand} collection.${item.project?` Project: ${item.project}${item.year?` (${item.year})`:''}.`:''} Material selection: ${item.materialLabel}. Clean, undamaged classroom 3D example; inventory quantities, dates and passport are fictional.`})));}
 
 export function componentModel(key,brand){
+ if(key==='red-spheres'||key==='polka-dots')return nikeReferenceModel(key);
  if(key==='geometric-bee'||key==='honeycomb')return guerlainStructureModel(key);
  if(key.startsWith('polene-'))return poleneModel(key);
  if(key.startsWith('dior-'))return diorModel(key);
@@ -75,9 +77,8 @@ export function componentModel(key,brand){
   for(const x of [-.69,.69])box(.09,1.9,.16,material(0xd2b58a),x,0,.08);for(const y of [-.88,.88])box(1.42,.09,.16,material(0xd2b58a),0,y,.08);
  }else if(key==='led-display'){
   box(1.8,1.15,.15,black);const colours=[0xffa235,0xd8ecf0,0xc42d65,0x4a6b9a];for(let row=0;row<10;row++)for(let col=0;col<16;col++){const c=colours[(Math.floor(col/4)+Math.floor(row/3))%4];const mat=new THREE.MeshStandardMaterial({color:c,emissive:c,emissiveIntensity:.65});box(.092,.09,.012,mat,-.78+col*.104,-.46+row*.102,.083);}
- }else if(key==='red-spheres'){sphere(.7,red,0,.18,0);sphere(.35,red,-.8,-.45,.15);sphere(.26,red,.75,-.3,-.05);}
+ }
  else if(key==='sphere-ribs'){for(let i=0;i<10;i++){const rib=ring(.8,.017,i%2?bamboo:timber);rib.rotation.y=i*Math.PI/10;}for(const y of [-.42,0,.42]){const hoop=ring(Math.sqrt(.8*.8-y*y),.018,silver,0,y,0);hoop.rotation.x=Math.PI/2;}}
- else if(key==='polka-dots'){box(1.7,1.15,.04,red);for(let row=0;row<3;row++)for(let col=0;col<4;col++){const dot=add(new THREE.CircleGeometry(.09,32),black,-.59+col*.39,-.35+row*.35,.024);}}
  else if(key==='outer-rings'){ring(.8,.05,silver);ring(.62,.025,silver,0,0,.045);}
  else if(key==='green-surface'){const c=document.createElement('canvas');c.width=c.height=128;const ctx=c.getContext('2d');ctx.fillStyle='#165e42';ctx.fillRect(0,0,128,128);for(let i=0;i<22;i++){ctx.strokeStyle=i%2?'#389675':'#0e392b';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(52,60,8+i*4,5+i*3,.3,0,Math.PI*2);ctx.stroke();}const tex=new THREE.CanvasTexture(c);add(new THREE.RingGeometry(.29,.8,64),new THREE.MeshStandardMaterial({map:tex,roughness:.45,side:THREE.DoubleSide}));ring(.81,.02,silver);}
  else if(key==='jewellery'){ring(.5,.045,silver);ring(.23,.025,silver,0,0,.07);for(let i=0;i<9;i++){const a=i*Math.PI*2/9;const crystal=add(new THREE.OctahedronGeometry(i%2?.12:.16),new THREE.MeshStandardMaterial({color:0xe0eced,metalness:.2,roughness:.08,transparent:true,opacity:.75}),.5*Math.cos(a),.5*Math.sin(a),.09);crystal.rotation.z=a;}}
