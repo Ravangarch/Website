@@ -1,3 +1,4 @@
+import {leSoleilModel} from './le-soleil-structures.js';
 import {creatingInfinityModel} from './creating-infinity-structures.js';
 import {leDamierPanels} from './le-damier-structures.js';
 import {nikeReferenceModel} from './nike-structures.js';
@@ -31,9 +32,9 @@ export const brandCollections={
  {...entry('Panel backing','Aluminium honeycomb with metal bonding or folded sheet-metal cassettes','panel-backing','Structure'),year:2021,project:'Le Damier'},
  {...entry('Mirrored spheres','Polished stainless steel, mirror-finished aluminium','mirrored-spheres','Metal','Smooth convex mirror finish · slightly oval rounded forms · varied sizes'),year:2021,project:'Creating Infinity'},
  {...entry('Sphere segments','Pressed or spun sheet metal','sphere-segments','Metal','Convex polished shell sections · oval profile · thin finished rims'),year:2021,project:'Creating Infinity'},
- {...entry('Central sphere','Polished brass, aluminium or stainless steel','central-sphere'),year:2022,project:'Le Soleil'},
- {...entry('Radiating rods','Aluminium tubes, steel rods, brass rods','radiating-rods','Structure'),year:2022,project:'Le Soleil'},
- {...entry('Lighting','LED lighting with glass and metal fixtures','lighting','Lighting'),year:2022,project:'Le Soleil'}],
+ {...entry('Central sphere','Polished brass, aluminium or stainless steel','central-sphere','Metal','Convex gold sun centre · textured reflective surface · shallow profile'),year:2022,project:'Le Soleil'},
+ {...entry('Radiating rods','Aluminium tubes, steel rods, brass rods','radiating-rods','Structure','Dense slender gold tubes · varied lengths · shallow radial sunburst'),year:2022,project:'Le Soleil'},
+ {...entry('Lighting','LED lighting with glass and metal fixtures','lighting','Lighting','Warm golden illumination · bright centre perimeter · radial light elements'),year:2022,project:'Le Soleil'}],
  'Polène':poleneDefinitions,
  Guerlain:[
  entry('Main geometric bee structure','Metal rod framework (visual reference)','geometric-bee','Structure','Dark rounded metal ribs · tapered segmented body · separate teardrop wing frames · attachment tabs'),
@@ -53,6 +54,7 @@ const recordId=(brand,index,i,item)=>item?.inventoryId??((brand==='Polène'?1500
 export function createBrandRecords(){return Object.entries(brandCollections).flatMap(([brand,items],index)=>items.map((item,i)=>({...item,id:recordId(brand,index,i,item),brand,year:item.year===null?null:item.year??2025,shape:4,quantity:3+i%4,volume:(.02+i*.015).toFixed(3),place:item.place||(i%3===0?'On display':'In storage'),condition:!item.place&&i%3===0?'N/A — currently on display':'Good · no visible defects',passport:`DMP–${item.year===null?'CHRISTMAS':item.year??2025+i%2}–${recordId(brand,index,i,item)}`,description:`${item.name} from the ${brand} collection.${item.project?` Project: ${item.project}${item.year?` (${item.year})`:''}.`:''} Material selection: ${item.materialLabel}. Clean, undamaged classroom 3D example; inventory quantities, dates and passport are fictional.`})));}
 
 export function componentModel(key,brand){
+ if(key==='central-sphere'||key==='radiating-rods'||(key==='lighting'&&brand==='Louis Vuitton'))return leSoleilModel(key);
  if(key==='mirrored-spheres'||key==='sphere-segments')return creatingInfinityModel(key);
  if(key==='metal-panels')return leDamierPanels();
  if(key==='red-spheres'||key==='polka-dots')return nikeReferenceModel(key);
@@ -89,8 +91,6 @@ export function componentModel(key,brand){
  else if(key==='chains'){for(let i=0;i<6;i++){const link=ring(.23,.035,silver,0,(i-2.5)*.3,0);link.scale.y=1.45;link.rotation.y=i%2?Math.PI/2:0;}}
  else if(key==='backing-panels'){for(let i=0;i<3;i++){const disc=add(new THREE.CylinderGeometry(.7,.7,.035,64),i===1?timber:silver,(i-1)*.16,(i-1)*.06,(i-1)*.15);disc.rotation.x=Math.PI/2;}}
  else if(key==='panel-backing'){for(let row=0;row<4;row++)for(let col=0;col<6;col++)hex((col-2.5)*.26+(row%2)*.13,(row-1.5)*.23,.15,.15,silver);}
- else if(key==='central-sphere')sphere(.75,gold);
- else if(key==='radiating-rods'){sphere(.2,gold);for(let i=0;i<44;i++){const y=1-2*(i+.5)/44,a=i*2.399963,r=Math.sqrt(1-y*y),v=new THREE.Vector3(Math.cos(a)*r,y,Math.sin(a)*r);rod(v.clone().multiplyScalar(.2).toArray(),v.multiplyScalar(.95).toArray(),.018,i%3?gold:silver);}}
  else if(key==='flower-stems'){for(let i=0;i<3;i++)rod([-.3+i*.3,-.95,0],[-.2+i*.32,.95,(i-1)*.12],.035,[timber,bamboo,silver][i]);}
  else if(key==='tassels'){ring(.18,.025,timber,0,.65,0);const colours=[0xe2d0ad,0xc4a173,0xb6a286,0x8b6543];for(let i=0;i<15;i++){const x=(i-7)*.035;const path=new THREE.CatmullRomCurve3([new THREE.Vector3(x,.54,0),new THREE.Vector3(x*.6,.05,.09*Math.sin(i)),new THREE.Vector3(x*1.8,-.7-.08*Math.sin(i),.05*Math.cos(i))]);add(new THREE.TubeGeometry(path,24,.012,7,false),material(colours[i%4]));}}
  else if(key==='illuminated-bee'){
