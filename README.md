@@ -223,3 +223,7 @@ The seven **Cartier → Christmas** material galleries use the four original PNG
 ### Original Van Cleef & Arpels Winter 2023 photographs
 
 The eight **Van Cleef & Arpels → 2023 → Winter 2023** material galleries use four original PNGs from `Winter 2023.zip`, kept byte-for-byte with their original names in `public/project-photos/van-cleef-arpels/winter-2023/`. Three photos are selected per component, with all four used across the collection. Full frames link to originals, mobile galleries retain all three images, and Photos permissions are respected. Spring 2023 keeps its existing galleries. Run `node vancleef-winter-photos-check.mjs` to validate the eight galleries, served image bytes, links, mobile layout, permissions, admin navigation and project isolation.
+
+### Original Van Cleef & Arpels Spring 2023 photographs
+
+The eight **Van Cleef & Arpels → 2023 → Spring 2023** material galleries use four original PNGs from `Spring 2023.zip`, preserved byte-for-byte with their original filenames in `public/project-photos/van-cleef-arpels/spring-2023/`. Three photos are selected per component, with all four used across the collection, including the original window-display close-up. Full frames link to originals; mobile galleries retain all three images, and Photos visibility permissions are respected. Winter 2023’s original-photo galleries remain intact. Run `node vancleef-spring-photos-check.mjs` and `node vancleef-winter-photos-check.mjs` to validate both projects, served image bytes, links, mobile layout, permissions and admin navigation.

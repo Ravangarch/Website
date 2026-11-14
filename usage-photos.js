@@ -89,8 +89,16 @@ export const vanCleefWinterUsagePhotos=[
  ['athem-vancleef-winter2023_04.png','Evening view of Van Cleef & Arpels Winter 2023 windows and hanging circular lights']
 ];
 const vanCleefWinterSelections={'vca-snowdrifts':[1,0,3],'vca-snow-finish':[1,2,0],'vca-houses':[2,1,0],'vca-roofs':[2,1,0],'vca-ornaments':[3,1,0],'vca-snowflakes':[1,3,0],'vca-spheres':[2,1,0],'vca-trees':[0,3,1]};
+export const vanCleefSpringUsagePhotos=[
+ ['van-cleef-arpels-spring-flowers.png','Van Cleef & Arpels Spring 2023 window framed by tall flower stems and blossoms'],
+ ['02-van-cleef-arpels-spring-2023-vendome.png','Street view of Van Cleef & Arpels’ Spring 2023 floral façade'],
+ ['image003-copie.png','Spring window display with flower buds, small blossoms and turquoise leaves'],
+ ['van-cleef-arpels-spring-2023-vendome.png','Close-up of a Spring 2023 flower and its decorative centre']
+];
+const vanCleefSpringSelections={'vca-stems':[0,1,3],'vca-branches':[0,3,2],'vca-large-petals':[3,0,2],'vca-small-petals':[2,3,0],'vca-centres':[3,2,0],'vca-stamens':[3,2,0],'vca-buds':[2,3,0],'vca-leaves':[2,0,3]};
 function originalPhotos(directory,photos,selection){return `<div class="project-photos original-usage-photos${selection.length===2?' two-photos':''}" data-info-field="photos">${selection.map(index=>{const [file,caption]=photos[index],url=`${import.meta.env.BASE_URL}project-photos/${directory}/${encodeURIComponent(file)}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;}
 export function usagePhotos(record){
+ if(record.brand==='Van Cleef & Arpels'&&record.project==='Spring 2023'&&vanCleefSpringSelections[record.componentModel])return originalPhotos('van-cleef-arpels/spring-2023',vanCleefSpringUsagePhotos,vanCleefSpringSelections[record.componentModel]);
  if(record.brand==='Van Cleef & Arpels'&&record.project==='Winter 2023'&&vanCleefWinterSelections[record.componentModel])return originalPhotos('van-cleef-arpels/winter-2023',vanCleefWinterUsagePhotos,vanCleefWinterSelections[record.componentModel]);
  if(record.brand==='Cartier'&&record.project==='Christmas'&&cartierChristmasSelections[record.componentModel])return originalPhotos('cartier/christmas',cartierChristmasUsagePhotos,cartierChristmasSelections[record.componentModel]);
  if(record.brand==='Cartier'&&record.project==='Soho'&&sohoSelections[record.componentModel])return originalPhotos('cartier/soho',sohoUsagePhotos,sohoSelections[record.componentModel]);
