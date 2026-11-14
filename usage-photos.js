@@ -142,8 +142,16 @@ export const guerlainUsagePhotos=[
  ['athem-guerlain-dec2022_04.png','Daytime front view of Guerlain’s bee, honeycomb and floral façade installation']
 ];
 const guerlainSelections={'geometric-bee':[3,0,2],'illuminated-bee':[0,3,2],'honeycomb':[2,3,0],'foliage':[1,2,3],'stars':[0,3,2]};
+export const poleneUsagePhotos=[
+ ['athem-polene_01.png','Close view of sculptural flower petals on the Polène façade'],
+ ['athem-polene_02.png','Street-corner view of Polène’s Blossoming Lether floral façade'],
+ ['athem-polene_03.png','Angled close-up of Polène’s layered flower petals and surface finishes'],
+ ['athem-polene_04.png','Wide view of the Polène building and floral installation']
+];
+const poleneSelections={'polene-kairlin-petals':[0,2,1],'polene-plaster-petals':[2,0,3]};
 function originalPhotos(directory,photos,selection){return `<div class="project-photos original-usage-photos${selection.length===2?' two-photos':''}" data-info-field="photos">${selection.map(index=>{const [file,caption]=photos[index],url=`${import.meta.env.BASE_URL}project-photos/${directory}/${encodeURIComponent(file)}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;}
 export function usagePhotos(record){
+ if(record.brand==='Polène'&&record.project==='Blossoming Lether'&&poleneSelections[record.componentModel])return originalPhotos('polene/blossoming-lether',poleneUsagePhotos,poleneSelections[record.componentModel]);
  if(record.brand==='Guerlain'&&guerlainSelections[record.componentModel])return originalPhotos('guerlain',guerlainUsagePhotos,guerlainSelections[record.componentModel]);
  if(record.brand==='Paco Rabanne'&&record.project==='Iconique 1969'&&pacoIconiqueSelections[record.componentModel])return originalPhotos('paco-rabanne/iconique-1969',pacoIconiqueUsagePhotos,pacoIconiqueSelections[record.componentModel]);
  if(record.brand==='Ralph Lauren'&&record.project==='Monumental RL 888'&&ralphLaurenSelections[record.componentModel])return originalPhotos('ralph-lauren/monumental-rl-888',ralphLaurenUsagePhotos,ralphLaurenSelections[record.componentModel]);
