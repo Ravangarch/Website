@@ -62,7 +62,7 @@ export const fabulousJourneyUsagePhotos=[
  ['athem-01-cartier-the-fabulous-journey-champs-elysees_01.png','Close view of Cartier’s balloon, suspended basket and illuminated clouds'],
  ['Screenshot 2026-11-14 at 00.09.41.png','Close-up of an illuminated cloud in The Fabulous Journey installation']
 ];
-const fabulousJourneySelections={'cartier-balloon-shell':[1,0,2],'cartier-balloon-frame':[1,2,0],'cartier-ropes':[1,0,2],'cartier-basket':[1,2,0],'cartier-clouds':[2,1,0],'cartier-lettering':[1,0,2]};
+const fabulousJourneySelections={'cartier-small-box':[1,0,2],'cartier-balloon-shell':[1,0,2],'cartier-balloon-frame':[1,2,0],'cartier-ropes':[1,0,2],'cartier-basket':[1,2,0],'cartier-clouds':[2,1,0],'cartier-lettering':[1,0,2]};
 export const boldBrightUsagePhotos=[
  ['athem-cartier-noel2022_01.png','Cartier storefront with illuminated spheres and decorative light frames at dusk'],
  ['athem-cartier-noel2022_02.png','Evening corner view of Cartier’s illuminated façade'],

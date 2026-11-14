@@ -1,3 +1,4 @@
+import {pomellatoModel} from './pomellato-structures.js';
 import {leSoleilModel} from './le-soleil-structures.js';
 import {creatingInfinityModel} from './creating-infinity-structures.js';
 import {leDamierPanels} from './le-damier-structures.js';
@@ -22,11 +23,11 @@ export const brandCollections={
  entry('Internal sphere structure','Bamboo ribs, thin timber battens, aluminium hoops','sphere-ribs','Structure','Clean internal rib structure · lightweight circular hoops'),
  entry('Black polka dots','Mineral-pigment paint, casein paint','polka-dots','Mineral coating','Dense irregular black spots · varied rounded and elongated shapes · vivid red background')],
  Pomellato:[
- entry('Circular outer frames','Aluminium or stainless steel','outer-rings'),
- entry('Green decorative surface','Natural stone veneer (malachite), mineral pigments on wood','green-surface','Mineral coating'),
- entry('Central jewellery details','Polished stainless steel, aluminium, glass crystals','jewellery'),
- entry('Suspension oversized chains','Stainless steel or galvanised steel','chains','Structure'),
- entry('Circular backing panels','Thin aluminium sheet, plywood or lightweight timber composite with natural binder','backing-panels','Structure')],
+ entry('Circular outer frames','Aluminium or stainless steel','outer-rings','Metal','Broad polished circular rim · shallow medallion profile'),
+ entry('Green decorative surface','Natural stone veneer (malachite), mineral pigments on wood','green-surface','Mineral coating','Banded green circular face · two round handle mounts · polished rim'),
+ entry('Central jewellery details','Polished stainless steel, aluminium, glass crystals','jewellery','Metal','Curved polished handle · circular faceted stones · raised metal studs'),
+ entry('Suspension oversized chains','Stainless steel or galvanised steel','chains','Structure','Oversized oval links · alternating interlocked orientation'),
+ entry('Circular backing panels','Thin aluminium sheet, plywood or lightweight timber composite with natural binder','backing-panels','Structure','Shallow round panel · pearl-white face · polished circular edge')],
  'Louis Vuitton':[
  {...entry('Gold and silver panels','Aluminium sheets, anodised aluminium, stainless steel','metal-panels','Metal','Gold checkerboard panels with repeated oval surface relief · reflective silver panels · shallow curved arrangement'),year:2021,project:'Le Damier'},
  {...entry('Panel backing','Aluminium honeycomb with metal bonding or folded sheet-metal cassettes','panel-backing','Structure'),year:2021,project:'Le Damier'},
@@ -54,6 +55,7 @@ const recordId=(brand,index,i,item)=>item?.inventoryId??((brand==='Polène'?1500
 export function createBrandRecords(){return Object.entries(brandCollections).flatMap(([brand,items],index)=>items.map((item,i)=>({...item,id:recordId(brand,index,i,item),brand,year:item.year===null?null:item.year??2025,shape:4,quantity:3+i%4,volume:(.02+i*.015).toFixed(3),place:item.place||(i%3===0?'On display':'In storage'),condition:!item.place&&i%3===0?'N/A — currently on display':'Good · no visible defects',passport:`DMP–${item.year===null?'CHRISTMAS':item.year??2025+i%2}–${recordId(brand,index,i,item)}`,description:`${item.name} from the ${brand} collection.${item.project?` Project: ${item.project}${item.year?` (${item.year})`:''}.`:''} Material selection: ${item.materialLabel}. Clean, undamaged classroom 3D example; inventory quantities, dates and passport are fictional.`})));}
 
 export function componentModel(key,brand){
+ if(brand==='Pomellato'&&['outer-rings','green-surface','jewellery','chains','backing-panels'].includes(key))return pomellatoModel(key);
  if(key==='central-sphere'||key==='radiating-rods'||(key==='lighting'&&brand==='Louis Vuitton'))return leSoleilModel(key);
  if(key==='mirrored-spheres'||key==='sphere-segments')return creatingInfinityModel(key);
  if(key==='metal-panels')return leDamierPanels();

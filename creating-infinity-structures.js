@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 // Procedural reflection lighting and isolated forms based on the supplied facade references.
 let reflectionTexture;
-function chrome(){
+export function chrome(){
  if(reflectionTexture)return new THREE.MeshPhongMaterial({color:0xf5f7fa,specular:0xffffff,shininess:180,reflectivity:1,envMap:reflectionTexture,combine:THREE.MixOperation,side:THREE.DoubleSide});
  const canvas=document.createElement('canvas');canvas.width=2048;canvas.height=1024;const ctx=canvas.getContext('2d');
  const sky=ctx.createLinearGradient(0,0,0,1024);sky.addColorStop(0,'#578cc7');sky.addColorStop(.43,'#dcecf7');sky.addColorStop(.55,'#b6a99b');sky.addColorStop(1,'#34363b');ctx.fillStyle=sky;ctx.fillRect(0,0,2048,1024);
