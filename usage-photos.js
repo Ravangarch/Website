@@ -116,8 +116,15 @@ export const hm2023PanelUsagePhotos=[
  ['h-m1.png','Corner view of H&M’s layered white and gold façade installation']
 ];
 const hm2023PanelSelections={'hm-rectangular-panels':[0,3,1],'hm-translucent-panels':[2,0,3],'hm-gold-panels':[2,0,3],'hm-white-panels':[2,0,3],'hm-typography':[2,0,1],'hm-hm-logo':[2,0,3],'hm-layered-framework':[3,1,0],'hm-panel-mounts':[2,3,0],'hm-integrated-lighting':[1,0,3]};
+export const hm2025UsagePhotos=[
+ ['h-m_cover_cl.png','H&M storefront wrapped in large red floral graphics and a patterned background'],
+ ['site_h_m_haussmann_opening.png','Close-up of H&M lettering, floral graphics and the perforated-pattern façade'],
+ ['h-m-haussmann-juin18-15.png','Evening view of H&M’s floral façade and illuminated perimeter']
+];
+const hm2025Selections={'hm-floral-covering':[0,1,2],'hm-floral-graphics':[1,0,2],'hm-perforated-background':[1,0,2],'hm-hm-lettering':[1,0,2],'hm-floral-framework':[0,2,1],'hm-floral-attachments':[0,1,2],'hm-perimeter':[2,0,1]};
 function originalPhotos(directory,photos,selection){return `<div class="project-photos original-usage-photos${selection.length===2?' two-photos':''}" data-info-field="photos">${selection.map(index=>{const [file,caption]=photos[index],url=`${import.meta.env.BASE_URL}project-photos/${directory}/${encodeURIComponent(file)}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;}
 export function usagePhotos(record){
+ if(record.brand==='H&M'&&record.year===2025&&hm2025Selections[record.componentModel])return originalPhotos('hm/2025-floral',hm2025UsagePhotos,hm2025Selections[record.componentModel]);
  if(record.brand==='H&M'&&record.year===2023&&hm2023PanelSelections[record.componentModel])return originalPhotos('hm/2023-panels',hm2023PanelUsagePhotos,hm2023PanelSelections[record.componentModel]);
  if(['H&M','Paco Rabanne'].includes(record.brand)&&record.project==='H&M x RABANNE'&&hmRabanneSelections[record.componentModel])return originalPhotos('hm-rabanne',hmRabanneUsagePhotos,hmRabanneSelections[record.componentModel]);
  if(record.brand==='H&M'&&record.project==='Sound Wave'&&soundWaveSelections[record.componentModel])return originalPhotos('hm/sound-wave',soundWaveUsagePhotos,soundWaveSelections[record.componentModel]);
