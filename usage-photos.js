@@ -128,8 +128,16 @@ export const ralphLaurenUsagePhotos=[
  ['athem-ralphlauren_03.png','Daytime street view of Ralph Lauren’s Monumental RL 888 installation']
 ];
 const ralphLaurenSelections={'f25-leather-panels':[1,2,0],'f25-raised-panels':[1,2,0],'f25-stitching':[1,0,2],'f25-vertical-strap':[1,2,0],'f25-horizontal-straps':[1,2,0],'f25-strap-holes':[1,2,0],'f25-rivets':[1,2,0],'f25-logo-backing':[1,0,2],'f25-rl-lettering':[1,0,2],'f25-panel-edges':[1,2,0]};
+export const pacoIconiqueUsagePhotos=[
+ ['Paco Rabanne.png','Paco Rabanne corner façade with oversized reflective circular elements'],
+ ['athem-paco-rabanne2023_02.png','Close view of reflective discs, circular perforations and the Paco Rabanne storefront'],
+ ['athem-paco-rabanne2023_03.png','Gold, silver and dark reflective discs suspended across the Paco Rabanne façade'],
+ ['athem-paco-rabanne2023_04.png','Low-angle view of interlocking perforated circular elements above the Paco Rabanne entrance']
+];
+const pacoIconiqueSelections={'f25-large-discs':[0,2,3],'f25-gold-discs':[2,1,0],'f25-silver-discs':[1,3,0],'f25-dark-discs':[2,0,1],'f25-disc-perforations':[1,3,2],'f25-disc-cutouts':[3,1,0],'f25-interlocking':[3,2,0],'f25-reflective-finishes':[2,1,0]};
 function originalPhotos(directory,photos,selection){return `<div class="project-photos original-usage-photos${selection.length===2?' two-photos':''}" data-info-field="photos">${selection.map(index=>{const [file,caption]=photos[index],url=`${import.meta.env.BASE_URL}project-photos/${directory}/${encodeURIComponent(file)}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;}
 export function usagePhotos(record){
+ if(record.brand==='Paco Rabanne'&&record.project==='Iconique 1969'&&pacoIconiqueSelections[record.componentModel])return originalPhotos('paco-rabanne/iconique-1969',pacoIconiqueUsagePhotos,pacoIconiqueSelections[record.componentModel]);
  if(record.brand==='Ralph Lauren'&&record.project==='Monumental RL 888'&&ralphLaurenSelections[record.componentModel])return originalPhotos('ralph-lauren/monumental-rl-888',ralphLaurenUsagePhotos,ralphLaurenSelections[record.componentModel]);
  if(record.brand==='H&M'&&record.year===2025&&hm2025Selections[record.componentModel])return originalPhotos('hm/2025-floral',hm2025UsagePhotos,hm2025Selections[record.componentModel]);
  if(record.brand==='H&M'&&record.year===2023&&hm2023PanelSelections[record.componentModel])return originalPhotos('hm/2023-panels',hm2023PanelUsagePhotos,hm2023PanelSelections[record.componentModel]);
