@@ -33,7 +33,17 @@ export const hmDefinitions=[
  ...reflectiveDiscDefinitions,
  ...dated(2023,[
  {...part('Reflective sequin façade','Aluminium sheets','sequin-facade'),inventoryId:1034},
- {...part('Reflective hanging decorative elements','Aluminium sheets','hanging-sequins'),inventoryId:1035}] ,'H&M x RABANNE')
+ {...part('Reflective hanging decorative elements','Aluminium sheets','hanging-sequins'),inventoryId:1035}] ,'H&M x RABANNE'),
+ ...dated(2023,[
+ {...part('Large rectangular panels','aluminium sheets, plywood or recycled paper honeycomb panels','rectangular-panels','Structure'),inventoryId:1025},
+ {...part('Semi-translucent panels','frosted glass or thin natural-fibre paper','translucent-panels','Screens'),inventoryId:1026},
+ {...part('Gold reflective panels','anodised aluminium or brass sheet','gold-panels'),inventoryId:1027},
+ {...part('White matte panels','mineral-painted plywood or enamelled aluminium','white-panels','Wood'),inventoryId:1028},
+ {...part('Printed typography','mineral-pigment ink on paper or direct printing on metal','typography','Mineral coating'),inventoryId:1029},
+ {...part('Large H&M logo','cut aluminium or plywood','hm-logo'),inventoryId:1030},
+ {...part('Layered panel supporting structure','reusable steel or aluminium profiles','layered-framework','Structure'),inventoryId:1031},
+ {...part('Panel mounting system','mechanical clips, bolts and brackets','panel-mounts'),inventoryId:1032},
+ {...part('Integrated lighting','replaceable light fixtures with metal housings and glass diffusers','integrated-lighting','Lighting'),inventoryId:1033}])
 ];
 export function hmModel(fullKey,brand='H&M'){const key=fullKey.replace('hm-',''),group=new THREE.Group();
  const mat=(color,metalness=0,roughness=.6)=>new THREE.MeshStandardMaterial({color,metalness,roughness,side:THREE.DoubleSide});
