@@ -1,4 +1,8 @@
 import * as THREE from 'three';
+import {soundWaveKeys,soundWaveModel} from './sound-wave-models.js';
+import {rabanneSequinModel} from './rabanne-sequin-models.js';
+import {floral2025Keys,floral2025Model} from './hm-floral-2025-models.js';
+import {layered2023Keys,layered2023Model} from './hm-layered-2023-models.js';
 const part=(name,materialLabel,key,type='Metal')=>({name,materialLabel,componentModel:`hm-${key}`,type,properties:'Clean illustrative component · no visible defects'});
 const dated=(year,items,project)=>items.map(item=>({...item,year,...project?{project}:{}}));
 export const reflectiveDiscDefinitions=dated(2024,[
@@ -46,6 +50,10 @@ export const hmDefinitions=[
  {...part('Integrated lighting','replaceable light fixtures with metal housings and glass diffusers','integrated-lighting','Lighting'),inventoryId:1033}])
 ];
 export function hmModel(fullKey,brand='H&M'){const key=fullKey.replace('hm-',''),group=new THREE.Group();
+ if(soundWaveKeys.includes(key))return soundWaveModel(key);
+ if(key==='sequin-facade'||key==='hanging-sequins')return rabanneSequinModel(key);
+ if(floral2025Keys.includes(key))return floral2025Model(key);
+ if(layered2023Keys.includes(key))return layered2023Model(key);
  const mat=(color,metalness=0,roughness=.6)=>new THREE.MeshStandardMaterial({color,metalness,roughness,side:THREE.DoubleSide});
  const steel=mat(0xa8afb4,.8,.3),silver=mat(0xdce0e4,1,.08),red=mat(0xc51e31,.65,.2),gloss=mat(0xb70d24,.7,.08),white=mat(0xf2eee6),gold=mat(0xc9a75b,.9,.15),dark=mat(0x333a3d,.65,.4),wood=mat(0xc1a17b);
  const light=new THREE.MeshStandardMaterial({color:0xffedc9,emissive:0xffcf80,emissiveIntensity:1,roughness:.25});
@@ -67,7 +75,7 @@ export function hmModel(fullKey,brand='H&M'){const key=fullKey.replace('hm-','')
  }else if(key==='perforated-background'){const shape=new THREE.Shape();shape.moveTo(-.8,-.7);shape.lineTo(.8,-.7);shape.lineTo(.8,.7);shape.lineTo(-.8,.7);shape.closePath();for(let row=0;row<9;row++)for(let col=0;col<11;col++){const hole=new THREE.Path();hole.absarc(-.7+col*.14,-.58+row*.14,.035,0,Math.PI*2,true);shape.holes.push(hole);}const mesh=add(new THREE.ShapeGeometry(shape),mat(0xd4c6b0));mesh.rotation.y=.12;}
  else if(key==='hm-lettering'||key==='hm-logo')lettering('H&M');
  else if(key==='brand-lettering')lettering(brand==='Paco Rabanne'?'paco rabanne':'H&M',0xbba161);
- else if(key==='decorative-lettering')lettering('H&M',0xc8b990);
+ else if(key==='decorative-lettering')lettering('H2',0x121212);
  else if(key==='typography')lettering('H&M  COLLECTION',0x262626);
  else if(key.endsWith('framework')){frame();frame(1.5,1.5,-.3);for(const x of [-.75,.75])for(const y of [-.75,.75])rod([x,y,0],[x,y,-.3],.025);if(key==='layered-framework')for(let i=0;i<3;i++){const x=(i-1)*.5;box(.035,1.5,.035,steel,x,0,i*.12);}else{rod([-.75,-.75,0],[.75,.75,0],.015);rod([-.75,.75,-.3],[.75,-.75,-.3],.015);}}
  else if(key==='floral-attachments'||key==='wave-connections'||key==='panel-mounts')brackets();
