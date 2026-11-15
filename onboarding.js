@@ -1,0 +1,32 @@
+import {escapeHTML as esc} from './storage.js';
+const seen=new Set();
+const key=(account,type)=>`athem-guide-v1:${account.username}:${type}`;
+const section=(title,text)=>`<section><h3>${title}</h3><p>${text}</p></section>`;
+export function showGuide(account,type,{force=false}={}){
+ if(!account||account.username==='admin')return;
+ const storageKey=key(account,type);let completed=seen.has(storageKey);try{completed ||= localStorage.getItem(storageKey)==='seen';}catch{}
+ if(!force&&completed)return;
+ document.querySelector('#onboarding-guide')?.close();
+ const guide=document.createElement('dialog');guide.id='onboarding-guide';guide.className='onboarding-guide';guide.setAttribute('aria-labelledby','guide-title');
+ let content='';
+ if(type==='welcome'){
+  if(account.tabs.includes('archive'))content+=section('Material archive','Your collection of scenography materials and components, with information to help you find and reuse them. Search by material name, Digital Material Passport reference, brand, project or description. Search uses the words you type within information you can access. Combine it with the material filter and the selected brand, year or project. Sort by Recently added, Name A–Z or Year created. Clear the search or choose All materials to broaden your results.');
+  content+=section('Your left sidebar','Choose a brand to browse its archive. Years appear underneath the brand; open a year to reveal its projects, then choose a project to see its materials. Your selection works together with search and filters. You only see the brands and information your account is allowed to access.');
+  if(account.tabs.includes('reuse'))content+=section('Past projects of Reuse','Discover examples of scenography materials finding a second life in another setting. These case studies show how existing elements can be reused and adapted.');
+  if(account.tabs.includes('design'))content+=section('Provisional Designs','Explore potential designs that ATHEM can create to combine with your existing scenography. These 3D studies suggest ways to extend or transform an installation; they are design concepts, rather than confirmed stock or measured scans.');
+  if(account.canManage)content+=section('Creating a profile','Use + Add profile at the top of the page. Enter a profile name, login and password, then select the brands, tabs and material information the user can view. Choose which permitted fields they can edit and whether they can manage delegated profiles. Create the profile and keep its login and password to share with your colleague. Use Profiles & access to change access, replace a password or disable a profile. You can only grant permissions you hold; brand users can edit Current place, Unit locations and Notes when allowed.');
+  else content+=section('Your profile','Your brand administrator decides which brands, tabs and information you can access. Ask them if you need additional permissions.');
+  content+=section('Your account','Click your initials circle at the bottom of the sidebar to view your login, change your password or reopen this guide.');
+ }else{
+  content+=section('Digital Material Passport','The Digital Material Passport is the reference record for this material or component. Its identifier connects the item to its material, quantity, dimensions or volume, condition, ownership and project history, where provided. Use it when discussing or locating an item with your team.');
+  if(account.fields.includes('model'))content+=section('Inspect the 3D view','Drag to rotate the model and scroll or pinch to zoom. Use auto-rotate to see every side, Inspect surface to look closer and Reset view to return to the starting view. Reference photos show the elements in use. Demo models and concept studies are visual approximations.');
+  content+=section('Editing information','When your permissions allow changes, select Edit information, update the available fields and save. Brand accounts and their users can edit Current place, Unit locations and Notes if access has been granted. Other passport information is maintained by the administrator. If you cannot edit a field, contact your brand administrator or ATHEM.');
+  if(account.fields.includes('notes'))content+=section('Notes shared with your brand','Notes save automatically as you type. All profiles in the same brand workspace that have Notes access share those notes; they are separate from administrator notes. In this demo, sharing applies to brand profiles using the same browser. Notes do not yet sync across devices or browsers.');
+  if(account.fields.includes('locations'))content+=section('Map and individual units','Scroll to Unit locations. Select a numbered map pin to view that location, or select an individual unit to see its address and, for stored items, its rack and shelf. Open in Google Maps opens the selected coordinates. The map is schematic; demo positions and allocations are illustrative unless actual storage coordinates have been entered. Use Edit information to update permitted location information.');
+  content+=section('Photos and supporting files','Scroll further down for reference photos, project context and attached documents when available and permitted. Close the material window to return to your filtered archive.');
+ }
+ guide.innerHTML=`<div class="detail-top"><span>${type==='welcome'?'GETTING STARTED':'MATERIAL GUIDE'}</span><button type="button" aria-label="Close guide">✕</button></div><div class="guide-body"><h2 id="guide-title">${type==='welcome'?'How to use the website?':'Understanding a material'}</h2><p class="guide-intro">${type==='welcome'?`Welcome, ${esc(account.name)}. Here is a quick guide to your workspace.`:'A quick guide to the passport, editing, notes and locations.'}</p>${content}<p class="guide-demo">This demo saves changes and profiles in this browser. They are not synced across your brand’s devices.</p><button class="primary guide-done" type="button">${type==='welcome'?'Explore the archive':'View the material'}</button></div>`;
+ document.body.append(guide);
+ const dismiss=()=>guide.close();guide.querySelector('.detail-top button').onclick=dismiss;guide.querySelector('.guide-done').onclick=dismiss;
+ guide.onclose=()=>{seen.add(storageKey);try{localStorage.setItem(storageKey,'seen');}catch{}guide.remove();};guide.showModal();
+}

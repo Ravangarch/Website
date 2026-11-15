@@ -143,3 +143,7 @@ aside .user-info{padding:0;line-height:15px}
 .account-status{font-size:12px;line-height:1.6;min-height:20px}
 .account-panel .primary{width:100%;padding:12px}
 @media(max-width:540px){aside .sidebar-bottom{display:flex;justify-content:center;margin:0;padding:12px 0;gap:10px}}
+
+.onboarding-guide{width:min(650px,calc(100vw - 28px));max-height:88dvh}
+.guide-body{padding:25px 30px 30px}.guide-body h2{font-size:28px;line-height:1.25;margin:0 0 12px}.guide-intro{color:#777;font-size:13px;line-height:1.7}.guide-body section{margin:24px 0}.guide-body h3{font-size:16px;font-weight:600;margin:0 0 8px}.guide-body section p{font-size:13px;color:#555;line-height:1.8;margin:0}.guide-demo{font-size:11px;color:#777;line-height:1.7;padding:14px;background:#eaeaea}.guide-done{padding:12px 18px;margin-top:8px}.account-help{display:flex;gap:8px;flex-wrap:wrap}
+@media(max-width:540px){.guide-body{padding:20px}.guide-body h2{font-size:25px}}
