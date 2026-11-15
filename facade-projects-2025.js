@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {longchampModelKeys,longchampReferenceModel} from './longchamp-reference-models.js';
 import {iconiqueKeys,iconiqueModel} from './paco-iconique-models.js';
 import {ralphModelKeys,ralphReferenceModel} from './ralph-reference-models.js';
 const part=(name,materialLabel,key,type='Metal')=>({name,materialLabel,componentModel:`f25-${key}`,type,year:2025,properties:'Clean illustrative component · no visible defects'});
@@ -37,6 +38,7 @@ export const longchampDefinitions=project('Longchamp x ToiletPaper',[
  part('Decorative patterned window surrounds','digitally printed vinyl or laminated graphic panels','window-patterns','Plastic'),
  part('Colourful window display backdrops','printed rigid panels or painted MDF','backdrops','Wood')]);
 export function facade2025Model(fullKey){const key=fullKey.replace('f25-',''),group=new THREE.Group();
+ if(longchampModelKeys.includes(key))return longchampReferenceModel(key);
  if(iconiqueKeys.includes(key))return iconiqueModel(key);
  if(ralphModelKeys.includes(key))return ralphReferenceModel(key);
  const mat=(color,metalness=0,roughness=.65)=>new THREE.MeshStandardMaterial({color,metalness,roughness,side:THREE.DoubleSide});
