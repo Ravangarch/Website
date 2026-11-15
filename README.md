@@ -69,7 +69,7 @@ Imported record metadata is saved to localStorage and attachments to IndexedDB. 
 
 `npm run test:smoke` starts its own Vite server and uses system Chromium (`CHROMIUM_PATH` may override the executable). It tests all 13 brand accounts plus administrator access, invalid credentials, scoped collections, nested years, project tabs, timelines, French Excel import, malformed CSV feedback, uploaded STL/GLB viewing, photo/PDF attachments, persistence and mobile overflow.
 
-The **Who are we** tab contains the supplied ATHEM studio, CSR and EcoVadis description. Brand inventory is scoped to the signed-in brand; **Past projects** is a public case-study selection across all 13 collaborations, with year navigation.
+The **About Us** tab contains the supplied ATHEM studio, CSR and EcoVadis description. Brand inventory is scoped to the signed-in brand; **Past projects** is a public case-study selection across all 13 collaborations, with year navigation.
 
 ## Expanded material collection
 
@@ -79,7 +79,7 @@ The built-in Visitor login has been removed and cannot be used or recreated.
 
 Administrators can remove objects or projects from their detail window. A confirmation is required and an immediate **Undo removal** action is available. Removals are saved locally in this browser and apply to all demo accounts here, including after a reload; they do not delete shared server data or uploaded attachment files. Brand accounts cannot invoke removal.
 
-**Last Chance!** is a shared demo clearance gallery beside Who are we. Six fictional slightly damaged items include reduced per-unit prices, October 2026 dismantling dates, and planned recycling dates in November/December 2026. Deadlines appear in red beside grid titles and above detail titles. They are illustrative dates, not an automatic recycling or payment system.
+**Last Chance!** is a shared demo clearance gallery beside About Us. Six fictional slightly damaged items include reduced per-unit prices, October 2026 dismantling dates, and planned recycling dates in November/December 2026. Deadlines appear in red beside grid titles and above detail titles. They are illustrative dates, not an automatic recycling or payment system.
 
 The reuse tab now presents **Une histoire en plusieurs scènes**, the supplied Sotheby’s case study, with its original French description. The previous fictional reuse records have been removed. The building image is an illustration recreated from the screenshot, clearly captioned as such; no project year or reuse date has been invented. The case study is visible to every account, and administrators retain removal/undo controls. The Last Chance tab and heading use the same red as recycling deadlines (`#bc2525`).
 
