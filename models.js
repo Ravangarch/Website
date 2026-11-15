@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {additionalProvisionalModel} from './provisional-designs.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {STLLoader} from 'three/addons/loaders/STLLoader.js';
 import {OBJLoader} from 'three/addons/loaders/OBJLoader.js';
@@ -6,6 +7,7 @@ export async function loadModel(file){const extension=file.name.split('.').pop()
 const box=new THREE.Box3().setFromObject(model),size=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3());const dimension=Math.max(size.x,size.y,size.z);if(!Number.isFinite(dimension)||dimension<=0)throw Error('The model contains no visible geometry.');model.position.sub(center);const group=new THREE.Group();group.add(model);group.scale.setScalar(2/dimension);return group;}
 // Visual reconstructions from the supplied detachable-frame and petal reference boards.
 export function provisionalModel(kind,{packed=false}={}){
+ if(kind>=3)return additionalProvisionalModel(kind);
  const group=new THREE.Group();
  const steel=new THREE.MeshStandardMaterial({color:0xd5cfc6,metalness:.35,roughness:.47});
  const bolts=new THREE.MeshStandardMaterial({color:0x93948f,metalness:.8,roughness:.3});

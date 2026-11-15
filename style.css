@@ -15,3 +15,7 @@
 .athem-brand img{display:block;width:100%;height:auto;max-height:170px;object-fit:contain}
 @media(max-width:800px) and (min-width:541px){.athem-brand img{max-height:130px}}
 @media(max-width:540px){.logo.athem-brand{width:150px;margin:0}.athem-brand img{max-height:120px}}
+
+/* Prepared model previews keep archive navigation independent of WebGL. */
+.object-image .model-thumbnail{width:100%;height:100%;object-fit:cover;position:relative;z-index:1;display:block;transition:transform .45s}
+.card:hover .model-thumbnail{transform:scale(1.05)}

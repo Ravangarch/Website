@@ -5,12 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "vite build",
+    "build": "npm run thumbnails && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "test:profiles": "node profile-check.mjs",
     "test:smoke": "node smoke.mjs",
     "test:thumbnails": "node thumbnail-check.mjs",
-    "test:brand-admin": "node brand-admin-check.mjs"
+    "test:brand-admin": "node brand-admin-check.mjs",
+    "thumbnails": "node generate-thumbnails.mjs",
+    "test:login": "node login-designs-check.mjs"
   },
   "dependencies": {
     "exceljs": "^4.4.0",

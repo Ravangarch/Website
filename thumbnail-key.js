@@ -1,0 +1,1 @@
+export function thumbnailKey(record){return JSON.stringify([record.componentModel||'',record.concept||0,record.materialModel||'',record.category==='reuse'?record.id%4:null,record.shape,record.type,record.componentModel==='hm-brand-lettering'?record.brand:'',record.id===11?11:null]);}
