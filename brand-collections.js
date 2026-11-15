@@ -81,8 +81,14 @@ export function componentModel(key,brand){
  const hex=(cx,cy,r=.28,depth=.14,mat=gold)=>{for(let i=0;i<6;i++){const a=i*Math.PI/3,b=(i+1)*Math.PI/3;for(const z of [-depth/2,depth/2])rod([cx+r*Math.cos(a),cy+r*Math.sin(a),z],[cx+r*Math.cos(b),cy+r*Math.sin(b),z],.014,mat);rod([cx+r*Math.cos(a),cy+r*Math.sin(a),-depth/2],[cx+r*Math.cos(a),cy+r*Math.sin(a),depth/2],.014,mat);}};
  const ellipse=(x,y,rx,ry,angle,mat)=>{const mesh=ring(1,.016,mat,x,y,0);mesh.scale.set(rx,ry,1);mesh.rotation.z=angle;return mesh;};
  if(key==='inset-frame'){
-  const panel=new THREE.Shape();panel.moveTo(-.8,-1);panel.lineTo(.8,-1);panel.lineTo(.8,1);panel.lineTo(-.8,1);panel.closePath();const hole=new THREE.Path();hole.moveTo(-.52,-.72);hole.lineTo(-.52,.3);hole.absarc(0,.3,.52,Math.PI,0,true);hole.lineTo(.52,-.72);hole.closePath();panel.holes.push(hole);add(new THREE.ExtrudeGeometry(panel,{depth:.09,bevelEnabled:false}),timber);
-  for(const x of [-.69,.69])box(.09,1.9,.16,material(0xd2b58a),x,0,.08);for(const y of [-.88,.88])box(1.42,.09,.16,material(0xd2b58a),0,y,.08);
+  const panel=new THREE.Shape();panel.moveTo(-.8,-1);panel.lineTo(.8,-1);panel.lineTo(.8,1);panel.lineTo(-.8,1);panel.closePath();const hole=new THREE.Path();hole.moveTo(-.52,-.72);hole.lineTo(-.52,.3);hole.absarc(0,.3,.52,Math.PI,0,true);hole.lineTo(.52,-.72);hole.closePath();panel.holes.push(hole);
+  const panelMaterial=timber.clone();panelMaterial.side=THREE.FrontSide;
+  add(new THREE.ExtrudeGeometry(panel,{depth:.09,bevelEnabled:false}),panelMaterial);
+  // The trim is one continuous ring above the panel, never coplanar with its rear.
+  const trim=new THREE.Shape();trim.moveTo(-.735,-.95);trim.lineTo(.735,-.95);trim.lineTo(.735,.95);trim.lineTo(-.735,.95);trim.closePath();
+  const inset=new THREE.Path();inset.moveTo(-.645,-.86);inset.lineTo(-.645,.86);inset.lineTo(.645,.86);inset.lineTo(.645,-.86);inset.closePath();trim.holes.push(inset);
+  const trimMaterial=material(0xd2b58a);trimMaterial.side=THREE.FrontSide;
+  add(new THREE.ExtrudeGeometry(trim,{depth:.08,bevelEnabled:false}),trimMaterial,0,0,.09);
  }else if(key==='led-display'){
   box(1.8,1.15,.15,black);const colours=[0xffa235,0xd8ecf0,0xc42d65,0x4a6b9a];for(let row=0;row<10;row++)for(let col=0;col<16;col++){const c=colours[(Math.floor(col/4)+Math.floor(row/3))%4];const mat=new THREE.MeshStandardMaterial({color:c,emissive:c,emissiveIntensity:.65});box(.092,.09,.012,mat,-.78+col*.104,-.46+row*.102,.083);}
  }
