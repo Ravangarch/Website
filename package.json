@@ -12,7 +12,9 @@
     "test:thumbnails": "node thumbnail-check.mjs",
     "test:brand-admin": "node brand-admin-check.mjs",
     "thumbnails": "node generate-thumbnails.mjs",
-    "test:login": "node login-designs-check.mjs"
+    "test:login": "node login-designs-check.mjs",
+    "test:scroll": "node scroll-viewer-check.mjs",
+    "profile:scroll": "node scroll-profile.mjs"
   },
   "dependencies": {
     "exceljs": "^4.4.0",
