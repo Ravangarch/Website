@@ -124,3 +124,22 @@ aside{width:240px;padding:24px 18px 18px}main{margin-left:240px}#brands{overflow
 
 .original-usage-photos.two-photos{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media(max-width:600px){.original-usage-photos.two-photos{grid-template-columns:1fr}}
+
+/* Center the account circle between the name and caption at the foot of the sidebar. */
+aside .sidebar-bottom{align-items:center;padding:18px 5px 0;margin-bottom:-5px}
+aside .user-avatar{border:0;flex-shrink:0;padding:0;align-self:center;cursor:pointer}
+aside .user-avatar:hover{background:#333;color:#fff}
+aside .user-avatar:focus-visible{outline:2px solid #bbb;outline-offset:4px}
+aside .user-info{padding:0;line-height:15px}
+.account-panel{width:min(420px,calc(100vw - 32px))}
+.account-panel-body{padding:25px}
+.account-panel h2{font-size:25px}
+.account-panel dl{margin:24px 0;display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px}
+.account-panel dt{color:#777}.account-panel dd{margin:0;overflow-wrap:anywhere}
+.account-panel h3{font-size:16px;font-weight:500;margin:26px 0 18px}
+.account-panel label{display:grid;gap:8px;font-size:12px;margin:15px 0}
+.account-panel input{width:100%;border:1px solid #ccc;padding:11px;background:#fff;border-radius:3px}
+.account-storage-note{font-size:11px;color:#777;line-height:1.6}
+.account-status{font-size:12px;line-height:1.6;min-height:20px}
+.account-panel .primary{width:100%;padding:12px}
+@media(max-width:540px){aside .sidebar-bottom{display:flex;justify-content:center;margin:0;padding:12px 0;gap:10px}}

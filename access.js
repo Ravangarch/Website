@@ -23,3 +23,13 @@ export function removeProfile(manager,username){const profile=listProfiles(manag
 
 // Single-brand profiles share their brand workspace; multi-brand admin delegates share admin notes.
 export function notesScope(account){if(!account||account.role==='visitor')return null;if(isAdministrator(account))return 'admin';if(account.brands?.length===1)return 'brand:'+account.brands[0];return account.grantedBy?notesScope(resolveAccount(account.grantedBy)):null;}
+
+export async function changeOwnPassword(account,currentPassword,newPassword){
+ if(!account||!await authenticate(account.username,currentPassword))throw Error('Your current password is incorrect.');
+ if(newPassword.length<6||newPassword.length>128)throw Error('Use a password between 6 and 128 characters.');
+ const salt=hex(crypto.getRandomValues(new Uint8Array(16)));
+ const credentials={salt,passwordHash:await digest(newPassword,salt)};
+ const previous=saved.find(p=>p.username===account.username)||{username:account.username};
+ const next=[...saved.filter(p=>p.username!==account.username),{...previous,...credentials}];
+ localStorage.setItem('athem-profiles',JSON.stringify(next));saved=next;
+}
