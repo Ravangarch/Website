@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {iconiqueKeys,iconiqueModel} from './paco-iconique-models.js';
 import {ralphModelKeys,ralphReferenceModel} from './ralph-reference-models.js';
 const part=(name,materialLabel,key,type='Metal')=>({name,materialLabel,componentModel:`f25-${key}`,type,year:2025,properties:'Clean illustrative component · no visible defects'});
 const project=(project,items)=>items.map(item=>({...item,project}));
@@ -36,6 +37,7 @@ export const longchampDefinitions=project('Longchamp x ToiletPaper',[
  part('Decorative patterned window surrounds','digitally printed vinyl or laminated graphic panels','window-patterns','Plastic'),
  part('Colourful window display backdrops','printed rigid panels or painted MDF','backdrops','Wood')]);
 export function facade2025Model(fullKey){const key=fullKey.replace('f25-',''),group=new THREE.Group();
+ if(iconiqueKeys.includes(key))return iconiqueModel(key);
  if(ralphModelKeys.includes(key))return ralphReferenceModel(key);
  const mat=(color,metalness=0,roughness=.65)=>new THREE.MeshStandardMaterial({color,metalness,roughness,side:THREE.DoubleSide});
  const leather=mat(0x684130),raised=mat(0x80543c),thread=mat(0xe3c89b),silver=mat(0xdce1e5,1,.1),gold=mat(0xc7a457,.95,.15),dark=mat(0x25282c,.85,.2),white=mat(0xf3f0e6),black=mat(0x171719,.1,.35),yellow=mat(0xf7d034),orange=mat(0xdc8c34),pink=mat(0xe887a7),blue=mat(0x378acb);
