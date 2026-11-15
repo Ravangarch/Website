@@ -22,7 +22,7 @@ export const cartierDefinitions=[
  part('Gold Cartier lettering','Brass, gold-anodised aluminium','gold-lettering'),
  part('Decorative gold studs','Brass, aluminium','studs'),
  part('Central circular ornament','Cast brass, spun aluminium','ornament')]),
- ...project('Christmas',null,[
+ ...project('Christmas',2023,[
  part('Panther sculptural body','Formed aluminium sheets, papier-mâché, moulded cellulose','panther','Bio-based composite'),
  part('Panther internal structure','Steel wire, aluminium ribs','panther-frame','Structure'),
  part('Panther surface finish','Mineral paint, enamelled metal','panther-finish','Mineral coating'),
