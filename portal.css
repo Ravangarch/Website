@@ -161,3 +161,5 @@ aside .user-info{padding:0;line-height:15px}
 #grid.list-view .card .object-image .scan-tag,#grid.list-view .card .object-image .object-number,#grid.list-view .card .object-image .material-tag{display:none}
 #grid.list-view .card .project-summary{max-width:850px;line-height:1.6}
 @media(max-width:650px){.view-switch{margin:0 0 16px}.collection-heading{flex-wrap:wrap;gap:5px}.toolbar .search{flex-basis:100%;max-width:none}.toolbar .sort{margin-left:0}#grid.list-view .card{grid-template-columns:76px minmax(0,1fr);column-gap:14px}#grid.list-view .card .object-image{width:76px}#grid.list-view .card .card-meta{gap:8px;font-size:9px}}
+
+#unit-editor{width:min(640px,calc(100vw - 28px))}#unit-editor .primary{padding:12px 18px}.unit-save-error{color:#9d322d;font-size:12px}.unit-location-row .edit-unit{margin:6px 0 10px;font-size:11px;padding:7px 12px}.unit-location-row{flex-wrap:wrap}
