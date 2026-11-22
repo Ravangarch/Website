@@ -90,10 +90,10 @@ export const vanCleefWinterUsagePhotos=[
 ];
 const vanCleefWinterSelections={'vca-snowdrifts':[1,0,3],'vca-snow-finish':[1,2,0],'vca-houses':[2,1,0],'vca-roofs':[2,1,0],'vca-ornaments':[3,1,0],'vca-snowflakes':[1,3,0],'vca-spheres':[2,1,0],'vca-trees':[0,3,1]};
 export const vanCleefSpringUsagePhotos=[
- ['van-cleef-arpels-spring-flowers.png','Van Cleef & Arpels Spring 2023 window framed by tall flower stems and blossoms'],
- ['02-van-cleef-arpels-spring-2023-vendome.png','Street view of Van Cleef & Arpels’ Spring 2023 floral façade'],
- ['image003-copie.png','Spring window display with flower buds, small blossoms and turquoise leaves'],
- ['van-cleef-arpels-spring-2023-vendome.png','Close-up of a Spring 2023 flower and its decorative centre']
+ ['van-cleef-arpels-spring-flowers.png','Van Cleef & Arpels Summer 2023 window framed by tall flower stems and blossoms'],
+ ['02-van-cleef-arpels-spring-2023-vendome.png','Street view of Van Cleef & Arpels’ Summer 2023 floral façade'],
+ ['image003-copie.png','Summer window display with flower buds, small blossoms and turquoise leaves'],
+ ['van-cleef-arpels-spring-2023-vendome.png','Close-up of a Summer 2023 flower and its decorative centre']
 ];
 const vanCleefSpringSelections={'vca-stems':[0,1,3],'vca-branches':[0,3,2],'vca-large-petals':[3,0,2],'vca-small-petals':[2,3,0],'vca-centres':[3,2,0],'vca-stamens':[3,2,0],'vca-buds':[2,3,0],'vca-leaves':[2,0,3]};
 export const soundWaveUsagePhotos=[
@@ -149,8 +149,14 @@ export const poleneUsagePhotos=[
  ['athem-polene_04.png','Wide view of the Polène building and floral installation']
 ];
 const poleneSelections={'polene-kairlin-petals':[0,2,1],'polene-plaster-petals':[2,0,3]};
+export const longchampUsagePhotos=[
+ ['athem-longchamp-toiletpaper_01.jpg','Longchamp cloud-covered corner façade with horse, banana and surreal sculptural elements'],
+ ['athem-longchamp-toiletpaper_02.jpg','Longchamp storefront with horse and banana sculptures and TOILETCHAMP LONGPAPER sign'],
+ ['athem-longchamp-toiletpaper_03.jpg','Longchamp window with blue sky graphics and yellow patterned surround']
+];
 function originalPhotos(directory,photos,selection){return `<div class="project-photos original-usage-photos${selection.length===2?' two-photos':''}" data-info-field="photos">${selection.map(index=>{const [file,caption]=photos[index],url=`${import.meta.env.BASE_URL}project-photos/${directory}/${encodeURIComponent(file)}`;return `<figure><a class="original-usage-photo" href="${esc(url)}" target="_blank" rel="noopener" aria-label="View original: ${esc(caption)}"><img src="${esc(url)}" alt="${esc(caption)}" loading="lazy" decoding="async"></a><figcaption>${esc(caption)}</figcaption></figure>`;}).join('')}</div>`;}
 export function usagePhotos(record){
+ if(record.brand==='Longchamp')return originalPhotos('longchamp/toiletpaper',longchampUsagePhotos,[0,1,2]);
  const supportPhotos={'support-wave':['hm/sound-wave',soundWaveUsagePhotos],'support-discs':['paco-rabanne/iconique-1969',pacoIconiqueUsagePhotos],'support-spring':['van-cleef-arpels/spring-2023',vanCleefSpringUsagePhotos],'support-spheres':['louis-vuitton/creating-infinity',creatingInfinityUsagePhotos]};
  if(supportPhotos[record.componentModel]){const [directory,photos]=supportPhotos[record.componentModel];return originalPhotos(directory,photos,[0,1,2]);}
 
@@ -162,8 +168,8 @@ export function usagePhotos(record){
  if(record.brand==='H&M'&&record.year===2023&&hm2023PanelSelections[record.componentModel])return originalPhotos('hm/2023-panels',hm2023PanelUsagePhotos,hm2023PanelSelections[record.componentModel]);
  if(['H&M','Paco Rabanne'].includes(record.brand)&&record.project==='H&M x RABANNE'&&hmRabanneSelections[record.componentModel])return originalPhotos('hm-rabanne',hmRabanneUsagePhotos,hmRabanneSelections[record.componentModel]);
  if(record.brand==='H&M'&&record.project==='Sound Wave'&&soundWaveSelections[record.componentModel])return originalPhotos('hm/sound-wave',soundWaveUsagePhotos,soundWaveSelections[record.componentModel]);
- if(record.brand==='Van Cleef & Arpels'&&record.project==='Spring 2023'&&vanCleefSpringSelections[record.componentModel])return originalPhotos('van-cleef-arpels/spring-2023',vanCleefSpringUsagePhotos,vanCleefSpringSelections[record.componentModel]);
- if(record.brand==='Van Cleef & Arpels'&&record.project==='Winter 2023'&&vanCleefWinterSelections[record.componentModel])return originalPhotos('van-cleef-arpels/winter-2023',vanCleefWinterUsagePhotos,vanCleefWinterSelections[record.componentModel]);
+ if(record.brand==='Van Cleef & Arpels'&&['Summer','Spring 2023'].includes(record.project)&&vanCleefSpringSelections[record.componentModel])return originalPhotos('van-cleef-arpels/spring-2023',vanCleefSpringUsagePhotos,vanCleefSpringSelections[record.componentModel]);
+ if(record.brand==='Van Cleef & Arpels'&&['Winter','Winter 2023'].includes(record.project)&&vanCleefWinterSelections[record.componentModel])return originalPhotos('van-cleef-arpels/winter-2023',vanCleefWinterUsagePhotos,vanCleefWinterSelections[record.componentModel]);
  if(record.brand==='Cartier'&&record.project==='Christmas'&&cartierChristmasSelections[record.componentModel])return originalPhotos('cartier/christmas',cartierChristmasUsagePhotos,cartierChristmasSelections[record.componentModel]);
  if(record.brand==='Cartier'&&record.project==='Soho'&&sohoSelections[record.componentModel])return originalPhotos('cartier/soho',sohoUsagePhotos,sohoSelections[record.componentModel]);
  if(record.brand==='Cartier'&&record.project==='Bold and Bright'&&boldBrightSelections[record.componentModel])return originalPhotos('cartier/bold-and-bright',boldBrightUsagePhotos,boldBrightSelections[record.componentModel]);

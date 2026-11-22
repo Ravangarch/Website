@@ -4,7 +4,7 @@ export const projectSupports=[
  {brand:'Polène',project:'Blossoming Lether',year:2025,key:'support-polene',name:'Detachable flower façade support',properties:'Detachable · adjustable clamp blocks · sliding crossbars · square-tube ladder modules · bolted connections · packs into separate rails'},
  {brand:'H&M',project:'Sound Wave',year:2024,key:'support-wave',name:'Detachable curved façade subframe',properties:'Detachable · curved ribs follow the red shell · bolted horizontal stringers · stand-off brackets · modular transport sections'},
  {brand:'Paco Rabanne',project:'Iconique 1969',year:2025,key:'support-discs',name:'Detachable disc suspension frame',properties:'Detachable · modular metal grid · tensioned suspension cables · bolted stand-off brackets · mounting points for linked discs'},
- {brand:'Van Cleef & Arpels',project:'Spring 2023',year:2023,key:'support-spring',name:'Detachable floral stem mounting rails',properties:'Detachable · slim ladder rails · removable stem sockets · adjustable clamps · stand-off wall brackets'},
+ {brand:'Van Cleef & Arpels',project:'Summer',year:2023,key:'support-spring',name:'Detachable floral stem mounting rails',properties:'Detachable · slim ladder rails · removable stem sockets · adjustable clamps · stand-off wall brackets'},
  {brand:'Louis Vuitton',project:'Creating Infinity',year:2021,key:'support-spheres',name:'Detachable sphere mounting lattice',properties:'Detachable · bolted structural grid · adjustable stand-off arms · circular attachment cradles · sectional assembly'}
 ];
 export function projectSupportModel(key){

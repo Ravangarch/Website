@@ -9,7 +9,7 @@ const definitions=[
  ['Polène','Blossoming Lether',2025,'polene/blossoming-lether',poleneUsagePhotos[1],'support-polene','polene-kairlin-petals','polene-plaster-petals'],
  ['H&M','Sound Wave',2024,'hm/sound-wave',soundWaveUsagePhotos[0],'support-wave','hm-wave-shell','hm-sculptures'],
  ['Paco Rabanne','Iconique 1969',2025,'paco-rabanne/iconique-1969',pacoIconiqueUsagePhotos[0],'support-discs','f25-gold-discs','f25-silver-discs'],
- ['Van Cleef & Arpels','Spring 2023',2023,'van-cleef-arpels/spring-2023',vanCleefSpringUsagePhotos[0],'support-spring','vca-stems','vca-large-petals'],
+ ['Van Cleef & Arpels','Summer',2023,'van-cleef-arpels/spring-2023',vanCleefSpringUsagePhotos[0],'support-spring','vca-stems','vca-large-petals'],
  ['Louis Vuitton','Creating Infinity',2021,'louis-vuitton/creating-infinity',creatingInfinityUsagePhotos[0],'support-spheres','mirrored-spheres','sphere-segments']
 ];
 export const pastProjectCases=definitions.map(([brand,name,year,directory,photo,...models],i)=>({id:5000+i,brand,name,project:name,year,directory,photo,models,category:'past',type:'Structure',place:'With the brand',description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'}));
