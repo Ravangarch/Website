@@ -167,3 +167,11 @@ aside .user-info{padding:0;line-height:15px}
 .unit-fields{margin:24px 0;border:1px solid #ccc;padding:18px}.unit-fields>p,.timeline-demo{font-size:12px;line-height:1.7;color:#777}.unit-fields>label{display:block;font-size:12px;margin:12px 0}.unit-fields [data-unit-number]{width:100px;display:block;margin:8px 0;padding:9px;border:1px solid #ccc}.unit-custom-toggle{display:flex!important;gap:9px;align-items:center}.unit-custom-toggle input{width:auto!important}.unit-fields [data-unit-error]{color:#a33328}.unit-fields [data-unit-inputs] input:disabled,.unit-fields select:disabled{opacity:.5}
 
 .timeline-fields{margin:24px 0;padding:18px;border:1px solid #ccc}.timeline-fields>p{font-size:12px;color:#777;line-height:1.7}.timeline-field-row{display:grid;grid-template-columns:minmax(0,1fr) 150px auto;gap:12px;align-items:end;margin:12px 0}.timeline-field-row label{min-width:0}.timeline-field-row input{width:100%}.timeline-field-row button{margin-bottom:0;padding:10px}@media(max-width:540px){.timeline-field-row{grid-template-columns:minmax(0,1fr) 130px}.timeline-field-row button{grid-column:1 / -1;justify-self:start}}
+
+/* Allow admin actions to wrap inside the header, including under browser zoom. */
+main>header{height:auto;min-height:75px;flex-wrap:wrap;gap:14px 24px;padding-top:16px;padding-bottom:16px}
+main>header>span{flex:0 1 auto;line-height:1.6}
+main>header .account-actions{display:flex;flex:1 1 440px;min-width:0;max-width:100%;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:8px}
+main>header .account-actions button{flex:0 0 auto;white-space:nowrap;margin:0}
+@media(max-width:900px){main>header{padding-left:20px;padding-right:20px}main>header .account-actions{flex-basis:100%;justify-content:flex-start}}
+@media(max-width:540px){main>header{padding:14px 16px;gap:10px}main>header .account-actions{gap:8px}main>header .account-actions .action-button{font-size:10px;padding:9px}main>header .account-actions #logout{font-size:10px;padding:9px}}
