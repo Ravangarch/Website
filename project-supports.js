@@ -9,7 +9,7 @@ export const projectSupports=[
 ];
 // Existing archive structures that actually support an installation, rather than
 // decorative panels or signage that happen to use the Structure material category.
-export const existingSupportKeys=new Set(['inset-frame','sphere-ribs','chains','backing-panels','panel-backing','radiating-rods','geometric-bee','honeycomb','cartier-balloon-frame','cartier-sphere-supports','cartier-panther-frame','vca-snowdrifts','hm-floral-framework','hm-wave-ribs','hm-sculpture-supports','hm-wave-framework','hm-disc-framework','hm-layered-framework']);
+export const existingSupportKeys=new Set(['sphere-ribs','panel-backing','geometric-bee','honeycomb','cartier-balloon-frame','cartier-sphere-supports','cartier-panther-frame','hm-floral-framework','hm-wave-ribs','hm-sculpture-supports','hm-wave-framework','hm-disc-framework','hm-layered-framework']);
 export const isStructuralSupport=item=>!!item.structuralSupport||item.componentModel?.startsWith('support-')||existingSupportKeys.has(item.componentModel);
 export const missingProjectSupports=[
  {brand:'Cartier',project:'Soho',year:2024,key:'support-soho',name:'Detachable Soho panel support frame',properties:'Detachable · bolted steel subframe · adjustable panel fixing plates · stand-off wall brackets · removable horizontal rails'},
@@ -17,7 +17,11 @@ export const missingProjectSupports=[
  {brand:'Paco Rabanne',project:'H&M x RABANNE',year:2023,key:'support-sequin',name:'Detachable sequin façade suspension structure',properties:'Detachable · bolted modular suspension frame · vertical carrier cables · diagonal braces · adjustable stand-off brackets'},
  {brand:'Ralph Lauren',project:'Monumental RL 888',year:2025,key:'support-ralph',name:'Detachable RL panel and logo supporting structure',properties:'Detachable · tall metal support rails · removable panel crossbars · reinforced logo mounting arms · bolted strap attachment plates'},
  {brand:'Longchamp',project:'Longchamp x ToiletPaper',year:2025,key:'support-longchamp',name:'Detachable cloud façade and sculpture support',properties:'Detachable · modular metal support grid · braced cantilever arms for projecting sculptures · adjustable façade brackets · reusable bolted joints'},
- {brand:'Dior',project:'Dior-Champs=Elyssess',year:2026,key:'support-dior',name:'Detachable architectural lighting support frame',properties:'Detachable · slim metal window mounting rails · removable LED cable trays · adjustable fixing tabs · bolted stand-off brackets'}
+ {brand:'Dior',project:'Dior-Champs=Elyssess',year:2026,key:'support-dior',name:'Detachable architectural lighting support frame',properties:'Detachable · slim metal window mounting rails · removable LED cable trays · adjustable fixing tabs · bolted stand-off brackets'},
+ {brand:'Sotheby’s',year:2025,key:'support-sothebys',name:'Detachable display structural support frame',properties:'Detachable · dedicated rear support frame for inset timber openings and LED modules · adjustable bolted crossbars · stabilising base rails'},
+ {brand:'Pomellato',year:2025,key:'support-pomellato',name:'Detachable medallion structural support frame',properties:'Detachable · load-bearing suspension gantry behind the decorative medallion · reinforced chain anchor points · removable circular attachment cradles · bolted diagonal braces'},
+ {brand:'Louis Vuitton',project:'Le Soleil',year:2022,key:'support-soleil',name:'Detachable sunburst structural support frame',properties:'Detachable · rear mounting frame behind the decorative rays · central sphere cradle · radial fixing ring · adjustable stand-off brackets'},
+ {brand:'Van Cleef & Arpels',project:'Winter',year:2023,key:'support-winter',name:'Detachable winter display structural support',properties:'Detachable · low modular support deck beneath the snowdrift scenery · removable crossbars · adjustable feet · mounting tabs for miniature houses'}
 ];
 export function projectSupportModel(key){
  if(key==='support-polene'){const model=provisionalModel(1);model.userData.kind=key;return model;}
@@ -26,7 +30,11 @@ export function projectSupportModel(key){
  const box=(w,h,d,x,y,z,mat=steel)=>{const mesh=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);mesh.position.set(x,y,z);group.add(mesh);return mesh;};
  const rod=(a,b,r=.018,mat=steel)=>{const start=new THREE.Vector3(...a),end=new THREE.Vector3(...b),direction=end.clone().sub(start),mesh=new THREE.Mesh(new THREE.CylinderGeometry(r,r,direction.length(),8),mat);mesh.position.copy(start).add(end).multiplyScalar(.5);mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),direction.normalize());group.add(mesh);return mesh;};
  const clamp=(x,y,z)=>{box(.13,.12,.13,x,y,z,joint);const bolt=rod([x,y,z+.06],[x,y,z+.11],.027,joint);bolt.userData.part='removable fastener';};
- if(key==='support-wave'){
+ if(key==='support-winter'){
+  for(const z of [-.4,.4])box(2.8,.065,.065,0,0,z);
+  for(const x of [-1.35,-.45,.45,1.35]){box(.065,.065,.9,x,0,0);for(const z of [-.4,.4]){box(.065,.3,.065,x,-.17,z);box(.18,.035,.18,x,-.34,z,joint);clamp(x,0,z);}}
+  for(const x of [-.85,.65]){box(.5,.035,.32,x,.07,0);for(const z of [-.18,.18])box(.07,.2,.07,x,.14,z);}
+ }else if(key==='support-wave'){
   for(const z of [-.65,0,.65]){for(let i=0;i<16;i++){const a=i/16*Math.PI,b=(i+1)/16*Math.PI;rod([Math.cos(a)*1.3,Math.sin(a)*1.3-.6,z],[Math.cos(b)*1.3,Math.sin(b)*1.3-.6,z],.035);}}
   for(let i=0;i<7;i++){const a=i/6*Math.PI,x=Math.cos(a)*1.3,y=Math.sin(a)*1.3-.6;rod([x,y,-.65],[x,y,.65],.028);clamp(x,y,0);}for(const x of [-1.3,1.3])box(.1,.1,1.55,x,-.66,0);
  }else{
@@ -39,6 +47,9 @@ export function projectSupportModel(key){
   if(key==='support-soho'||ralph){for(const x of [-width/2,0,width/2])for(const y of [-.65,.65]){box(.25,.18,.025,x,y,.10,joint);rod([x,y,0],[x,y,.1],.025);}if(ralph){for(const x of [-.35,.35]){box(.065,.065,.55,x,.25,.25);rod([x,-.15,0],[x,.25,.50],.02);}}}
   if(key==='support-longchamp'){for(const x of [-.85,.85]){box(.085,.085,.9,x,.2,.42);rod([x,-.5,0],[x,.2,.85],.035);box(.32,.06,.25,x,.2,.85,joint);}for(const y of [-.75,.75])box(width,.045,.12,0,y,.10);}
   if(dior){for(const x of [-.42,.42])box(.035,height,.035,x,0,.09);for(const y of [-.8,.8]){box(width,.025,.12,0,y,.08);for(const x of [-.7,.7])box(.12,.12,.025,x,y,.16,joint);}}
+  if(key==='support-sothebys'){for(const x of [-1.15,1.15]){box(.12,.08,.85,x,-height/2,.25);rod([x,-.6,0],[x,-height/2,.6],.025);}for(const y of [-.6,.6])box(1.9,.055,.12,0,y,.1);}
+  if(key==='support-pomellato'){rod([-1.4,-1.05,0],[1.4,1.05,0],.025,joint);for(const x of [-.8,0,.8]){box(.16,.12,.22,x,1.05,.07,joint);rod([x,1.05,.17],[x,.15,.25],.012);const cradle=new THREE.Mesh(new THREE.TorusGeometry(.3,.027,8,40),steel);cradle.position.set(x,.15,.25);group.add(cradle);}}
+  if(key==='support-soleil'){const ring=new THREE.Mesh(new THREE.TorusGeometry(.72,.03,8,56),steel);ring.position.z=.25;group.add(ring);const hub=new THREE.Mesh(new THREE.CylinderGeometry(.21,.21,.22,24),joint);hub.rotation.x=Math.PI/2;hub.position.z=.2;group.add(hub);for(let i=0;i<8;i++){const a=i*Math.PI/4;rod([0,0,.2],[Math.cos(a)*.72,Math.sin(a)*.72,.25],.018);}for(const x of [-1,1])rod([x,0,0],[0,0,.2],.035);}
   if(key==='support-spheres'){for(const x of [-.95,0,.95])for(const y of [-.65,.45]){rod([x,y,0],[x,y,.45],.03);const ring=new THREE.Mesh(new THREE.TorusGeometry(.19,.018,8,30),steel);ring.position.set(x,y,.46);group.add(ring);rod([x-.19,y,.46],[x,y-.23,0],.012,joint);}}
  }
  return group;
