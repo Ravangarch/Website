@@ -1,3 +1,4 @@
+import {structuralDesigns} from './nuanced-structural-designs.js';
 import {reconcileImportedRecords} from './archive-records.js';
 import {pastProjectCases,createPastProjects} from './past-projects.js';
 import {mountTimelineFields} from './timeline-fields.js';
@@ -34,7 +35,7 @@ configureAccess(accounts,brands);
 let account=null,noteTimer=null,noteSaver=null,selectedYear='all',selectedProject=null,tab='archive';
 const projects=brandDefinitions.filter(b=>!b.custom).flatMap(({name:b,seed:i})=>[
 {id:i<4?110+i:600+(i-4)*3,name:['Couture in motion','Objects of everyday wonder','The art of travel','An evening of collecting'][i%4],brand:b,type:['Wood','Plastic','Metal','Wood'][i%4],year:2020+i%4,shape:(i+2)%7,quantity:2,volume:'.320',place:'With the brand',condition:'Good · archived installation',passport:`PROJECT–00${i+1}`,category:'past',collaborationBrand:brands[1+(i+2)%brandDefinitions.length]},
-{id:i<4?120+i:601+(i-4)*3,name:'Detachable façade mounting frame',brand:b,type:'Metal',materialLabel:'Powder-coated square steel tubing',year:2026,shape:4,concept:1,designRole:'structural',quantity:3,volume:'.750',place:'Provisional design',condition:'Concept · reference-based approximation',passport:`DESIGN–FRAME–00${i+1}`,category:'design'},
+{id:i<4?120+i:601+(i-4)*3,...structuralDesigns[0],brand:b,year:2026,shape:4,quantity:3,place:'Provisional design',condition:'Concept · illustrative support-system study',passport:`DESIGN–FACADE–00${i+1}`,category:'design'},
 {id:i<4?130+i:602+(i-4)*3,name:'Folded metal petal composition',brand:b,type:'Metal',materialLabel:'Powder-coated folded metal · bronze-coloured stems',year:2026,shape:4,concept:2,quantity:3,volume:'.420',place:'Provisional design',condition:'Concept · reference-based approximation',passport:`DESIGN–PETAL–00${i+1}`,category:'design'}]);
 projects.push(...brandDefinitions.filter(b=>!b.custom).flatMap(({name:brand},i)=>additionalDesigns.map((design,j)=>({...design,id:2000+i*4+j,brand,year:2026,shape:4,category:'design',quantity:3,place:'Provisional design',condition:'Concept · illustrative design study',passport:`DESIGN–${design.concept}–${i+1}`}))));
 projects.splice(0,projects.length,...projects.filter(project=>project.category!=='past'),...pastProjectCases);

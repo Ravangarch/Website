@@ -1,11 +1,13 @@
+import {structuralDesigns,nuancedStructuralModel} from './nuanced-structural-designs.js';
 import * as THREE from 'three';
 export const additionalDesigns=[
- {concept:3,designRole:'structural',name:'Modular display plinth',type:'Wood',materialLabel:'Reclaimed plywood · detachable metal brackets',description:'A stepped display plinth assembled from reusable plywood panels, with removable shelves and recessed metal feet.',facts:['Reclaimed plywood panels','Detachable shelves','Reusable corner brackets'],volume:'.360'},
+ structuralDesigns[1],
  {concept:4,name:'Folded freestanding screen',type:'Bio-based composite',materialLabel:'Pressed cellulose panels · reusable hinge pins',description:'An articulated screen with six alternating folds. The lightweight panels can be separated for transport or rearranged around a display.',facts:['Six folding panels','Freestanding zigzag layout','Replaceable hinge pins'],volume:'.240'},
- {concept:5,designRole:'structural',name:'Suspended circular display',type:'Metal',materialLabel:'Brushed aluminium rings · reusable steel suspension wires',description:'Three concentric rings suspended from a compact rail, with small removable platforms for jewellery or accessories.',facts:['Concentric metal rings','Removable display platforms','Adjustable suspension wires'],volume:'.180'},
- {concept:6,designRole:'structural',name:'Reusable mesh display wall',type:'Metal',materialLabel:'Steel square tubing · expanded metal mesh · clip-on shelves',description:'A freestanding mesh wall on broad stabilising feet, with three clip-on shelves that can be repositioned between uses.',facts:['Expanded metal infill','Clip-on shelves','Broad stabilising feet'],volume:'.450'}
+ structuralDesigns[2],
+ structuralDesigns[3]
 ];
 export function additionalProvisionalModel(kind){
+ if(kind>=7)return nuancedStructuralModel(kind);
  const group=new THREE.Group();const mat=(color,metalness=0)=>new THREE.MeshStandardMaterial({color,metalness,roughness:.6,side:THREE.DoubleSide});
  const ivory=mat(0xe5ddcb),wood=mat(0xb5956f),steel=mat(0x8a9293,.7),bronze=mat(0xb69b73,.45),blue=mat(0x567c85);
  const add=(geo,m,x=0,y=0,z=0)=>{const o=new THREE.Mesh(geo,m);o.position.set(x,y,z);group.add(o);return o;};
