@@ -1,6 +1,6 @@
 import {escapeHTML as esc} from './storage.js';
 const seen=new Set();
-const key=(account,type)=>`athem-guide-v2:${account.username}:${type}`;
+const key=(account,type)=>`athem-guide-v3:${account.username}:${type}`;
 const section=(title,text)=>`<section><h3>${title}</h3><p>${text}</p></section>`;
 export function showGuide(account,type,{force=false}={}){
  if(!account||account.username==='admin')return;
